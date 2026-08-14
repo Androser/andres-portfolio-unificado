@@ -170,13 +170,16 @@
   .fs-sensor { animation: fsSensor 1.8s ease-in-out infinite; }
   @keyframes fsSensor { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
 
+  /* ---- per-project Q&A CTA blocks (glassmorphism + cyan accent) ---- */
+  .fs-qa { background: rgba(6,182,212,.05); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(6,182,212,.45); box-shadow: 0 0 20px rgba(6,182,212,.10), inset 0 0 16px rgba(6,182,212,.04); }
+
   /* ---- stack badges (click sound wired in global JS) ---- */
   .stack-badge { transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease, color .25s ease; }
   .stack-badge:hover, .stack-badge:focus-visible { border-color: rgba(6,182,212,.8); color: #a5f3fc; box-shadow: 0 0 18px rgba(6,182,212,.35), inset 0 0 12px rgba(6,182,212,.08); transform: translateY(-2px); outline: none; }
 </style>
 
 <!-- ==================== 1 · HERO ==================== -->
-<div class="relative min-h-[85vh] flex items-center overflow-hidden border-b border-white/5">
+<div class="relative min-h-screen flex items-center overflow-hidden border-b border-white/5">
   <canvas id="fs-hero-canvas" class="absolute inset-0 w-full h-full"></canvas>
   <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at 68% 30%, transparent 0%, #050505 88%);"></div>
 
@@ -298,6 +301,14 @@
           <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:.5s">60 FPS</span>
           <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:1s" title="más de 10 mil salas concurrentes">10k+ concurrent rooms</span>
         </div>
+        <div class="fs-qa rounded-xl p-4 mt-5">
+          <p class="text-cyan-200 font-bold text-sm">"Can your backend handle 10k+ concurrent users?"</p>
+          <p class="text-gray-300 text-sm mt-1">Yes — TOQEN's PHP + MySQL backend already serves 10k+ concurrent rooms at &lt;100 ms latency on AWS.</p>
+          <p class="text-gray-500 text-xs italic mt-0.5 mb-3">Backend probado en producción con miles de salas simultáneas.</p>
+          <a href="https://wa.me/573027464103?text=Hi%20Andr%C3%A9s%21%20I%20need%20a%20backend%20that%20scales%20to%2010k%2B%20concurrent%20users%20like%20TOQEN.%20Can%20we%20talk%3F"
+             target="_blank" rel="noopener"
+             class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">Ask on WhatsApp →</a>
+        </div>
       </div>
     </div>
 
@@ -336,6 +347,14 @@
           <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:.5s" title="más de 2 millones en transacciones">$2M+ in transactions</span>
           <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:1s">99.9% uptime</span>
         </div>
+        <div class="fs-qa rounded-xl p-4 mt-5">
+          <p class="text-cyan-200 font-bold text-sm">"Can you build Web3 authentication that actually converts?"</p>
+          <p class="text-gray-300 text-sm mt-1">Absolutely — 5k+ wallets connected and $2M+ in transactions through a frictionless auth flow.</p>
+          <p class="text-gray-500 text-xs italic mt-0.5 mb-3">Autenticación Web3 sin fricción, con resultados reales.</p>
+          <a href="https://wa.me/573027464103?text=Hi%20Andr%C3%A9s%21%20I%27m%20interested%20in%20Web3%20authentication%20like%20ArtemisVision.%20Can%20we%20talk%3F"
+             target="_blank" rel="noopener"
+             class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">Ask on WhatsApp →</a>
+        </div>
       </div>
     </div>
 
@@ -369,6 +388,14 @@
           <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:0s">500+ assets tracked</span>
           <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:.5s" title="respuesta REST menor a 80 ms">REST response &lt;80 ms</span>
           <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:1s">10k+ analytics events/day</span>
+        </div>
+        <div class="fs-qa rounded-xl p-4 mt-5">
+          <p class="text-cyan-200 font-bold text-sm">"Can your APIs keep up with Unity WebGL builds?"</p>
+          <p class="text-gray-300 text-sm mt-1">Yes — Laravel REST APIs answering in &lt;80 ms, feeding 500+ 3D assets to Unity builds.</p>
+          <p class="text-gray-500 text-xs italic mt-0.5 mb-3">APIs rápidas pensadas para consumo desde Unity.</p>
+          <a href="https://wa.me/573027464103?text=Hi%20Andr%C3%A9s%21%20I%20need%20fast%20APIs%20for%20a%20Unity%20WebGL%20project%20like%20SENNOVA.%20Can%20we%20talk%3F"
+             target="_blank" rel="noopener"
+             class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">Ask on WhatsApp →</a>
         </div>
       </div>
     </div>
@@ -411,6 +438,14 @@
           <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:0s" title="30% de agua ahorrada">30% water saved</span>
           <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:.5s" title="diagnóstico con IA en menos de 3 segundos">AI diagnosis in &lt;3 sec</span>
           <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:1s">Real-time sensor data</span>
+        </div>
+        <div class="fs-qa rounded-xl p-4 mt-5">
+          <p class="text-cyan-200 font-bold text-sm">"Can IoT + AI reduce my farm's water costs?"</p>
+          <p class="text-gray-300 text-sm mt-1">It already does — Zion Hydro Lab cut water usage by 30% with sensors + AI diagnosis in &lt;3 seconds.</p>
+          <p class="text-gray-500 text-xs italic mt-0.5 mb-3">Ahorro de agua medible con sensores e IA.</p>
+          <a href="https://wa.me/573027464103?text=Hi%20Andr%C3%A9s%21%20I%20want%20to%20reduce%20water%20costs%20with%20IoT%20%2B%20AI%20like%20Zion%20Hydro%20Lab.%20Can%20we%20talk%3F"
+             target="_blank" rel="noopener"
+             class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">Ask on WhatsApp →</a>
         </div>
       </div>
     </div>
@@ -471,13 +506,16 @@ function initFullStackScene() {
   camera.position.set(0, 1.1, 9);
 
   // lights
-  scene.add(new THREE.AmbientLight(0x8a9bb8, 0.55));
-  var key = new THREE.DirectionalLight(0xffffff, 0.85);
+  scene.add(new THREE.AmbientLight(0x8a9bb8, 0.8));
+  var key = new THREE.DirectionalLight(0xffffff, 1.1);
   key.position.set(6, 9, 7);
   scene.add(key);
-  var cyanGlow = new THREE.PointLight(0x06b6d4, 1.5, 22);
+  var cyanGlow = new THREE.PointLight(0x06b6d4, 2.4, 30);
   cyanGlow.position.set(0, 2.5, 3.5);
   scene.add(cyanGlow);
+  var fillGlow = new THREE.PointLight(0x0ea5e9, 1.2, 25);
+  fillGlow.position.set(-5, 3, -2);
+  scene.add(fillGlow);
 
   /* ---------- server cluster: metallic racks + blinking LEDs ---------- */
   var cluster = new THREE.Group();
@@ -502,7 +540,8 @@ function initFullStackScene() {
       cluster.add(led);
     }
   });
-  cluster.position.y = -1.9;
+  cluster.position.y = -2.1;
+  cluster.scale.setScalar(1.4); // ~40% bigger racks for a more immersive frame
   scene.add(cluster);
 
   /* ---------- Quest-style goggles built from geometric shapes ---------- */
@@ -559,22 +598,85 @@ function initFullStackScene() {
   });
 
   goggles.position.set(0, 1.5, 1.1);
+  goggles.scale.setScalar(1.4); // ~40% bigger hero model
   scene.add(goggles);
 
   /* ---------- cyan data particles flowing around ---------- */
-  var P_COUNT = 350;
+  var P_COUNT = 650;
   var pGeo = new THREE.BufferGeometry();
   var pos = new Float32Array(P_COUNT * 3);
   var pSpeed = new Float32Array(P_COUNT);
   for (var i = 0; i < P_COUNT; i++) {
-    pos[i * 3]     = (Math.random() - 0.5) * 14;
-    pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
-    pos[i * 3 + 2] = (Math.random() - 0.5) * 8;
+    pos[i * 3]     = (Math.random() - 0.5) * 18;
+    pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
+    pos[i * 3 + 2] = (Math.random() - 0.5) * 10;
     pSpeed[i] = 0.004 + Math.random() * 0.012;
   }
   pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  var particles = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x22d3ee, size: 0.05, transparent: true, opacity: 0.8 }));
+  var particles = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x22d3ee, size: 0.06, transparent: true, opacity: 0.8 }));
   scene.add(particles);
+
+  /* ---------- procedural background: mini racks, data cubes, net nodes, cyan geometry ---------- */
+  var bgGroup = new THREE.Group();
+  var bgWireMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, wireframe: true, transparent: true, opacity: 0.32 });
+  var bgSolidMat = new THREE.MeshStandardMaterial({ color: 0x151c2a, metalness: 0.8, roughness: 0.4 });
+
+  // floating mini server racks (dark boxes + one blinking strip each)
+  var bgLeds = [];
+  [[-5.6, 2.2, -3.5], [5.8, 1.4, -4.2], [4.6, 3.4, -2.2]].forEach(function (p, i) {
+    var h = 1.2 + (i % 2) * 0.5;
+    var rack = new THREE.Mesh(new THREE.BoxGeometry(0.7, h, 0.6), bgSolidMat);
+    rack.position.set(p[0], p[1], p[2]);
+    bgGroup.add(rack);
+    var strip = new THREE.Mesh(
+      new THREE.BoxGeometry(0.5, 0.04, 0.03),
+      new THREE.MeshBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 1 })
+    );
+    strip.position.set(p[0], p[1] + h * 0.2, p[2] + 0.32);
+    strip.userData.phase = Math.random() * Math.PI * 2;
+    bgLeds.push(strip);
+    bgGroup.add(strip);
+  });
+
+  // data cubes — wireframe boxes drifting at the frame edges
+  var dataCubes = [];
+  [[-4.4, 3.6, -2.0, 0.55], [3.8, -0.6, -2.6, 0.45], [-6.2, 0.2, -2.8, 0.4], [6.4, 3.0, -3.2, 0.6]].forEach(function (p) {
+    var c = new THREE.Mesh(new THREE.BoxGeometry(p[3], p[3], p[3]), bgWireMat);
+    c.position.set(p[0], p[1], p[2]);
+    c.userData.baseY = p[1];
+    dataCubes.push(c);
+    bgGroup.add(c);
+  });
+
+  // network nodes — small spheres joined by faint links
+  var nodeGeo = new THREE.SphereGeometry(0.09, 12, 12);
+  var nodeMat = new THREE.MeshBasicMaterial({ color: 0x67e8f9, transparent: true, opacity: 0.8 });
+  var nodePts = [[-5.2, 4.4, -3.0], [-3.6, 4.9, -3.4], [-4.4, 3.4, -2.6], [5.0, 4.6, -3.2], [6.6, 4.0, -2.8], [5.8, 3.2, -3.6]];
+  nodePts.forEach(function (p) {
+    var n = new THREE.Mesh(nodeGeo, nodeMat);
+    n.position.set(p[0], p[1], p[2]);
+    bgGroup.add(n);
+  });
+  var linePts = [];
+  [[0, 1], [1, 2], [2, 0], [3, 4], [4, 5], [5, 3]].forEach(function (l) {
+    linePts.push(new THREE.Vector3(nodePts[l[0]][0], nodePts[l[0]][1], nodePts[l[0]][2]));
+    linePts.push(new THREE.Vector3(nodePts[l[1]][0], nodePts[l[1]][1], nodePts[l[1]][2]));
+  });
+  bgGroup.add(new THREE.LineSegments(
+    new THREE.BufferGeometry().setFromPoints(linePts),
+    new THREE.LineBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.25 })
+  ));
+
+  // cyan geometric shapes — torus + octahedron rotating slowly
+  var bgTorus = new THREE.Mesh(new THREE.TorusGeometry(0.85, 0.28, 12, 40), bgWireMat.clone());
+  bgTorus.material.opacity = 0.26;
+  bgTorus.position.set(-5.4, 1.4, -4.6);
+  bgGroup.add(bgTorus);
+  var bgOcta = new THREE.Mesh(new THREE.OctahedronGeometry(0.7), bgWireMat.clone());
+  bgOcta.material.opacity = 0.3;
+  bgOcta.position.set(5.6, 4.2, -4.8);
+  bgGroup.add(bgOcta);
+  scene.add(bgGroup);
 
   /* ---------- sizing (ResizeObserver also fires when the tab becomes visible) ---------- */
   function resize() {
@@ -620,6 +722,21 @@ function initFullStackScene() {
     }
     pGeo.attributes.position.needsUpdate = true;
     particles.rotation.y = t * 0.04;
+
+    // procedural background — slow rotation, floating cubes, blinking rack strips
+    bgTorus.rotation.x = t * 0.18;
+    bgTorus.rotation.y = t * 0.12;
+    bgOcta.rotation.y = t * 0.2;
+    bgOcta.rotation.x = t * 0.1;
+    for (var dc = 0; dc < dataCubes.length; dc++) {
+      dataCubes[dc].rotation.y = t * 0.25 + dc;
+      dataCubes[dc].rotation.x = t * 0.15;
+      dataCubes[dc].position.y = dataCubes[dc].userData.baseY + Math.sin(t * 0.6 + dc * 1.7) * 0.22;
+    }
+    for (var bl = 0; bl < bgLeds.length; bl++) {
+      bgLeds[bl].material.opacity = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(t * 3 + bgLeds[bl].userData.phase));
+    }
+    bgGroup.rotation.y = Math.sin(t * 0.1) * 0.05;
 
     camera.position.x += (mx * 0.9 - camera.position.x) * 0.04;
     camera.position.y += (1.1 - my * 0.5 - camera.position.y) * 0.04;
@@ -798,6 +915,14 @@ function initFullStackDemoScene() {
         padding-left: 0.75rem;
     }
     #tab-unity .u-es { color: #9ca3af; font-size: 0.78rem; font-style: italic; }
+    /* ---- per-project Q&A CTA blocks (glassmorphism + fuchsia accent) ---- */
+    #tab-unity .u-qa {
+        background: rgba(217, 70, 239, 0.05);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(217, 70, 239, 0.45);
+        box-shadow: 0 0 20px rgba(217, 70, 239, 0.12), inset 0 0 16px rgba(217, 70, 239, 0.04);
+    }
     #tab-unity .project-scene { position: relative; transition: box-shadow .5s ease, border-color .5s ease; }
     #tab-unity .project-scene.is-active {
         border-color: rgba(217, 70, 239, 0.8);
@@ -898,6 +1023,14 @@ function initFullStackDemoScene() {
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">72–90 FPS</p><p class="text-xs text-gray-400">on Quest</p></div>
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">Zero</p><p class="text-xs text-gray-400">accidents in VR training</p></div>
                 </div>
+                <div class="u-qa rounded-xl p-4 mt-6">
+                    <p class="text-fuchsia-200 font-bold text-sm">"Can VR training reduce onboarding time without accidents?"</p>
+                    <p class="text-gray-300 text-sm mt-1">Yes — Holcim cut onboarding time by 40% with zero accidents during VR training.</p>
+                    <p class="u-es mt-0.5 mb-3">Entrenamiento industrial seguro y más rápido en VR.</p>
+                    <a href="https://wa.me/573027464103?text=Hi%20Andr%C3%A9s%21%20I%27m%20interested%20in%20VR%20industrial%20training%20like%20Holcim.%20Can%20we%20talk%3F"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">Ask on WhatsApp →</a>
+                </div>
             </div>
             <!-- Visual: industrial plant silhouette + pulsing hotspots -->
             <div class="u-neon rounded-xl p-4 bg-[#0a0a0a]">
@@ -987,6 +1120,14 @@ function initFullStackDemoScene() {
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">&lt;100 ms</p><p class="text-xs text-gray-400">latency</p></div>
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">8 players</p><p class="text-xs text-gray-400">real-time</p></div>
                 </div>
+                <div class="u-qa rounded-xl p-4 mt-6">
+                    <p class="text-fuchsia-200 font-bold text-sm">"Can you build multiplayer racing with &lt;100ms latency?"</p>
+                    <p class="text-gray-300 text-sm mt-1">Done — 8 players racing in real time at 60 FPS with Photon sync and sub-100 ms latency.</p>
+                    <p class="u-es mt-0.5 mb-3">Multijugador en tiempo real, probado con 8 jugadores.</p>
+                    <a href="https://wa.me/573027464103?text=Hi%20Andr%C3%A9s%21%20I%20need%20a%20multiplayer%20game%20with%20low%20latency%20like%20Neraverse.%20Can%20we%20talk%3F"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">Ask on WhatsApp →</a>
+                </div>
             </div>
         </div>
     </article>
@@ -1008,6 +1149,14 @@ function initFullStackDemoScene() {
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">360°</p><p class="text-xs text-gray-400">orbital control</p></div>
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">WebGL</p><p class="text-xs text-gray-400">60 FPS</p></div>
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">MR</p><p class="text-xs text-gray-400">ready</p></div>
+                </div>
+                <div class="u-qa rounded-xl p-4 mt-6">
+                    <p class="text-fuchsia-200 font-bold text-sm">"Can you build a 3D showroom that sells NFTs?"</p>
+                    <p class="text-gray-300 text-sm mt-1">Yes — WebGL showrooms with 360° orbital controls, Web3 integration and smart contracts.</p>
+                    <p class="u-es mt-0.5 mb-3">Showrooms 3D en el navegador con venta de NFTs.</p>
+                    <a href="https://wa.me/573027464103?text=Hi%20Andr%C3%A9s%21%20I%20want%20a%203D%20NFT%20showroom%20like%20ArtemisVision.%20Can%20we%20talk%3F"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">Ask on WhatsApp →</a>
                 </div>
             </div>
             <!-- Visual: circular showroom with orbiting camera -->
@@ -1096,6 +1245,14 @@ function initFullStackDemoScene() {
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">Smart contract</p><p class="text-xs text-gray-400">integration</p></div>
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">Browser + VR</p><p class="text-xs text-gray-400">targets</p></div>
                 </div>
+                <div class="u-qa rounded-xl p-4 mt-6">
+                    <p class="text-fuchsia-200 font-bold text-sm">"Can a metaverse store increase my conversion rate?"</p>
+                    <p class="text-gray-300 text-sm mt-1">It can — immersive 3D stores with in-scene NFT checkout keep buyers engaged far longer than a flat page.</p>
+                    <p class="u-es mt-0.5 mb-3">Tiendas inmersivas que convierten visitas en ventas.</p>
+                    <a href="https://wa.me/573027464103?text=Hi%20Andr%C3%A9s%21%20I%27m%20interested%20in%20a%20metaverse%20store%20like%20Hape%20Prime.%20Can%20we%20talk%3F"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">Ask on WhatsApp →</a>
+                </div>
             </div>
         </div>
     </article>
@@ -1117,6 +1274,14 @@ function initFullStackDemoScene() {
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">AR tracking</p><p class="text-xs text-gray-400">stable</p></div>
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">Laravel</p><p class="text-xs text-gray-400">backend sync</p></div>
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">AWS</p><p class="text-xs text-gray-400">deployed</p></div>
+                </div>
+                <div class="u-qa rounded-xl p-4 mt-6">
+                    <p class="text-fuchsia-200 font-bold text-sm">"Can AR simulations improve my logistics training?"</p>
+                    <p class="text-gray-300 text-sm mt-1">Yes — AR/VR transport simulations with stable tracking, synced to a Laravel + AWS backend.</p>
+                    <p class="u-es mt-0.5 mb-3">Simulaciones AR conectadas a backend real.</p>
+                    <a href="https://wa.me/573027464103?text=Hi%20Andr%C3%A9s%21%20I%20need%20AR%20logistics%20training%20like%20SENNOVA.%20Can%20we%20talk%3F"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">Ask on WhatsApp →</a>
                 </div>
             </div>
             <!-- Visual: train silhouette + AR tracking planes + info cards -->
@@ -1209,6 +1374,14 @@ function initFullStackDemoScene() {
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">8</p><p class="text-xs text-gray-400">3D experiments</p></div>
                     <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">Award-winning</p><p class="text-xs text-gray-400">research</p></div>
                 </div>
+                <div class="u-qa rounded-xl p-4 mt-6">
+                    <p class="text-fuchsia-200 font-bold text-sm">"Can AR books make education more engaging?"</p>
+                    <p class="text-gray-300 text-sm mt-1">Proven — an award-winning project: 3 physical books with 8 interactive 3D chemistry experiments.</p>
+                    <p class="u-es mt-0.5 mb-3">Educación aumentada, premiada en investigación.</p>
+                    <a href="https://wa.me/573027464103?text=Hi%20Andr%C3%A9s%21%20I%27d%20love%20AR%20books%20for%20education%20like%20Qu%C3%ADmicamente%20Locos.%20Can%20we%20talk%3F"
+                       target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition">Ask on WhatsApp →</a>
+                </div>
             </div>
         </div>
     </article>
@@ -1282,13 +1455,16 @@ window.initUnityHeroScene = function () {
     camera.position.set(0, 0.6, 8);
 
     // ---- Lights ----
-    scene.add(new THREE.AmbientLight(0x4a1d5e, 1.4));
-    var keyLight = new THREE.PointLight(0xd946ef, 2.2, 40);
+    scene.add(new THREE.AmbientLight(0x4a1d5e, 1.8));
+    var keyLight = new THREE.PointLight(0xd946ef, 2.8, 45);
     keyLight.position.set(4, 4, 5);
     scene.add(keyLight);
-    var rimLight = new THREE.PointLight(0x7c3aed, 1.6, 40);
+    var rimLight = new THREE.PointLight(0x7c3aed, 2.2, 45);
     rimLight.position.set(-5, -2, -3);
     scene.add(rimLight);
+    var fillLight = new THREE.PointLight(0xf0abfc, 1.2, 35);
+    fillLight.position.set(-4, 3, 4);
+    scene.add(fillLight);
 
     // ---- Procedural VR headset ----
     var headset = new THREE.Group();
@@ -1328,10 +1504,11 @@ window.initUnityHeroScene = function () {
         headset.add(d);
     });
     scene.add(headset);
+    headset.scale.setScalar(1.4); // ~40% bigger hero model for a more immersive frame
 
     // ---- Stars ----
     var starGeo = new THREE.BufferGeometry();
-    var starCount = 700, starPos = new Float32Array(starCount * 3);
+    var starCount = 1100, starPos = new Float32Array(starCount * 3);
     for (var i = 0; i < starCount * 3; i++) starPos[i] = (Math.random() - 0.5) * 90;
     starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
     var stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.06, transparent: true, opacity: 0.75 }));
@@ -1339,7 +1516,7 @@ window.initUnityHeroScene = function () {
 
     // ---- Fuchsia nebula particles ----
     var nebGeo = new THREE.BufferGeometry();
-    var nebCount = 350, nebPos = new Float32Array(nebCount * 3);
+    var nebCount = 600, nebPos = new Float32Array(nebCount * 3);
     for (var j = 0; j < nebCount; j++) {
         var r = 5 + Math.random() * 16, t = Math.random() * Math.PI * 2, ph = Math.acos(2 * Math.random() - 1);
         nebPos[j * 3] = r * Math.sin(ph) * Math.cos(t);
@@ -1349,6 +1526,61 @@ window.initUnityHeroScene = function () {
     nebGeo.setAttribute('position', new THREE.BufferAttribute(nebPos, 3));
     var nebula = new THREE.Points(nebGeo, new THREE.PointsMaterial({ color: 0xd946ef, size: 0.16, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending, depthWrite: false }));
     scene.add(nebula);
+
+    // ---- Procedural background: headset parts, controllers, fuchsia geometry ----
+    var bgGroup = new THREE.Group();
+    var bgWire = new THREE.MeshBasicMaterial({ color: 0xd946ef, wireframe: true, transparent: true, opacity: 0.32 });
+    var bgDark = new THREE.MeshStandardMaterial({ color: 0x1a1a22, roughness: 0.4, metalness: 0.7 });
+
+    // floating mini VR headsets (visor box + emissive lenses)
+    function miniHeadset(x, y, z) {
+        var g = new THREE.Group();
+        g.add(new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.6, 0.55), bgDark));
+        var lm = new THREE.MeshStandardMaterial({ color: 0x0b0b10, emissive: 0xd946ef, emissiveIntensity: 1.2 });
+        [-0.22, 0.22].forEach(function (lx) {
+            var l = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.08, 20), lm);
+            l.rotation.x = Math.PI / 2;
+            l.position.set(lx, 0, 0.3);
+            g.add(l);
+        });
+        g.position.set(x, y, z);
+        g.userData.baseY = y;
+        return g;
+    }
+    var miniA = miniHeadset(-5.4, 2.6, -4.5);
+    var miniB = miniHeadset(5.6, 3.2, -5.0);
+    bgGroup.add(miniA); bgGroup.add(miniB);
+
+    // geometric controllers — cylinder handle + tracking ring (Quest-style)
+    function controller(x, y, z, rot) {
+        var g = new THREE.Group();
+        g.add(new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.12, 0.7, 16), bgDark));
+        var ring = new THREE.Mesh(new THREE.TorusGeometry(0.28, 0.05, 10, 28), bgWire.clone());
+        ring.material.opacity = 0.45;
+        ring.position.y = 0.45;
+        ring.rotation.x = Math.PI / 3;
+        g.add(ring);
+        g.position.set(x, y, z);
+        g.rotation.z = rot;
+        g.userData.baseY = y;
+        return g;
+    }
+    var ctrlA = controller(-6.2, 0.4, -3.5, 0.5);
+    var ctrlB = controller(6.4, 1.0, -3.8, -0.5);
+    bgGroup.add(ctrlA); bgGroup.add(ctrlB);
+
+    // fuchsia geometric shapes — torus, icosahedron, torusKnot rotating slowly
+    var bgTorus = new THREE.Mesh(new THREE.TorusGeometry(0.9, 0.3, 12, 42), bgWire.clone());
+    bgTorus.position.set(-5.0, 4.4, -6.0);
+    bgGroup.add(bgTorus);
+    var bgIco = new THREE.Mesh(new THREE.IcosahedronGeometry(0.75), bgWire.clone());
+    bgIco.position.set(5.2, 0.2, -4.6);
+    bgGroup.add(bgIco);
+    var bgKnot = new THREE.Mesh(new THREE.TorusKnotGeometry(0.55, 0.16, 64, 10), bgWire.clone());
+    bgKnot.material.opacity = 0.24;
+    bgKnot.position.set(0, 4.8, -7.5);
+    bgGroup.add(bgKnot);
+    scene.add(bgGroup);
 
     // ---- Resize ----
     function resize() {
@@ -1377,7 +1609,20 @@ window.initUnityHeroScene = function () {
         lensMat.emissiveIntensity = 1.4 + Math.sin(t * 2.2) * 0.5;
         stars.rotation.y = t * 0.008;
         nebula.rotation.y = -t * 0.02;
-        keyLight.intensity = 2 + Math.sin(t * 1.5) * 0.4;
+        keyLight.intensity = 2.6 + Math.sin(t * 1.5) * 0.4;
+
+        // procedural background — slow rotation + gentle floating
+        bgTorus.rotation.x = t * 0.15; bgTorus.rotation.y = t * 0.2;
+        bgIco.rotation.y = t * 0.22; bgIco.rotation.z = t * 0.1;
+        bgKnot.rotation.y = t * 0.12; bgKnot.rotation.x = t * 0.08;
+        miniA.rotation.y = Math.sin(t * 0.3) * 0.6;
+        miniB.rotation.y = Math.cos(t * 0.25) * 0.6;
+        miniA.position.y = miniA.userData.baseY + Math.sin(t * 0.7) * 0.3;
+        miniB.position.y = miniB.userData.baseY + Math.cos(t * 0.6) * 0.3;
+        ctrlA.position.y = ctrlA.userData.baseY + Math.sin(t * 0.9 + 1) * 0.25;
+        ctrlB.position.y = ctrlB.userData.baseY + Math.cos(t * 0.8 + 2) * 0.25;
+        ctrlA.rotation.y = t * 0.3;
+        ctrlB.rotation.y = -t * 0.3;
         renderer.render(scene, camera);
     })();
 };
@@ -1835,8 +2080,66 @@ window.initUnityHeroScene = function () {
   }
   #tab-wordpress .wp-mp-note { font-size: 9.5px; color: #6b7280; margin-top: 8px; }
 
+  /* ===================== Q&A CTA BLOCKS ===================== */
+  #tab-wordpress .wp-qa {
+    margin-top: 24px;
+    background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(6,40,28,0.35));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(16,185,129,0.42);
+    border-radius: 18px;
+    padding: 20px 22px;
+    text-align: left;
+    box-shadow: 0 14px 36px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.07);
+  }
+  #tab-wordpress .wp-qa-q {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15.5px !important;
+    font-weight: 800 !important;
+    color: #fff !important;
+    line-height: 1.35;
+    margin: 0 0 8px !important;
+  }
+  #tab-wordpress .wp-qa-q::before {
+    content: 'Q';
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #10b981;
+    color: #04110b;
+    font-size: 12px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+    box-shadow: 0 0 14px rgba(16,185,129,0.5);
+  }
+  #tab-wordpress .wp-qa-a { font-size: 13.5px !important; color: #d1d5db !important; line-height: 1.55; margin: 0 0 6px !important; }
+  #tab-wordpress .wp-qa-es { font-size: 12px !important; color: rgba(110,231,183,0.7) !important; letter-spacing: 0.4px; margin: 0 0 14px !important; }
+  #tab-wordpress .wp-qa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #25d366;
+    color: #04110b !important;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 10px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  #tab-wordpress .wp-qa-btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 10px 26px rgba(37,211,102,0.5); }
+  #tab-wordpress .wp-pos-center-wide .wp-qa { max-width: 580px; margin-left: auto; margin-right: auto; }
+
   @media (max-width: 820px) {
     #tab-wordpress .wp-scene { padding: 72px 5%; align-items: flex-end; }
+    #tab-wordpress .wp-qa { padding: 16px 18px; }
     #tab-wordpress .wp-scene-content { max-width: 100%; width: 100%; padding: 28px 24px; margin: 0 auto 4vh; }
     #tab-wordpress .wp-pos-center-low { margin-bottom: 4vh; }
     #tab-wordpress .wp-scene-content h1 { font-size: 32px; }
@@ -1893,6 +2196,12 @@ window.initUnityHeroScene = function () {
           </div>
           <div class="wp-metric-label">fewer support tickets for logins &amp; passwords</div>
         </div>
+        <div class="wp-qa section-reveal">
+          <p class="wp-qa-q">How do I stop access leaks in my membership site?</p>
+          <p class="wp-qa-a">Server-side gating on every request — no leaky plugins, no shared passwords slipping through.</p>
+          <p class="wp-qa-es">Cero fugas de acceso, validado en el servidor.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20How%20do%20I%20stop%20access%20leaks%20in%20my%20membership%20site%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+        </div>
       </div>
     </section>
 
@@ -1921,6 +2230,12 @@ window.initUnityHeroScene = function () {
             <line x1="4" y1="46" x2="136" y2="46" stroke="rgba(255,255,255,0.12)"/>
           </svg>
         </div>
+        <div class="wp-qa section-reveal">
+          <p class="wp-qa-q">Why am I losing money from failed payments?</p>
+          <p class="wp-qa-a">Because nobody retries them. Automatic dunning retries, revokes and reactivates — before the subscriber churns.</p>
+          <p class="wp-qa-es">Recupero pagos fallidos antes de que se pierdan.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Why%20am%20I%20losing%20money%20from%20failed%20payments%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+        </div>
       </div>
     </section>
 
@@ -1945,6 +2260,12 @@ window.initUnityHeroScene = function () {
             <rect class="wp-mwbar" x="0" y="54" width="17" height="12" rx="6" fill="#10b981" data-w="17"/>
           </svg>
         </div>
+        <div class="wp-qa section-reveal">
+          <p class="wp-qa-q">Can you create events faster than my team?</p>
+          <p class="wp-qa-a">Yes — AI + Google Sheets generate the event, the ticket and the Zoom meeting. About 5 minutes, start to finish.</p>
+          <p class="wp-qa-es">Eventos listos en ~5 minutos, sin trabajo manual.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20create%20events%20faster%20than%20my%20team%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+        </div>
       </div>
     </section>
 
@@ -1961,6 +2282,12 @@ window.initUnityHeroScene = function () {
             <span class="wp-metric-chip" title="24/7 sin pausas">24/7 always on</span>
           </div>
           <div class="wp-metric-label">automated conversations every month via WhatsApp bots + n8n + Gemini AI</div>
+        </div>
+        <div class="wp-qa section-reveal">
+          <p class="wp-qa-q">Can a bot reply to customers 24/7?</p>
+          <p class="wp-qa-a">It already does — WhatsApp bots + n8n + Gemini AI answer, qualify and follow up while you sleep.</p>
+          <p class="wp-qa-es">Bots que responden de día y de noche.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20a%20bot%20reply%20to%20my%20customers%2024%2F7%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
         </div>
       </div>
     </section>
@@ -1996,6 +2323,12 @@ window.initUnityHeroScene = function () {
             <text x="32" y="36" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">5.3%</text>
           </svg>
         </div>
+        <div class="wp-qa section-reveal">
+          <p class="wp-qa-q">How do I see revenue losses before they happen?</p>
+          <p class="wp-qa-a">Real-time MRR, ARR and churn dashboards flag the leak while there's still time to act on it.</p>
+          <p class="wp-qa-es">MRR y churn en tiempo real, sin sorpresas.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20How%20do%20I%20see%20revenue%20losses%20before%20they%20happen%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+        </div>
       </div>
     </section>
 
@@ -2011,6 +2344,12 @@ window.initUnityHeroScene = function () {
             <span class="wp-metric-num" data-target="4">4</span>
           </div>
           <div class="wp-metric-label">third-party licenses replaced · <span class="wp-metric-chip" title="Ahorro mensual recurrente">recurring monthly savings</span></div>
+        </div>
+        <div class="wp-qa section-reveal">
+          <p class="wp-qa-q">Can you replace my expensive plugins?</p>
+          <p class="wp-qa-a">Already replaced four — custom WordPress modules that do more, sync better and cost $0/month in licenses.</p>
+          <p class="wp-qa-es">Módulos propios sin licencias mensuales.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20replace%20my%20expensive%20plugins%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
         </div>
       </div>
     </section>
@@ -2125,6 +2464,12 @@ window.initUnityHeroScene = function () {
             </div>
           </div>
         </div>
+        <div class="wp-qa section-reveal">
+          <p class="wp-qa-q">Can you show me real systems you've built?</p>
+          <p class="wp-qa-a">These four run in production today. Open any “View analysis” card above for the full technical breakdown.</p>
+          <p class="wp-qa-es">Sistemas reales en producción, con análisis incluido.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20show%20me%20real%20systems%20you%27ve%20built%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+        </div>
       </div>
     </section>
 
@@ -2181,16 +2526,17 @@ window.initUnityHeroScene = function () {
   var initialized = false;
 
   // Camera per section: position and look-at (model sits opposite the text)
+  // (z pulled back ~10% vs. the original to fit the 1.4x larger models)
   var CAMS = [
-    { pos: [0, 0.2, 9.5], look: [1.4, 0, 0] },    // hero
-    { pos: [0, 0.3, 8.5], look: [-1.3, 0, 0] },   // vault    · memberships
-    { pos: [0, 0.7, 9.5], look: [1.3, 0.5, 0] },  // coins    · subscriptions
-    { pos: [0, 0.2, 8.5], look: [-1.3, -0.1, 0] },// calendar · events
-    { pos: [0, 0.3, 9.0], look: [1.3, 0, 0] },    // phone    · automation
-    { pos: [0, 0.5, 9.5], look: [-1.5, 0.2, 0] }, // bars     · dashboards
-    { pos: [0, 0.2, 8.5], look: [1.3, 0, 0] },    // gear     · custom tools
-    { pos: [0, 0.4, 10], look: [0, 0, 0] },       // portfolio (emerald nebula)
-    { pos: [0, 1.2, 9.5], look: [0, 1.3, 0] }     // rocket   · CTA
+    { pos: [0, 0.2, 10.5], look: [1.4, 0, 0] },    // hero
+    { pos: [0, 0.3, 9.4], look: [-1.3, 0, 0] },    // vault    · memberships
+    { pos: [0, 0.7, 10.5], look: [1.3, 0.5, 0] },  // coins    · subscriptions
+    { pos: [0, 0.2, 9.4], look: [-1.3, -0.1, 0] }, // calendar · events
+    { pos: [0, 0.3, 10], look: [1.3, 0, 0] },      // phone    · automation
+    { pos: [0, 0.5, 10.5], look: [-1.5, 0.2, 0] }, // bars     · dashboards
+    { pos: [0, 0.2, 9.4], look: [1.3, 0, 0] },     // gear     · custom tools
+    { pos: [0, 0.4, 11], look: [0, 0, 0] },        // portfolio (emerald nebula)
+    { pos: [0, 1.2, 10.5], look: [0, 1.3, 0] }     // rocket   · CTA
   ];
 
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
@@ -2236,8 +2582,12 @@ window.initUnityHeroScene = function () {
     return pts;
   }
 
+  // Every model renders ~40% bigger so it dominates the viewport
+  var MODEL_SCALE = 1.4;
+
   function makeGroup(mx, parts, idle, my) {
     var g = new THREE.Group();
+    g.scale.setScalar(MODEL_SCALE);
     g.userData.parts = parts;
     g.userData.mx = mx;
     g.userData.my = my || 0;
@@ -2258,64 +2608,196 @@ window.initUnityHeroScene = function () {
     this.rotation.y = Math.sin(tt * 0.35) * 0.16;
   }
 
+  /* --------- Floating geometric decorations + per-model lights --------- */
+
+  // Procedural emerald shapes that drift behind each model (different per scene)
+  var DECO_GEOS = {
+    torus: function () { return new THREE.TorusGeometry(0.52, 0.17, 12, 36); },
+    octa: function () { return new THREE.OctahedronGeometry(0.58); },
+    icosa: function () { return new THREE.IcosahedronGeometry(0.52); },
+    cone: function () { return new THREE.ConeGeometry(0.44, 0.95, 22); },
+    knot: function () { return new THREE.TorusKnotGeometry(0.4, 0.13, 90, 12); }
+  };
+
+  function addDecos(g, kinds) {
+    var decos = [];
+    if (COUNT_SCALE < 1) kinds = kinds.slice(0, 3); // fewer shapes on mobile
+    kinds.forEach(function (k, i) {
+      var wire = (i % 2 === 0);
+      var m = part(new THREE.Mesh(DECO_GEOS[k](), new THREE.MeshStandardMaterial({
+        color: EMERALD, metalness: 0.45, roughness: 0.3,
+        emissive: EMERALD, emissiveIntensity: 0.3,
+        transparent: true, opacity: wire ? 0.32 : 0.22,
+        wireframe: wire, depthWrite: false
+      })), [0, 0, 0], null, null, wire ? 0.32 : 0.22);
+      var a = (i / kinds.length) * Math.PI * 2 + 0.7;
+      var r = 3.1 + (i % 2) * 1.4;
+      m.position.set(Math.cos(a) * r, ((i % 3) - 1) * 1.8, -1.6 - (i % 3) * 1.2);
+      m.userData.finalPos.copy(m.position);
+      m.userData.noScatter = true; // stays put during assembly; only fades in
+      m.userData.spin = 0.12 + i * 0.05;
+      m.userData.phase = i * 1.7;
+      m.userData.floatAmp = 0.22 + (i % 3) * 0.1;
+      m.userData.baseY = m.position.y;
+      g.userData.parts.push(m);
+      g.add(m);
+      decos.push(m);
+    });
+    g.userData.decos = decos;
+  }
+
+  // Extra point light attached to a model; intensity eases in/out per frame
+  function glowLight(g, color, intensity, dist, pos) {
+    var l = new THREE.PointLight(color, 0, dist);
+    l.position.set(pos[0], pos[1], pos[2]);
+    l.userData.target = intensity;
+    g.add(l);
+    if (!g.userData.lights) g.userData.lights = [];
+    g.userData.lights.push(l);
+    return l;
+  }
+
+  // Per-frame: slow-spin the decorations, float them, and fade model lights
+  function spinDecos(g, t, dt) {
+    var d = g.userData.decos;
+    if (d) {
+      for (var i = 0; i < d.length; i++) {
+        var m = d[i];
+        m.rotation.x += m.userData.spin * dt;
+        m.rotation.y += m.userData.spin * 1.35 * dt;
+        m.position.y = m.userData.baseY + Math.sin(t * 0.6 + m.userData.phase) * m.userData.floatAmp;
+      }
+    }
+    var ls = g.userData.lights;
+    if (ls) {
+      for (var j = 0; j < ls.length; j++) {
+        var target = g.userData.leaving ? 0 : ls[j].userData.target;
+        ls[j].intensity += (target - ls[j].intensity) * Math.min(1, dt * 2.6);
+      }
+    }
+  }
+
   /* -------------------- PROCEDURAL MODELS -------------------- */
 
   function buildHero(mx) {
+    var parts = [];
     var knot = part(new THREE.Mesh(
-      new THREE.TorusKnotGeometry(1.5, 0.45, 200, 28),
-      std(EMERALD, { metalness: 0.65, roughness: 0.3, emissive: 0x064e3b, emissiveIntensity: 0.35 })
+      new THREE.TorusKnotGeometry(1.5, 0.45, 220, 32),
+      std(EMERALD, { metalness: 0.65, roughness: 0.28, emissive: 0x064e3b, emissiveIntensity: 0.4 })
     ), [0, 0, 0]);
-    var n = 800, arr = new Float32Array(n * 3);
+    parts.push(knot);
+    // Wireframe shell + two orbit rings + octahedron satellites
+    parts.push(part(new THREE.Mesh(new THREE.IcosahedronGeometry(2.6, 1),
+      new THREE.MeshBasicMaterial({ color: MINT, wireframe: true, transparent: true, opacity: 0.16 })),
+      [0, 0, 0], null, null, 0.16));
+    var ring1 = part(new THREE.Mesh(new THREE.TorusGeometry(2.9, 0.05, 10, 90),
+      std(MINT, { emissive: MINT, emissiveIntensity: 0.35 })), [0, 0, 0], [1.1, 0.3, 0]);
+    var ring2 = part(new THREE.Mesh(new THREE.TorusGeometry(3.35, 0.04, 10, 90),
+      std(GOLD, { metalness: 0.85, roughness: 0.25 })), [0, 0, 0], [-0.9, 0.6, 0]);
+    parts.push(ring1);
+    parts.push(ring2);
+    [[2.4, 1.2, 0.6], [-2.2, -1.1, 0.9], [0.4, -2.3, -1.2]].forEach(function (p, i) {
+      parts.push(part(new THREE.Mesh(new THREE.OctahedronGeometry(0.3),
+        std(i === 1 ? GOLD : EMERALD, { emissive: EMERALD, emissiveIntensity: 0.25 })), p));
+    });
+    var n = 1200, arr = new Float32Array(n * 3);
     for (var i = 0; i < n * 3; i++) arr[i] = (Math.random() - 0.5) * 26;
     var pgeo = new THREE.BufferGeometry();
     pgeo.setAttribute('position', new THREE.BufferAttribute(arr, 3));
     var pts = part(new THREE.Points(pgeo, new THREE.PointsMaterial({
       color: MINT, size: 0.05, transparent: true, opacity: 0.7
     })), [0, 0, 0], null, null, 0.7);
-    return makeGroup(mx, [knot, pts], function (t, dt) {
+    parts.push(pts);
+    var g = makeGroup(mx, parts, function (t, dt) {
       if (this.userData.busy) return;
       var tt = t - this.userData.t0;
       knot.rotation.x = tt * 0.45;
       knot.rotation.y = tt * 0.65;
       knot.position.y = Math.sin(tt * 0.9) * 0.25;
+      ring1.rotation.z = tt * 0.22;
+      ring2.rotation.z = -tt * 0.18;
       pts.rotation.y = tt * 0.05;
       this.rotation.y = Math.sin(tt * 0.25) * 0.18;
     });
+    addDecos(g, ['knot', 'torus', 'octa', 'icosa']);
+    glowLight(g, EMERALD, 14, 16, [2.5, 2.5, 4]);
+    glowLight(g, GOLD, 7, 12, [-3, -2, 3]);
+    return g;
   }
 
   function buildVault(mx) {
     var parts = [];
-    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(2.3, 2.7, 1.7),
+    var bodyGeo = new THREE.BoxGeometry(2.3, 2.7, 1.7);
+    parts.push(part(new THREE.Mesh(bodyGeo,
       std(SLATE, { metalness: 0.7, roughness: 0.35 })), [0, 0, 0]));
+    parts.push(part(new THREE.LineSegments(new THREE.EdgesGeometry(bodyGeo),
+      new THREE.LineBasicMaterial({ color: MINT, transparent: true, opacity: 0.45 })),
+      [0, 0, 0], null, null, 0.45));
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(1.95, 2.35, 0.08),
+      std(DARK, { metalness: 0.7, roughness: 0.3 })), [0, 0, 0.86]));
     parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(1.8, 2.2, 0.2),
       std(EMERALD)), [0, 0, 0.88]));
     parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.36, 0.08, 14, 40),
       std(GOLD, { metalness: 0.85, roughness: 0.25 })), [0, 0, 1.04]));
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.58, 0.045, 12, 44),
+      std(MINT, { emissive: MINT, emissiveIntensity: 0.3 })), [0, 0, 1.02]));
+    // Dial spokes
+    for (var s = 0; s < 3; s++) {
+      parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.62, 10),
+        std(GOLD, { metalness: 0.85, roughness: 0.25 })), [0, 0, 1.04], [0, 0, s * Math.PI / 3]));
+    }
     [[-0.62, 0.78], [0.62, 0.78], [-0.62, -0.78], [0.62, -0.78]].forEach(function (xy) {
       parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.55, 14),
         std(GOLD, { metalness: 0.85, roughness: 0.25 })), [xy[0], xy[1], 1.0], [0, 0, Math.PI / 2]));
     });
-    parts.push(ambientPoints(0x9ca3af, 90, 0.045, 7)); // steel dust
-    return makeGroup(mx, parts, null);
+    // 3x3 keypad below the dial
+    for (var ky = 0; ky < 3; ky++) for (var kx = 0; kx < 3; kx++) {
+      parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.065, 0.05, 12),
+        std(WHITE, { metalness: 0.3, roughness: 0.4, emissive: SKY, emissiveIntensity: 0.18 })),
+        [(kx - 1) * 0.2, -0.62 - ky * 0.2, 1.02], [Math.PI / 2, 0, 0]));
+    }
+    parts.push(ambientPoints(0x9ca3af, 135, 0.045, 7)); // steel dust
+    var g = makeGroup(mx, parts, null);
+    addDecos(g, ['octa', 'icosa', 'torus']);
+    glowLight(g, GOLD, 10, 12, [1.5, 1.5, 3.5]);
+    glowLight(g, EMERALD, 9, 14, [-2.5, -1, 3]);
+    return g;
   }
 
   function buildCoins(mx) {
     var parts = [];
-    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(2.1, 1.1, 2.1),
+    var baseGeo = new THREE.BoxGeometry(2.1, 1.1, 2.1);
+    parts.push(part(new THREE.Mesh(baseGeo,
       std(SLATE, { metalness: 0.6, roughness: 0.4 })), [0, -0.85, 0]));
+    parts.push(part(new THREE.LineSegments(new THREE.EdgesGeometry(baseGeo),
+      new THREE.LineBasicMaterial({ color: GOLD, transparent: true, opacity: 0.35 })),
+      [0, -0.85, 0], null, null, 0.35));
     parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(1.12, 0.09, 14, 48),
       std(GOLD, { metalness: 0.85, roughness: 0.25 })), [0, -0.28, 0], [Math.PI / 2, 0, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(1.45, 0.045, 12, 56),
+      std(MINT, { emissive: MINT, emissiveIntensity: 0.3 })), [0, -0.3, 0], [Math.PI / 2, 0, 0]));
+    // Stacked reserve coins beside the base
+    for (var st = 0; st < 3; st++) {
+      parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.09, 26),
+        std(GOLD, { metalness: 0.9, roughness: 0.2 })),
+        [-1.35, -1.22 + st * 0.1, 0.85], [0.06 * st, 0.3 * st, 0]));
+    }
     var coinPos = [
       [-0.5, 0.2, 0.2], [0.45, 0.5, -0.15], [0, 0.85, 0.3],
-      [-0.2, 1.2, -0.25], [0.6, 1.55, 0.15], [-0.6, 1.85, 0]
+      [-0.2, 1.2, -0.25], [0.6, 1.55, 0.15], [-0.6, 1.85, 0],
+      [0.25, 2.15, -0.2], [-0.45, 2.45, 0.25], [0.05, 2.75, 0]
     ];
     coinPos.forEach(function (p, i) {
       parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 0.08, 26),
-        std(GOLD, { metalness: 0.9, roughness: 0.2 })),
+        std(GOLD, { metalness: 0.9, roughness: 0.2, emissive: 0x7c4a12, emissiveIntensity: 0.15 })),
         p, [1.2 + i * 0.3, i * 0.7, 0.25 * (i % 3)], [0, 1, 0]));
     });
-    parts.push(ambientPoints(GOLD, 130, 0.05, 7, 0.6)); // gold dust
-    return makeGroup(mx, parts, null);
+    parts.push(ambientPoints(GOLD, 195, 0.05, 7, 0.9)); // gold dust
+    var g = makeGroup(mx, parts, null);
+    addDecos(g, ['torus', 'knot', 'octa']);
+    glowLight(g, GOLD, 13, 14, [1.5, 2.5, 3.5]);
+    glowLight(g, EMERALD, 7, 12, [-3, 0, 3]);
+    return g;
   }
 
   function buildCalendar(mx) {
@@ -2327,10 +2809,36 @@ window.initUnityHeroScene = function () {
         std(WHITE, { metalness: 0.1, roughness: 0.6 })),
         [0.02 * i, 0.34 + 0.03 * i, 0.14 + 0.05 * i], [0, 0, (i - 1.5) * 0.03]));
     }
+    // Spiral binding rings along the top edge
+    for (var r = 0; r < 5; r++) {
+      parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.025, 8, 20),
+        std(GOLD, { metalness: 0.85, roughness: 0.25 })),
+        [-0.9 + r * 0.45, 1.22, 0.12], [0, Math.PI / 2, 0]));
+    }
+    // Date-cell grid on the top page (one hot "event" cell)
+    for (var cy = 0; cy < 3; cy++) for (var cx = 0; cx < 4; cx++) {
+      var hot = (cx === 2 && cy === 1);
+      parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.24, 0.02),
+        hot ? std(EMERALD, { emissive: EMERALD, emissiveIntensity: 0.4 }) : std(0x1f2937, { metalness: 0.2, roughness: 0.6 })),
+        [-0.72 + cx * 0.48, 0.78 - cy * 0.4, 0.31], [0, 0, 0.045]));
+    }
     parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.72, 0.06),
       std(EMERALD)), [0.55, -1.05, 0.4], [0, 0, -0.12], [1.8, -0.6, 0.4]));
-    parts.push(ambientPoints(WHITE, 80, 0.04, 7)); // paper motes
-    return makeGroup(mx, parts, null);
+    // Floating clock: face + rim + two hands
+    parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.05, 24),
+      std(WHITE, { metalness: 0.2, roughness: 0.4 })), [-1.5, -1.0, 0.5], [Math.PI / 2, 0, 0], [-1, -0.5, 0.5]));
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.035, 10, 30),
+      std(EMERALD, { emissive: EMERALD, emissiveIntensity: 0.3 })), [-1.5, -1.0, 0.53], null, [-1, -0.5, 0.5]));
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.2, 0.02),
+      std(DARK)), [-1.5, -0.93, 0.56], null, [-1, -0.5, 0.5]));
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.04, 0.02),
+      std(DARK)), [-1.44, -1.0, 0.56], null, [-1, -0.5, 0.5]));
+    parts.push(ambientPoints(WHITE, 120, 0.04, 7)); // paper motes
+    var g = makeGroup(mx, parts, null);
+    addDecos(g, ['icosa', 'cone', 'torus']);
+    glowLight(g, EMERALD, 11, 14, [1.5, 2, 3.5]);
+    glowLight(g, SKY, 6, 10, [-2.5, -1.5, 3]);
+    return g;
   }
 
   function buildPhone(mx) {
@@ -2339,79 +2847,163 @@ window.initUnityHeroScene = function () {
       std(DARK, { metalness: 0.6, roughness: 0.35 })), [0, 0, 0]));
     parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(1.3, 2.78, 0.05),
       std(SKY, { metalness: 0.1, roughness: 0.2, emissive: SKY, emissiveIntensity: 0.22 })), [0, 0, 0.1]));
-    for (var i = 0; i < 5; i++) {
-      var a = i * (Math.PI * 2 / 5) + 0.5;
+    // Earpiece, home bar, side buttons and rear camera
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.045, 0.02),
+      std(DARK)), [0, 1.28, 0.135]));
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.05, 0.02),
+      std(WHITE, { metalness: 0.2, roughness: 0.4 })), [0, -1.3, 0.135]));
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.4, 0.1),
+      std(SLATE)), [0.78, 0.55, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.25, 0.1),
+      std(SLATE)), [-0.78, 0.7, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 0.04, 18),
+      std(SLATE, { metalness: 0.8, roughness: 0.3 })), [0.42, 1.28, -0.1], [Math.PI / 2, 0, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.SphereGeometry(0.045, 14, 10),
+      std(SKY, { emissive: SKY, emissiveIntensity: 0.5 })), [0.42, 1.28, -0.12]));
+    // Orbit ring linking the chat bubbles
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(1.95, 0.03, 10, 64),
+      std(GREEN, { emissive: GREEN, emissiveIntensity: 0.3 })), [0, 0, 0], [1.35, 0.2, 0]));
+    for (var i = 0; i < 7; i++) {
+      var a = i * (Math.PI * 2 / 7) + 0.5;
       parts.push(part(new THREE.Mesh(new THREE.SphereGeometry(0.17, 20, 16),
-        std(GREEN, { metalness: 0.3, roughness: 0.4, emissive: GREEN, emissiveIntensity: 0.15 })),
-        [Math.cos(a) * 1.6, ((i % 3) - 1) * 0.7, Math.sin(a) * 1.6]));
+        std(i === 3 ? EMERALD : GREEN, { metalness: 0.3, roughness: 0.4, emissive: i === 3 ? EMERALD : GREEN, emissiveIntensity: 0.18 })),
+        [Math.cos(a) * 1.7, ((i % 3) - 1) * 0.8, Math.sin(a) * 1.7]));
     }
-    parts.push(ambientPoints(GREEN, 90, 0.05, 8)); // micro bubbles
-    return makeGroup(mx, parts, function (t, dt) {
+    parts.push(ambientPoints(GREEN, 135, 0.05, 8)); // micro bubbles
+    var g = makeGroup(mx, parts, function (t, dt) {
       if (this.userData.busy) return;
       this.rotation.y = (t - this.userData.t0) * 0.3;
     });
+    addDecos(g, ['cone', 'octa', 'knot']);
+    glowLight(g, GREEN, 11, 14, [2, 2, 3.5]);
+    glowLight(g, SKY, 7, 12, [-2.5, -1.5, 3]);
+    return g;
   }
 
   function buildBars(mx) {
     var parts = [];
-    var heights = [0.8, 1.5, 1.1, 2.0, 2.6];
+    // Base platform under the chart
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(4.6, 0.14, 1.6),
+      std(DARK, { metalness: 0.6, roughness: 0.4 })), [0, -1.42, 0]));
+    var heights = [0.8, 1.5, 1.1, 2.0, 2.4, 2.9];
     heights.forEach(function (h, i) {
-      parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.55, h, 0.55),
-        std(EMERALD, { metalness: 0.45, roughness: 0.35 })),
-        [(i - 2) * 0.72, -1.3 + h / 2, 0], null, [0, -1, 0]));
+      var bg = new THREE.BoxGeometry(0.55, h, 0.55);
+      parts.push(part(new THREE.Mesh(bg,
+        std(EMERALD, { metalness: 0.45, roughness: 0.35, emissive: 0x064e3b, emissiveIntensity: 0.2 })),
+        [(i - 2.5) * 0.72, -1.35 + h / 2, 0], null, [0, -1, 0]));
+      parts.push(part(new THREE.LineSegments(new THREE.EdgesGeometry(bg),
+        new THREE.LineBasicMaterial({ color: MINT, transparent: true, opacity: 0.35 })),
+        [(i - 2.5) * 0.72, -1.35 + h / 2, 0], null, [0, -1, 0], 0.35));
     });
-    for (var i = 0; i < 8; i++) {
+    // Emissive trend arrow above the bars
+    parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 3.4, 10),
+      std(MINT, { emissive: MINT, emissiveIntensity: 0.45 })), [0.2, 0.9, 0.35], [0, 0, -1.05]));
+    parts.push(part(new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.4, 14),
+      std(MINT, { emissive: MINT, emissiveIntensity: 0.45 })), [1.68, 1.75, 0.35], [0, 0, -1.05]));
+    for (var i = 0; i < 10; i++) {
       parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 0.07, 22),
-        std(GOLD, { metalness: 0.9, roughness: 0.2 })),
-        [(i - 3.5) * 0.45 + (i % 2) * 0.2, 1.1 + (i % 4) * 0.5, ((i * 37) % 10) / 10 - 0.5],
+        std(GOLD, { metalness: 0.9, roughness: 0.2, emissive: 0x7c4a12, emissiveIntensity: 0.15 })),
+        [(i - 4.5) * 0.45 + (i % 2) * 0.2, 1.1 + (i % 4) * 0.5, ((i * 37) % 10) / 10 - 0.5],
         [1.3, i * 0.8, 0.2], [0, 1.4, 0]));
     }
-    parts.push(ambientPoints(GOLD, 100, 0.05, 7, 0.4)); // gold dust
-    return makeGroup(mx, parts, null);
+    parts.push(ambientPoints(GOLD, 150, 0.05, 7, 0.4)); // gold dust
+    var g = makeGroup(mx, parts, null);
+    addDecos(g, ['cone', 'icosa', 'torus']);
+    glowLight(g, EMERALD, 12, 15, [1.5, 2.5, 3.5]);
+    glowLight(g, GOLD, 8, 12, [-3, 0.5, 3]);
+    return g;
   }
 
   function buildGear(mx) {
     var parts = [];
     parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.5, 28),
       std(GOLD, { metalness: 0.85, roughness: 0.25 })), [0, 0, 0], [Math.PI / 2, 0, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.62, 18),
+      std(DARK, { metalness: 0.7, roughness: 0.3 })), [0, 0, 0], [Math.PI / 2, 0, 0]));
     parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(1.15, 0.3, 16, 48),
       std(SLATE, { metalness: 0.7, roughness: 0.35 })), [0, 0, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.78, 0.07, 12, 40),
+      std(MINT, { emissive: MINT, emissiveIntensity: 0.35 })), [0, 0, 0]));
     for (var i = 0; i < 8; i++) {
       var a = i * Math.PI / 4;
       parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.55, 0.42),
-        std(EMERALD)), [Math.cos(a) * 1.5, Math.sin(a) * 1.5, 0], [0, 0, a]));
+        std(EMERALD, { emissive: 0x064e3b, emissiveIntensity: 0.25 })), [Math.cos(a) * 1.5, Math.sin(a) * 1.5, 0], [0, 0, a]));
     }
-    parts.push(ambientPoints(MINT, 140, 0.05, 7)); // sparks
-    return makeGroup(mx, parts, function (t, dt) {
+    // Hub bolts
+    for (var b = 0; b < 6; b++) {
+      var ba = b * Math.PI / 3;
+      parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.56, 10),
+        std(GOLD, { metalness: 0.85, roughness: 0.25 })), [Math.cos(ba) * 0.36, Math.sin(ba) * 0.36, 0], [Math.PI / 2, 0, 0]));
+    }
+    // Secondary smaller gear meshing with the main one
+    parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.3, 20),
+      std(GOLD, { metalness: 0.85, roughness: 0.25 })), [2.1, 1.15, -0.3], [Math.PI / 2, 0, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.17, 12, 32),
+      std(EMERALD, { emissive: 0x064e3b, emissiveIntensity: 0.25 })), [2.1, 1.15, -0.3]));
+    for (var t2 = 0; t2 < 6; t2++) {
+      var ta = t2 * Math.PI / 3;
+      parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.32, 0.26),
+        std(SLATE, { metalness: 0.7, roughness: 0.35 })), [2.1 + Math.cos(ta) * 0.8, 1.15 + Math.sin(ta) * 0.8, -0.3], [0, 0, ta]));
+    }
+    parts.push(ambientPoints(MINT, 210, 0.05, 7)); // sparks
+    var g = makeGroup(mx, parts, function (t, dt) {
       if (this.userData.busy) return;
       this.rotation.z = -(t - this.userData.t0) * 0.3;
     });
+    addDecos(g, ['torus', 'knot', 'octa']);
+    glowLight(g, EMERALD, 12, 15, [2, 2, 4]);
+    glowLight(g, GOLD, 8, 12, [-2.5, -2, 3]);
+    return g;
   }
 
   function buildRocket(mx) {
     var parts = [];
     parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.55, 2.1, 24),
       std(WHITE, { metalness: 0.35, roughness: 0.3 })), [0, 0, 0]));
+    // Fuselage bands
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.5, 0.05, 10, 30),
+      std(SLATE, { metalness: 0.7, roughness: 0.35 })), [0, 1.02, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.05, 10, 30),
+      std(SLATE, { metalness: 0.7, roughness: 0.35 })), [0, -0.75, 0]));
     parts.push(part(new THREE.Mesh(new THREE.ConeGeometry(0.42, 0.9, 24),
-      std(EMERALD)), [0, 1.5, 0]));
+      std(EMERALD, { emissive: 0x064e3b, emissiveIntensity: 0.3 })), [0, 1.5, 0]));
+    // Porthole + emerald frame
     parts.push(part(new THREE.Mesh(new THREE.SphereGeometry(0.16, 18, 14),
       std(GOLD, { metalness: 0.85, roughness: 0.2 })), [0, 0.35, 0.42]));
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.22, 0.045, 10, 26),
+      std(EMERALD, { emissive: EMERALD, emissiveIntensity: 0.35 })), [0, 0.35, 0.44]));
     for (var i = 0; i < 3; i++) {
       var a = i * Math.PI * 2 / 3;
       parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.85, 0.1),
         std(GOLD, { metalness: 0.8, roughness: 0.3 })),
         [Math.sin(a) * 0.6, -0.95, Math.cos(a) * 0.6], [0, a, 0.18]));
     }
+    // Twin side boosters with gold tips
+    for (var b2 = 0; b2 < 2; b2++) {
+      var bx = b2 === 0 ? 0.62 : -0.62;
+      parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.17, 1.2, 14),
+        std(EMERALD, { emissive: 0x064e3b, emissiveIntensity: 0.25 })), [bx, -0.35, -0.15]));
+      parts.push(part(new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.34, 14),
+        std(GOLD, { metalness: 0.8, roughness: 0.3 })), [bx, 0.42, -0.15]));
+    }
     parts.push(part(new THREE.Mesh(new THREE.ConeGeometry(0.3, 0.8, 20),
       std(GOLD, { emissive: GOLD, emissiveIntensity: 0.6, metalness: 0.1, roughness: 0.5 })),
       [0, -1.5, 0], [Math.PI, 0, 0], [0, -1, 0]));
-    parts.push(ambientPoints(WHITE, 110, 0.045, 8)); // stardust
-    return makeGroup(mx, parts, function (t, dt) {
+    // Glowing exhaust ring above the flame
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.05, 10, 26),
+      std(0xf97316, { emissive: 0xf97316, emissiveIntensity: 0.7, metalness: 0.1, roughness: 0.5 })),
+      [0, -1.28, 0], [Math.PI / 2, 0, 0], [0, -1, 0]));
+    parts.push(ambientPoints(WHITE, 165, 0.045, 8)); // stardust
+    var g = makeGroup(mx, parts, function (t, dt) {
       if (this.userData.busy) return;
       var tt = t - this.userData.t0;
       this.position.y = this.userData.baseY + Math.sin(tt * 1.1) * 0.18;
       this.rotation.y = Math.sin(tt * 0.5) * 0.25;
     }, 2.3);
+    addDecos(g, ['cone', 'knot', 'icosa']);
+    glowLight(g, GOLD, 12, 14, [0, -1, 3]);
+    glowLight(g, EMERALD, 9, 14, [2.5, 2, 3]);
+    return g;
   }
 
   // Ambient nebula (backdrop for wide-content sections)
@@ -2419,12 +3011,16 @@ window.initUnityHeroScene = function () {
     var parts = [];
     parts.push(ambientPoints(color, count, 0.07, 20));
     parts.push(ambientPoints(WHITE, Math.round(count / 3), 0.05, 16));
-    return makeGroup(mx, parts, function (t, dt) {
+    parts.push(ambientPoints(GOLD, Math.round(count / 5), 0.06, 17));
+    var g = makeGroup(mx, parts, function (t, dt) {
       if (this.userData.busy) return;
       var tt = t - this.userData.t0;
       this.rotation.y = tt * 0.05;
       this.position.y = this.userData.baseY + Math.sin(tt * 0.4) * 0.3;
     });
+    addDecos(g, ['icosa', 'knot', 'torus', 'octa', 'cone']);
+    glowLight(g, EMERALD, 12, 18, [0, 2, 4]);
+    return g;
   }
 
   /* -------------------- SCENE -------------------- */
@@ -2455,16 +3051,22 @@ window.initUnityHeroScene = function () {
     renderer.toneMappingExposure = 1.15;
     sizeRenderer();
 
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x050505, 1.2));
-    var dir = new THREE.DirectionalLight(0xffffff, 1.8);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x050505, 1.45));
+    var dir = new THREE.DirectionalLight(0xffffff, 2.4);
     dir.position.set(5, 8, 6);
     scene.add(dir);
-    var pEmerald = new THREE.PointLight(EMERALD, 40, 40);
+    var pEmerald = new THREE.PointLight(EMERALD, 55, 45);
     pEmerald.position.set(-6, 3, 4);
     scene.add(pEmerald);
-    var pGold = new THREE.PointLight(GOLD, 30, 40);
+    var pGold = new THREE.PointLight(GOLD, 42, 45);
     pGold.position.set(6, -3, 5);
     scene.add(pGold);
+    var pMint = new THREE.PointLight(MINT, 26, 40);
+    pMint.position.set(0, 6, -4);
+    scene.add(pMint);
+    var pSky = new THREE.PointLight(SKY, 18, 40);
+    pSky.position.set(0, -5, 6);
+    scene.add(pSky);
 
     // Build all models up front (order = section order)
     buildHero(2.5);
@@ -2474,7 +3076,7 @@ window.initUnityHeroScene = function () {
     buildPhone(2.5);
     buildBars(-2.9);
     buildGear(2.5);
-    buildNebula(0, EMERALD, 140);  // 07 · Portfolio
+    buildNebula(0, EMERALD, 210);  // 07 · Portfolio
     buildRocket(0);
 
     clock = new THREE.Clock();
@@ -2491,6 +3093,7 @@ window.initUnityHeroScene = function () {
     var t = clock.elapsedTime;
     var g = models[activeIndex];
     if (g && g.userData.idle) g.userData.idle.call(g, t, dt);
+    if (g) spinDecos(g, t, dt);
     camera.lookAt(camTarget);
     renderer.render(scene, camera);
   }
@@ -2558,7 +3161,7 @@ window.initUnityHeroScene = function () {
     g.userData.busy = true;
 
     g.userData.parts.forEach(function (p, k) {
-      var delay = 0.12 + k * 0.09;
+      var delay = 0.12 + k * 0.055;
       if (!p.userData.noScatter) {
         gsap.killTweensOf(p.position);
         gsap.killTweensOf(p.rotation);
