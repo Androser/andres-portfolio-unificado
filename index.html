@@ -1,0 +1,3506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrés Gómez — Full-Stack · Unity XR · WordPress Developer</title>
+    <meta name="description" content="Bilingual senior software engineer: Full-Stack architectures, Unity XR simulations and WordPress automation. Available for remote roles and international projects.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyan: #06b6d4;
+            --fuchsia: #d946ef;
+            --emerald: #10b981;
+            --coral: #ef6b60;
+            --gold: #f39c12;
+            --bg: #050505;
+            --text: #f3f4f6;
+            --muted: #9ca3af;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        canvas { display: block; }
+        #global-particles {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .neon-text { text-shadow: 0 0 12px currentColor; }
+        .tab-active { border-bottom: 2px solid currentColor; color: currentColor; }
+        .tab-inactive { color: var(--muted); }
+        .tab-inactive:hover { color: #e5e7eb; }
+        .card-hover { transition: transform .25s ease, box-shadow .25s ease; }
+        .card-hover:hover { transform: translateY(-4px); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .section-reveal { opacity: 0; transform: translateY(34px); }
+        .glow-border { box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 0 24px rgba(6,182,212,0.08); }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <!-- GLOBAL PARTICLES BACKGROUND -->
+    <canvas id="global-particles"></canvas>
+
+    <!-- INTRO / SELECTOR -->
+    <section id="intro" class="min-h-screen flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.08),transparent_60%)]"></div>
+        <p class="text-cyan-400 tracking-widest text-sm uppercase mb-4 z-10">Bilingual Senior Software Engineer</p>
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4 z-10">Andrés Leonardo Gómez Gil</h1>
+        <p class="text-gray-400 max-w-2xl text-lg mb-8 z-10">
+            Ingeniero de software bilingüe con 8+ años entregando simulaciones inmersivas, arquitecturas full-stack y soluciones WordPress escalables para clientes internacionales.
+        </p>
+
+        <button id="activate-immersive" class="mb-10 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-600 to-fuchsia-600 text-white font-semibold hover:scale-105 transition z-10 flex items-center gap-2">
+            <span id="immersive-icon">🔇</span> Activate Immersive Experience
+        </button>
+
+        <h2 class="text-2xl md:text-3xl font-bold mb-8 z-10">What are you looking for?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full z-10">
+            <button onclick="showTab('fullstack')" class="group relative overflow-hidden rounded-2xl border border-cyan-500/30 bg-gray-900/60 p-8 text-left card-hover">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+                <div class="text-4xl mb-4">🖥️</div>
+                <h3 class="text-xl font-bold text-white mb-2">Full-Stack Developer</h3>
+                <p class="text-gray-400 text-sm">AWS · PHP/Laravel · MySQL · Web3 · Flutter · REST APIs</p>
+            </button>
+
+            <button onclick="showTab('unity')" class="group relative overflow-hidden rounded-2xl border border-fuchsia-500/30 bg-gray-900/60 p-8 text-left card-hover">
+                <div class="absolute inset-0 bg-gradient-to-br from-fuchsia-500/10 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+                <div class="text-4xl mb-4">🥽</div>
+                <h3 class="text-xl font-bold text-white mb-2">Unity / XR Developer</h3>
+                <p class="text-gray-400 text-sm">VR/AR · Oculus Quest · Industrial Training · Multiplayer · WebGL</p>
+            </button>
+
+            <button onclick="showTab('wordpress')" class="group relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-gray-900/60 p-8 text-left card-hover">
+                <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+                <div class="text-4xl mb-4">🚀</div>
+                <h3 class="text-xl font-bold text-white mb-2">WordPress Full-Stack</h3>
+                <p class="text-gray-400 text-sm">Memberships · Subscriptions · Automation · Integrations · Dashboards</p>
+            </button>
+        </div>
+
+        <div class="mt-12 flex flex-wrap justify-center gap-3 z-10">
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">Unity 3D</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">C#</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">PHP/Laravel</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">AWS</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">Oculus Quest</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">Web3</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">IoT</span>
+        </div>
+    </section>
+
+    <!-- STICKY NAVIGATION -->
+    <nav id="main-nav" class="sticky top-0 z-50 bg-[#050505]/90 backdrop-blur border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="font-bold text-lg tracking-tight">Andrés Gómez</div>
+            <div class="flex space-x-6 text-sm font-semibold uppercase tracking-wide">
+                <button id="nav-fullstack" onclick="showTab('fullstack')" class="tab-inactive pb-1">Full-Stack</button>
+                <button id="nav-unity" onclick="showTab('unity')" class="tab-inactive pb-1">Unity / XR</button>
+                <button id="nav-wordpress" onclick="showTab('wordpress')" class="tab-inactive pb-1">WordPress</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- TAB: FULL-STACK -->
+    <section id="tab-fullstack" class="tab-content hidden">
+        <!-- ==========================================================================
+  Inner content of <section id="tab-fullstack"> — Full-Stack Developer tab.
+  Requires (loaded by the host page): Tailwind CSS, Three.js r128 (window.THREE),
+  Inter font. The global script (parts/global.js) must call initFullStackScene()
+  and initFullStackDemoScene() when this tab becomes visible — they are only
+  DEFINED here, never auto-called. Click sounds for .stack-badge are also
+  handled by the global script.
+  ========================================================================== -->
+
+<style>
+  /* ---- glassmorphism / neon ---- */
+  .fs-glass { background: rgba(255,255,255,.04); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .fs-neon-border { box-shadow: 0 0 0 1px rgba(6,182,212,.45), 0 0 26px rgba(6,182,212,.18), inset 0 0 26px rgba(6,182,212,.05); }
+  .fs-neon-text { text-shadow: 0 0 14px rgba(6,182,212,.45), 0 0 34px rgba(6,182,212,.22); }
+
+  /* ---- scroll reveal (class .revealed is toggled by the observer below) ---- */
+  .section-reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease var(--reveal-delay,0ms), transform .7s ease var(--reveal-delay,0ms); }
+  .section-reveal.revealed { opacity: 1; transform: translateY(0); }
+
+  /* ---- project cards ---- */
+  .fs-card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .fs-card:hover { transform: translateY(-4px); box-shadow: 0 0 32px rgba(6,182,212,.16); border-color: rgba(6,182,212,.5); }
+
+  /* ---- animated metric chips ---- */
+  .fs-metric-chip { animation: fsChipGlow 3.2s ease-in-out infinite; animation-delay: var(--d,0s); }
+  @keyframes fsChipGlow { 0%,100% { box-shadow: 0 0 0 rgba(6,182,212,0); } 50% { box-shadow: 0 0 14px rgba(6,182,212,.35); } }
+
+  /* ---- LIVE badge blink ---- */
+  .fs-live-badge { animation: fsBlink 1.6s ease-in-out infinite; }
+  @keyframes fsBlink { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
+
+  /* ---- TOQEN: network node pulse ---- */
+  .fs-node-core { animation: fsNodePulse 2s ease-in-out infinite; }
+  @keyframes fsNodePulse { 0%,100% { opacity: 1; } 50% { opacity: .45; } }
+
+  /* ---- ArtemisVision: data dash + contract flash ---- */
+  .fs-dash { animation: fsDash 1.1s linear infinite; }
+  @keyframes fsDash { to { stroke-dashoffset: -22; } }
+  .fs-flash { animation: fsFlash 1.8s ease-in-out infinite; }
+  @keyframes fsFlash { 0%,78% { opacity: .1; } 88% { opacity: .95; } 100% { opacity: .1; } }
+
+  /* ---- SENNOVA: assets loading + progress bar ---- */
+  .fs-asset { display: block; height: 20px; border-radius: 5px; background: rgba(6,182,212,.14); border: 1px solid rgba(6,182,212,.45); box-shadow: inset 0 0 8px rgba(6,182,212,.15); animation: fsAssetIn 3s ease-in-out var(--d,0s) infinite; }
+  .fs-asset.fs-round { border-radius: 9999px; }
+  @keyframes fsAssetIn { 0% { opacity: .1; transform: translateY(-8px) scale(.7); } 35%,70% { opacity: 1; transform: none; } 100% { opacity: .25; transform: scale(.85); } }
+  .fs-progress { height: 6px; border-radius: 9999px; background: rgba(255,255,255,.06); overflow: hidden; }
+  .fs-progress-bar { height: 100%; width: 0; border-radius: 9999px; background: linear-gradient(90deg,#06b6d4,#67e8f9); box-shadow: 0 0 10px rgba(6,182,212,.6); animation: fsBar 3s ease-in-out infinite; }
+  @keyframes fsBar { 0% { width: 0; opacity: 1; } 75% { width: 100%; opacity: 1; } 100% { width: 100%; opacity: .25; } }
+
+  /* ---- Zion Hydro Lab: sensor pulse ---- */
+  .fs-sensor { animation: fsSensor 1.8s ease-in-out infinite; }
+  @keyframes fsSensor { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+  /* ---- stack badges (click sound wired in global JS) ---- */
+  .stack-badge { transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease, color .25s ease; }
+  .stack-badge:hover, .stack-badge:focus-visible { border-color: rgba(6,182,212,.8); color: #a5f3fc; box-shadow: 0 0 18px rgba(6,182,212,.35), inset 0 0 12px rgba(6,182,212,.08); transform: translateY(-2px); outline: none; }
+</style>
+
+<!-- ==================== 1 · HERO ==================== -->
+<div class="relative min-h-[85vh] flex items-center overflow-hidden border-b border-white/5">
+  <canvas id="fs-hero-canvas" class="absolute inset-0 w-full h-full"></canvas>
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at 68% 30%, transparent 0%, #050505 88%);"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full">
+    <p class="text-cyan-400 text-sm uppercase tracking-widest mb-4">Profile 01 — Backend · APIs · Cloud</p>
+    <h1 class="text-4xl md:text-6xl font-extrabold fs-neon-text mb-5 max-w-4xl">Full-Stack Developer — Backend, APIs &amp; Cloud</h1>
+    <p class="text-gray-300 text-lg max-w-2xl mb-1">
+      I design scalable backend architectures, REST APIs, Web3 integrations and AWS deployments for real applications with real traffic.
+    </p>
+    <p class="text-gray-500 text-sm max-w-2xl mb-12">
+      Arquitecturas backend escalables, APIs REST, integraciones Web3 y despliegues AWS para aplicaciones reales con tráfico real.
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
+      <div class="fs-glass rounded-xl border border-cyan-500/20 p-4" title="Años construyendo software">
+        <div class="text-3xl font-extrabold text-cyan-400">8+</div>
+        <div class="text-sm text-gray-300">years</div>
+        <div class="text-xs text-gray-600">años de experiencia</div>
+      </div>
+      <div class="fs-glass rounded-xl border border-cyan-500/20 p-4" title="Proyectos entregados">
+        <div class="text-3xl font-extrabold text-cyan-400">60+</div>
+        <div class="text-sm text-gray-300">projects</div>
+        <div class="text-xs text-gray-600">proyectos entregados</div>
+      </div>
+      <div class="fs-glass rounded-xl border border-cyan-500/20 p-4" title="Disponibilidad en producción">
+        <div class="text-3xl font-extrabold text-cyan-400">99.9%</div>
+        <div class="text-sm text-gray-300">uptime</div>
+        <div class="text-xs text-gray-600">disponibilidad</div>
+      </div>
+      <div class="fs-glass rounded-xl border border-cyan-500/20 p-4" title="Sistemas en tiempo real">
+        <div class="text-3xl font-extrabold text-cyan-400">Real-time</div>
+        <div class="text-sm text-gray-300">systems</div>
+        <div class="text-xs text-gray-600">sistemas en tiempo real</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 2 · LIVE DEMO ==================== -->
+<div class="max-w-6xl mx-auto px-6 py-16 section-reveal">
+  <h2 class="text-3xl font-bold mb-2">Live Demo: Digital Menu as Instagram Reels</h2>
+  <p class="text-gray-400 mb-1">
+    A digital menu as immersive as Instagram Reels — built for a restaurant client. Swipe, like, comment, order via WhatsApp.
+  </p>
+  <p class="text-gray-600 text-sm mb-8">Menú digital estilo Reels — desliza, dale like, comenta y pide por WhatsApp.</p>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+    <!-- embedded app -->
+    <div class="lg:col-span-2 relative rounded-2xl fs-glass fs-neon-border overflow-hidden">
+      <span class="fs-live-badge absolute top-3 left-3 z-20 px-3 py-1 text-xs font-bold rounded-full bg-cyan-500 text-black tracking-widest">● LIVE DEMO</span>
+
+      <div id="fs-demo-frame-wrap" class="w-full h-[420px] md:h-[520px]">
+        <iframe id="fs-demo-iframe" src="https://menu-swipe-reels.vercel.app" title="Digital menu reels — live demo"
+                class="w-full h-full border-0" onload="this.dataset.loaded='1'" onerror="this.dataset.failed='1'"></iframe>
+      </div>
+
+      <!-- fallback if the iframe does not load within 5s -->
+      <div id="fs-demo-fallback" class="hidden relative w-full h-[420px] md:h-[520px]">
+        <img src="food-reels-menu/assets/images/Burrata.png" alt="Digital menu reels preview"
+             class="absolute inset-0 w-full h-full object-cover opacity-40" />
+        <div class="relative z-10 h-full flex flex-col items-center justify-center text-center p-8">
+          <p class="text-gray-100 font-semibold mb-2">The live demo couldn't load here.</p>
+          <p class="text-gray-400 text-sm mb-5">No pudimos cargar el demo embebido — ábrelo en una pestaña nueva.</p>
+          <a href="https://menu-swipe-reels.vercel.app" target="_blank" rel="noopener"
+             class="px-6 py-2 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold transition">Open live demo ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- mini data-flow canvas -->
+    <div class="relative rounded-2xl fs-glass border border-cyan-500/20 p-4 flex flex-col">
+      <canvas id="fs-demo-canvas" class="w-full flex-1 min-h-[260px]"></canvas>
+      <p class="text-xs text-gray-500 mt-3 text-center">
+        Real-time data sync — phone → cloud <span class="text-gray-600">· sincronización en tiempo real</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 3 · PROJECTS ==================== -->
+<div class="max-w-6xl mx-auto px-6 py-8">
+  <div class="section-reveal mb-10">
+    <h2 class="text-3xl font-bold mb-2">Featured Backend Projects</h2>
+    <p class="text-gray-400">Production systems with real users <span class="text-gray-600">· sistemas en producción con usuarios reales</span></p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    <!-- a) TOQEN -->
+    <div class="section-reveal" style="--reveal-delay:0ms">
+      <div class="fs-card fs-glass rounded-2xl border border-cyan-500/20 p-6 h-full">
+        <div class="h-36 mb-5 rounded-xl bg-black/50 border border-white/5 overflow-hidden" title="Red multiplayer con paquetes viajando entre nodos">
+          <svg viewBox="0 0 200 110" class="w-full h-full" aria-hidden="true">
+            <g stroke="rgba(6,182,212,.25)" stroke-width="1" fill="none">
+              <path d="M100,55 L28,22"/><path d="M100,55 L28,90"/><path d="M100,55 L172,22"/><path d="M100,55 L172,90"/>
+              <path d="M28,22 L28,90"/><path d="M172,22 L172,90"/>
+            </g>
+            <g fill="#06b6d4">
+              <circle class="fs-node-core" cx="100" cy="55" r="6"/>
+              <circle cx="28" cy="22" r="4"/><circle cx="28" cy="90" r="4"/>
+              <circle cx="172" cy="22" r="4"/><circle cx="172" cy="90" r="4"/>
+            </g>
+            <circle r="2.5" fill="#67e8f9"><animateMotion dur="2.2s" repeatCount="indefinite" path="M100,55 L28,22"/></circle>
+            <circle r="2.5" fill="#67e8f9"><animateMotion dur="2.8s" begin="0.6s" repeatCount="indefinite" path="M28,90 L100,55"/></circle>
+            <circle r="2.5" fill="#a5f3fc"><animateMotion dur="2.4s" begin="1.1s" repeatCount="indefinite" path="M100,55 L172,90"/></circle>
+            <circle r="2.5" fill="#a5f3fc"><animateMotion dur="3s" begin="0.3s" repeatCount="indefinite" path="M172,22 L100,55"/></circle>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">TOQEN — Neraverse Legendary Backend</h3>
+        <p class="text-gray-400 text-sm mb-4">PHP + MySQL for rooms, authentication, leaderboards and IAP. Photon PUN/Fusion. AWS S3/CloudFront.</p>
+        <div class="flex flex-wrap gap-2 text-xs mb-4">
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">PHP</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">MySQL</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">Photon</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">AWS</span>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:0s" title="latencia menor a 100 ms">&lt;100 ms latency</span>
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:.5s">60 FPS</span>
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:1s" title="más de 10 mil salas concurrentes">10k+ concurrent rooms</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- b) ArtemisVision -->
+    <div class="section-reveal" style="--reveal-delay:120ms">
+      <div class="fs-card fs-glass rounded-2xl border border-cyan-500/20 p-6 h-full">
+        <div class="h-36 mb-5 rounded-xl bg-black/50 border border-white/5 overflow-hidden" title="Wallet hexagonal conectando con un smart contract">
+          <svg viewBox="0 0 210 110" class="w-full h-full" aria-hidden="true">
+            <line x1="72" y1="55" x2="138" y2="55" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="6 5" class="fs-dash"/>
+            <!-- hexagonal wallet -->
+            <polygon points="50,33 69,44 69,66 50,77 31,66 31,44" fill="rgba(6,182,212,.12)" stroke="#06b6d4" stroke-width="1.5"/>
+            <circle cx="50" cy="55" r="5" fill="none" stroke="#67e8f9" stroke-width="1.5"/>
+            <line x1="50" y1="60" x2="50" y2="67" stroke="#67e8f9" stroke-width="1.5"/>
+            <!-- contract cube -->
+            <polygon points="140,40 152,29 184,29 172,40" fill="rgba(6,182,212,.16)" stroke="#06b6d4" stroke-width="1"/>
+            <polygon points="172,40 184,29 184,61 172,72" fill="rgba(6,182,212,.08)" stroke="#06b6d4" stroke-width="1"/>
+            <rect x="140" y="40" width="32" height="32" rx="3" fill="rgba(6,182,212,.12)" stroke="#06b6d4" stroke-width="1.5"/>
+            <rect class="fs-flash" x="137" y="37" width="38" height="38" rx="4" fill="none" stroke="#a5f3fc" stroke-width="2"/>
+            <!-- auth packet with arrival flash -->
+            <circle r="4" fill="#e0faff">
+              <animateMotion dur="1.8s" repeatCount="indefinite" path="M72,55 L138,55"/>
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="1.8s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">ArtemisVision — Web3 Auth &amp; APIs</h3>
+        <p class="text-gray-400 text-sm mb-4">Backend PHP for Web3 authentication, Smart Contracts with Web3.js/Moralis, S3/CloudFront deployment.</p>
+        <div class="flex flex-wrap gap-2 text-xs mb-4">
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">Web3.js</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">Smart Contracts</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">AWS</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">PHP</span>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:0s" title="más de 5 mil wallets conectadas">5k+ wallets connected</span>
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:.5s" title="más de 2 millones en transacciones">$2M+ in transactions</span>
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:1s">99.9% uptime</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- c) SENNOVA -->
+    <div class="section-reveal" style="--reveal-delay:0ms">
+      <div class="fs-card fs-glass rounded-2xl border border-cyan-500/20 p-6 h-full">
+        <div class="h-36 mb-5 rounded-xl bg-black/50 border border-white/5 overflow-hidden p-4 flex flex-col justify-center" title="Assets 3D cargando desde el backend">
+          <div class="grid grid-cols-3 gap-2 mb-3">
+            <span class="fs-asset" style="--d:0s"></span>
+            <span class="fs-asset fs-round" style="--d:.35s"></span>
+            <span class="fs-asset" style="--d:.7s"></span>
+            <span class="fs-asset fs-round" style="--d:1.05s"></span>
+            <span class="fs-asset" style="--d:1.4s"></span>
+            <span class="fs-asset fs-round" style="--d:1.75s"></span>
+            <span class="fs-asset" style="--d:2.1s"></span>
+            <span class="fs-asset" style="--d:2.45s"></span>
+            <span class="fs-asset fs-round" style="--d:2.8s"></span>
+          </div>
+          <div class="fs-progress"><div class="fs-progress-bar"></div></div>
+          <p class="text-[10px] text-gray-500 mt-2 text-center">3D assets syncing from the Laravel API · assets cargando desde la API</p>
+        </div>
+        <h3 class="text-xl font-bold mb-2">SENNOVA — APIs for XR</h3>
+        <p class="text-gray-400 text-sm mb-4">Laravel + MySQL for 3D asset metadata, progress tracking and analytics. RESTful APIs consumed by Unity WebGL builds.</p>
+        <div class="flex flex-wrap gap-2 text-xs mb-4">
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">Laravel</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">MySQL</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">REST API</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">AWS</span>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:0s">500+ assets tracked</span>
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:.5s" title="respuesta REST menor a 80 ms">REST response &lt;80 ms</span>
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:1s">10k+ analytics events/day</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- d) Zion Hydro Lab -->
+    <div class="section-reveal" style="--reveal-delay:120ms">
+      <div class="fs-card fs-glass rounded-2xl border border-cyan-500/20 p-6 h-full">
+        <div class="h-36 mb-5 rounded-xl bg-black/50 border border-white/5 overflow-hidden" title="Cultivo vertical con sensores enviando datos a la nube">
+          <svg viewBox="0 0 200 110" class="w-full h-full" aria-hidden="true">
+            <!-- cloud -->
+            <g fill="rgba(148,163,184,.22)" stroke="rgba(6,182,212,.5)" stroke-width="1">
+              <ellipse cx="150" cy="20" rx="22" ry="10"/>
+              <ellipse cx="134" cy="25" rx="14" ry="8"/>
+              <ellipse cx="166" cy="26" rx="13" ry="7"/>
+            </g>
+            <!-- stem + leaves -->
+            <line x1="45" y1="102" x2="45" y2="45" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
+            <path d="M45,82 Q25,76 22,62 Q38,64 45,76" fill="#16a34a" opacity=".85"/>
+            <path d="M45,68 Q65,62 68,48 Q52,50 45,62" fill="#22c55e" opacity=".85"/>
+            <!-- water drops -->
+            <circle r="2.2" fill="#38bdf8"><animateMotion dur="2s" repeatCount="indefinite" path="M32,30 L38,94"/></circle>
+            <circle r="2.2" fill="#38bdf8"><animateMotion dur="2.4s" begin="1s" repeatCount="indefinite" path="M58,28 L52,94"/></circle>
+            <!-- sensor dots -->
+            <circle class="fs-sensor" cx="45" cy="90" r="3" fill="#06b6d4"/>
+            <circle class="fs-sensor" cx="45" cy="64" r="3" fill="#06b6d4" style="animation-delay:.7s"/>
+            <!-- data stream to cloud -->
+            <circle r="2" fill="#67e8f9"><animateMotion dur="2.6s" repeatCount="indefinite" path="M45,64 Q100,52 136,26"/></circle>
+            <circle r="2" fill="#67e8f9"><animateMotion dur="2.6s" begin="1.3s" repeatCount="indefinite" path="M45,90 Q105,72 140,28"/></circle>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Zion Hydro Lab — AgriTech IoT</h3>
+        <p class="text-gray-400 text-sm mb-4">Flutter + Supabase app for vertical hydroponic cultivation. IoT sensors and computer vision for plant health diagnosis.</p>
+        <div class="flex flex-wrap gap-2 text-xs mb-4">
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">Flutter</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">Supabase</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">IoT</span>
+          <span class="px-2 py-1 rounded bg-cyan-500/10 text-cyan-300">Computer Vision</span>
+        </div>
+        <div class="flex flex-wrap gap-2 text-xs font-semibold">
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:0s" title="30% de agua ahorrada">30% water saved</span>
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:.5s" title="diagnóstico con IA en menos de 3 segundos">AI diagnosis in &lt;3 sec</span>
+          <span class="fs-metric-chip px-2 py-1 rounded border border-cyan-500/30 text-cyan-200" style="--d:1s">Real-time sensor data</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 4 · STACK ==================== -->
+<div class="max-w-6xl mx-auto px-6 py-16 section-reveal">
+  <div class="rounded-2xl fs-glass border border-cyan-500/20 p-8">
+    <h2 class="text-2xl font-bold mb-1">Full-Stack Stack</h2>
+    <p class="text-gray-500 text-sm mb-6">Tecnologías principales — hover para el glow, click para el sonido.</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <button type="button" class="stack-badge px-4 py-3 rounded-xl border border-cyan-500/25 bg-white/5 text-sm text-gray-200" title="APIs y backends en PHP / Laravel">PHP / Laravel</button>
+      <button type="button" class="stack-badge px-4 py-3 rounded-xl border border-cyan-500/25 bg-white/5 text-sm text-gray-200" title="Frontend e integraciones Web3">JavaScript / Web3.js</button>
+      <button type="button" class="stack-badge px-4 py-3 rounded-xl border border-cyan-500/25 bg-white/5 text-sm text-gray-200" title="APIs REST en Java">Java REST APIs</button>
+      <button type="button" class="stack-badge px-4 py-3 rounded-xl border border-cyan-500/25 bg-white/5 text-sm text-gray-200" title="Bases de datos relacionales">MySQL</button>
+      <button type="button" class="stack-badge px-4 py-3 rounded-xl border border-cyan-500/25 bg-white/5 text-sm text-gray-200" title="Storage y CDN en AWS">AWS S3 / CloudFront</button>
+      <button type="button" class="stack-badge px-4 py-3 rounded-xl border border-cyan-500/25 bg-white/5 text-sm text-gray-200" title="Apps móviles multiplataforma">Flutter / Dart</button>
+      <button type="button" class="stack-badge px-4 py-3 rounded-xl border border-cyan-500/25 bg-white/5 text-sm text-gray-200" title="Backend as a Service en tiempo real">Supabase</button>
+      <button type="button" class="stack-badge px-4 py-3 rounded-xl border border-cyan-500/25 bg-white/5 text-sm text-gray-200" title="Control de versiones y despliegue continuo">Git / CI-CD</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 5 · MINI CTA ==================== -->
+<div class="max-w-6xl mx-auto px-6 py-16 text-center section-reveal">
+  <h2 class="text-2xl md:text-3xl font-bold mb-3">Let's talk about your backend, API or cloud migration project.</h2>
+  <p class="text-gray-500 text-sm mb-8">Hablemos de tu backend, API o migración a la nube.</p>
+  <div class="flex flex-wrap justify-center gap-4">
+    <a href="https://www.linkedin.com/in/leonardo-g-024042128/" target="_blank" rel="noopener"
+       class="px-8 py-3 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition">LinkedIn</a>
+    <a href="https://wa.me/573027464103" target="_blank" rel="noopener"
+       class="px-8 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition">WhatsApp</a>
+  </div>
+</div>
+
+<script>
+/* ==========================================================================
+   Three.js scenes for the Full-Stack tab (Three.js r128).
+   DEFINED ONLY — parts/global.js calls them when the tab becomes visible:
+     initFullStackScene();      // hero: server cluster + XR goggles + particles
+     initFullStackDemoScene();  // mini: phone -> cloud data flow
+   Both are idempotent (safe to call more than once).
+   ========================================================================== */
+
+function initFullStackScene() {
+  var canvas = document.getElementById('fs-hero-canvas');
+  if (!canvas || !window.THREE || canvas.dataset.fsInit === '1') return;
+  canvas.dataset.fsInit = '1';
+
+  var scene = new THREE.Scene();
+  scene.fog = new THREE.Fog(0x050505, 9, 24);
+
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  var camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
+  camera.position.set(0, 1.1, 9);
+
+  // lights
+  scene.add(new THREE.AmbientLight(0x8a9bb8, 0.55));
+  var key = new THREE.DirectionalLight(0xffffff, 0.85);
+  key.position.set(6, 9, 7);
+  scene.add(key);
+  var cyanGlow = new THREE.PointLight(0x06b6d4, 1.5, 22);
+  cyanGlow.position.set(0, 2.5, 3.5);
+  scene.add(cyanGlow);
+
+  /* ---------- server cluster: metallic racks + blinking LEDs ---------- */
+  var cluster = new THREE.Group();
+  var leds = [];
+  var serverMat = new THREE.MeshStandardMaterial({ color: 0x1b2230, metalness: 0.85, roughness: 0.35 });
+  var rackPos = [[-2.7, -1.1], [-0.9, -1.7], [0.9, -1.2], [2.7, -1.6], [-1.8, -2.9], [1.9, -3.0], [0, -2.4]];
+  rackPos.forEach(function (p, i) {
+    var h = 1.7 + (i % 3) * 0.55;
+    var rack = new THREE.Mesh(new THREE.BoxGeometry(1.0, h, 0.85), serverMat);
+    rack.position.set(p[0], h / 2, p[1]);
+    cluster.add(rack);
+    for (var j = 0; j < 3; j++) {
+      var amber = (i + j) % 5 === 4;
+      var led = new THREE.Mesh(
+        new THREE.BoxGeometry(0.66, 0.05, 0.03),
+        new THREE.MeshBasicMaterial({ color: amber ? 0xf59e0b : 0x06b6d4, transparent: true, opacity: 1 })
+      );
+      led.position.set(p[0], 0.32 + j * (h / 3.2), p[1] + 0.44);
+      led.userData.phase = Math.random() * Math.PI * 2;
+      led.userData.speed = 2 + Math.random() * 3;
+      leds.push(led);
+      cluster.add(led);
+    }
+  });
+  cluster.position.y = -1.9;
+  scene.add(cluster);
+
+  /* ---------- Quest-style goggles built from geometric shapes ---------- */
+  function roundedRectShape(w, h, r) {
+    var s = new THREE.Shape();
+    var x = -w / 2, y = -h / 2;
+    s.moveTo(x + r, y);
+    s.lineTo(x + w - r, y);
+    s.quadraticCurveTo(x + w, y, x + w, y + r);
+    s.lineTo(x + w, y + h - r);
+    s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    s.lineTo(x + r, y + h);
+    s.quadraticCurveTo(x, y + h, x, y + h - r);
+    s.lineTo(x, y + r);
+    s.quadraticCurveTo(x, y, x + r, y);
+    return s;
+  }
+
+  var goggles = new THREE.Group();
+
+  // rounded-box visor (extruded rounded rectangle with bevel)
+  var visorGeo = new THREE.ExtrudeGeometry(roundedRectShape(2.6, 1.3, 0.45), {
+    depth: 0.7, bevelEnabled: true, bevelThickness: 0.18, bevelSize: 0.18, bevelSegments: 4, curveSegments: 12
+  });
+  visorGeo.center();
+  var visor = new THREE.Mesh(visorGeo, new THREE.MeshStandardMaterial({ color: 0xe8ecf2, metalness: 0.4, roughness: 0.5 }));
+  goggles.add(visor);
+
+  // lenses — cylinders with blue emissive
+  var lensMat = new THREE.MeshStandardMaterial({ color: 0x0a0f1e, emissive: 0x2277ff, emissiveIntensity: 1.6, metalness: 0.2, roughness: 0.3 });
+  [-0.62, 0.62].forEach(function (x) {
+    var lens = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 0.22, 32), lensMat);
+    lens.rotation.x = Math.PI / 2;
+    lens.position.set(x, -0.05, 0.52);
+    goggles.add(lens);
+  });
+
+  // tracking sensors — small white cylinders
+  var sensorMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xdfeaff, emissiveIntensity: 0.9 });
+  [[-1.05, 0.35], [1.05, 0.35], [-1.05, -0.45], [1.05, -0.45]].forEach(function (p) {
+    var s = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.14, 16), sensorMat);
+    s.rotation.x = Math.PI / 2;
+    s.position.set(p[0], p[1], 0.5);
+    goggles.add(s);
+  });
+
+  // side straps — torus on each side
+  var strapMat = new THREE.MeshStandardMaterial({ color: 0xcfd6e2, metalness: 0.5, roughness: 0.6 });
+  [-1.5, 1.5].forEach(function (x) {
+    var strap = new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.09, 12, 32), strapMat);
+    strap.rotation.y = Math.PI / 2;
+    strap.position.set(x, 0.1, -0.3);
+    goggles.add(strap);
+  });
+
+  goggles.position.set(0, 1.5, 1.1);
+  scene.add(goggles);
+
+  /* ---------- cyan data particles flowing around ---------- */
+  var P_COUNT = 350;
+  var pGeo = new THREE.BufferGeometry();
+  var pos = new Float32Array(P_COUNT * 3);
+  var pSpeed = new Float32Array(P_COUNT);
+  for (var i = 0; i < P_COUNT; i++) {
+    pos[i * 3]     = (Math.random() - 0.5) * 14;
+    pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
+    pos[i * 3 + 2] = (Math.random() - 0.5) * 8;
+    pSpeed[i] = 0.004 + Math.random() * 0.012;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  var particles = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x22d3ee, size: 0.05, transparent: true, opacity: 0.8 }));
+  scene.add(particles);
+
+  /* ---------- sizing (ResizeObserver also fires when the tab becomes visible) ---------- */
+  function resize() {
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
+  window.addEventListener('resize', resize);
+  resize();
+
+  // gentle mouse parallax
+  var mx = 0, my = 0;
+  document.addEventListener('mousemove', function (e) {
+    mx = (e.clientX / window.innerWidth - 0.5) * 2;
+    my = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  var clock = new THREE.Clock();
+  (function animate() {
+    requestAnimationFrame(animate);
+    var t = clock.getElapsedTime();
+
+    // goggles float + gentle rotation
+    goggles.position.y = 1.5 + Math.sin(t * 0.85) * 0.28;
+    goggles.rotation.y = Math.sin(t * 0.45) * 0.55 + mx * 0.25;
+    goggles.rotation.x = Math.sin(t * 0.6) * 0.1 + my * 0.12;
+    goggles.rotation.z = Math.sin(t * 0.35) * 0.06;
+
+    // LED blinking
+    for (var i = 0; i < leds.length; i++) {
+      var l = leds[i];
+      l.material.opacity = 0.25 + 0.75 * (0.5 + 0.5 * Math.sin(t * l.userData.speed + l.userData.phase));
+    }
+
+    // particles drift upward and wrap around
+    var arr = pGeo.attributes.position.array;
+    for (var k = 0; k < P_COUNT; k++) {
+      arr[k * 3 + 1] += pSpeed[k];
+      if (arr[k * 3 + 1] > 5) arr[k * 3 + 1] = -5;
+    }
+    pGeo.attributes.position.needsUpdate = true;
+    particles.rotation.y = t * 0.04;
+
+    camera.position.x += (mx * 0.9 - camera.position.x) * 0.04;
+    camera.position.y += (1.1 - my * 0.5 - camera.position.y) * 0.04;
+    camera.lookAt(0, 0.5, 0);
+
+    renderer.render(scene, camera);
+  })();
+}
+
+function initFullStackDemoScene() {
+  var canvas = document.getElementById('fs-demo-canvas');
+  if (!canvas || !window.THREE || canvas.dataset.fsInit === '1') return;
+  canvas.dataset.fsInit = '1';
+
+  var scene = new THREE.Scene();
+  var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 50);
+  camera.position.set(0, 0.2, 6.8);
+
+  scene.add(new THREE.AmbientLight(0x9fb0cc, 0.8));
+  var pl = new THREE.PointLight(0x06b6d4, 1.1, 25);
+  pl.position.set(0, 4, 5);
+  scene.add(pl);
+
+  // phone (menu reels app)
+  var phone = new THREE.Group();
+  phone.add(new THREE.Mesh(new THREE.BoxGeometry(0.95, 1.8, 0.12), new THREE.MeshStandardMaterial({ color: 0x141a26, metalness: 0.75, roughness: 0.35 })));
+  var screen = new THREE.Mesh(new THREE.PlaneGeometry(0.78, 1.6), new THREE.MeshBasicMaterial({ color: 0x164e63 }));
+  screen.position.z = 0.065;
+  phone.add(screen);
+  for (var b = 0; b < 3; b++) {
+    var bar = new THREE.Mesh(new THREE.PlaneGeometry(0.56, 0.07), new THREE.MeshBasicMaterial({ color: 0x67e8f9 }));
+    bar.position.set(0, 0.5 - b * 0.42, 0.07);
+    phone.add(bar);
+  }
+  phone.position.set(-2.2, -1.2, 0);
+  phone.rotation.y = 0.4;
+  scene.add(phone);
+
+  // cloud (backend sync)
+  var cloud = new THREE.Group();
+  var cloudMat = new THREE.MeshStandardMaterial({ color: 0xa8bdd4, metalness: 0.05, roughness: 0.95 });
+  var blobs = [[0, 0, 0, 0.62], [0.58, 0.08, 0.05, 0.44], [-0.58, 0.06, -0.05, 0.47], [0.18, 0.34, 0, 0.4], [-0.22, 0.3, 0.08, 0.37]];
+  blobs.forEach(function (s) {
+    var m = new THREE.Mesh(new THREE.SphereGeometry(s[3], 20, 20), cloudMat);
+    m.position.set(s[0], s[1], s[2]);
+    cloud.add(m);
+  });
+  cloud.position.set(2.0, 1.25, 0);
+  scene.add(cloud);
+
+  // curved data path phone -> cloud
+  var curve = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(-2.2, -0.4, 0),
+    new THREE.Vector3(-1.0, 0.9, 0.5),
+    new THREE.Vector3(0.6, 0.7, -0.4),
+    new THREE.Vector3(1.9, 1.2, 0)
+  ]);
+  scene.add(new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints(curve.getPoints(64)),
+    new THREE.LineBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.22 })
+  ));
+
+  // particles traveling along the path
+  var N = 70;
+  var pGeo = new THREE.BufferGeometry();
+  var pos = new Float32Array(N * 3);
+  var offs = new Float32Array(N);
+  for (var i = 0; i < N; i++) offs[i] = i / N;
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  var pts = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x22d3ee, size: 0.085, transparent: true, opacity: 0.9 }));
+  scene.add(pts);
+
+  function resize() {
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas);
+  window.addEventListener('resize', resize);
+  resize();
+
+  var clock = new THREE.Clock();
+  var tmp = new THREE.Vector3();
+  (function animate() {
+    requestAnimationFrame(animate);
+    var t = clock.getElapsedTime();
+    var arr = pGeo.attributes.position.array;
+    for (var i = 0; i < N; i++) {
+      curve.getPoint((offs[i] + t * 0.14) % 1, tmp);
+      arr[i * 3] = tmp.x;
+      arr[i * 3 + 1] = tmp.y;
+      arr[i * 3 + 2] = tmp.z;
+    }
+    pGeo.attributes.position.needsUpdate = true;
+    phone.position.y = -1.2 + Math.sin(t * 1.2) * 0.08;
+    cloud.position.y = 1.25 + Math.sin(t * 0.9 + 1) * 0.1;
+    cloud.rotation.y = Math.sin(t * 0.4) * 0.15;
+    renderer.render(scene, camera);
+  })();
+}
+
+/* ==========================================================================
+   Local UX helpers for this section (independent of the scene init functions):
+   scroll-triggered reveal + 5s live-demo iframe fallback.
+   ========================================================================== */
+(function () {
+  var root = (document.currentScript && document.currentScript.closest && document.currentScript.closest('section'))
+    || document.getElementById('tab-fullstack')
+    || document;
+
+  // scroll reveal
+  var els = root.querySelectorAll('.section-reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function (el) { el.classList.add('revealed'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add('revealed');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  // live demo: if the iframe has not loaded after 5s, show the fallback
+  var frame = document.getElementById('fs-demo-iframe');
+  if (frame) {
+    setTimeout(function () {
+      if (frame.dataset.loaded === '1') return;
+      var wrap = document.getElementById('fs-demo-frame-wrap');
+      var fb = document.getElementById('fs-demo-fallback');
+      if (wrap) wrap.classList.add('hidden');
+      if (fb) fb.classList.remove('hidden');
+    }, 5000);
+  }
+})();
+</script>
+
+    </section>
+
+    <!-- TAB: UNITY / XR -->
+    <section id="tab-unity" class="tab-content hidden">
+        <!-- ============ UNITY / XR TAB — inner content of <section id="tab-unity"> ============ -->
+<style>
+    /* ---- Unity tab scoped styles (fuchsia theme) ---- */
+    #tab-unity { --acc: #d946ef; }
+    #tab-unity .u-glass {
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(217, 70, 239, 0.18);
+    }
+    #tab-unity .u-neon {
+        border: 1px solid rgba(217, 70, 239, 0.45);
+        box-shadow: 0 0 18px rgba(217, 70, 239, 0.12), inset 0 0 18px rgba(217, 70, 239, 0.04);
+    }
+    #tab-unity .u-tag {
+        font-size: 0.7rem;
+        letter-spacing: 0.04em;
+        padding: 0.3rem 0.7rem;
+        border-radius: 9999px;
+        border: 1px solid rgba(217, 70, 239, 0.35);
+        color: #f0abfc;
+        background: rgba(217, 70, 239, 0.08);
+        white-space: nowrap;
+    }
+    #tab-unity .u-metric {
+        border-left: 2px solid rgba(217, 70, 239, 0.55);
+        padding-left: 0.75rem;
+    }
+    #tab-unity .u-es { color: #9ca3af; font-size: 0.78rem; font-style: italic; }
+    #tab-unity .project-scene { position: relative; transition: box-shadow .5s ease, border-color .5s ease; }
+    #tab-unity .project-scene.is-active {
+        border-color: rgba(217, 70, 239, 0.8);
+        box-shadow: 0 0 32px rgba(217, 70, 239, 0.22), inset 0 0 24px rgba(217, 70, 239, 0.05);
+    }
+
+    /* ---- Connection timeline between projects ---- */
+    .u-timeline { position: absolute; left: 1.35rem; top: 0; bottom: 0; width: 2px; background: rgba(217, 70, 239, 0.12); overflow: hidden; }
+    .u-timeline::after {
+        content: ""; position: absolute; inset: 0;
+        background: linear-gradient(180deg, transparent, #d946ef, transparent);
+        animation: u-line-flow 3.2s linear infinite;
+    }
+    @keyframes u-line-flow { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+    .u-node {
+        position: absolute; left: 0.94rem; width: 14px; height: 14px; border-radius: 9999px;
+        background: #050505; border: 2px solid rgba(217, 70, 239, 0.5);
+        transition: background .4s, box-shadow .4s, border-color .4s;
+    }
+    .project-scene.is-active .u-node { background: #d946ef; border-color: #f0abfc; box-shadow: 0 0 14px #d946ef; }
+
+    /* ---- Keyframes ---- */
+    @keyframes u-float   { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes u-pulse   { 0%,100% { opacity: 1; r: 4; } 50% { opacity: .35; r: 6; } }
+    @keyframes u-ping-dot{ 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(2.6); opacity: 0; } }
+    @keyframes u-spin    { to { transform: rotate(360deg); } }
+    @keyframes u-dash    { to { stroke-dashoffset: -120; } }
+    @keyframes u-kart1   { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
+    @keyframes u-orbit   { to { transform: rotate(360deg); } }
+    @keyframes u-bob     { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
+    @keyframes u-flash   { 0%,88%,100% { opacity: 0; } 92% { opacity: .9; } }
+    @keyframes u-rise    { 0%,100% { transform: translateY(0); opacity: .65; } 50% { transform: translateY(-14px); opacity: 1; } }
+    @keyframes u-scan    { 0% { transform: translateX(-40px); opacity: 0; } 15%,85% { opacity: 1; } 50% { transform: translateX(40px); } 100% { transform: translateX(40px); opacity: 0; } }
+    @keyframes u-badge   { 0%,100% { transform: translateY(0); box-shadow: 0 0 10px rgba(217,70,239,.15); } 50% { transform: translateY(-4px); box-shadow: 0 0 22px rgba(217,70,239,.35); } }
+    .u-anim-float { animation: u-float 5s ease-in-out infinite; }
+    .u-anim-badge { animation: u-badge 3.6s ease-in-out infinite; }
+    .u-kart { offset-rotate: auto; animation: u-kart1 linear infinite; }
+</style>
+
+<!-- ================= 1. HERO ================= -->
+<div class="relative w-full min-h-screen flex items-center overflow-hidden">
+    <canvas id="unity-hero-canvas" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/40 to-[#050505] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-24 section-reveal">
+        <p class="text-fuchsia-400 tracking-[0.35em] text-xs md:text-sm font-semibold mb-4 uppercase">Immersive Engineering · Desarrollo XR</p>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-white">
+            Unity / XR Developer —<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 via-fuchsia-500 to-purple-400" style="text-shadow:0 0 24px rgba(217,70,239,.35)">
+                VR · AR · Multiplayer · WebGL
+            </span>
+        </h1>
+        <p class="mt-6 max-w-2xl text-gray-300 text-base md:text-lg">
+            I ship immersive simulations, industrial training VR, multiplayer experiences and 3D showrooms optimized for Meta Quest, WebGL and mobile.
+            <span class="u-es block mt-1">Simulaciones inmersivas, entrenamiento industrial VR y showrooms 3D.</span>
+        </p>
+
+        <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
+            <div class="u-glass u-neon rounded-xl p-4 card-hover">
+                <p class="text-2xl font-bold text-fuchsia-400">8+</p>
+                <p class="text-xs text-gray-400">years<br><span class="u-es">años</span></p>
+            </div>
+            <div class="u-glass u-neon rounded-xl p-4 card-hover">
+                <p class="text-2xl font-bold text-fuchsia-400">6+</p>
+                <p class="text-xs text-gray-400">immersive projects<br><span class="u-es">proyectos inmersivos</span></p>
+            </div>
+            <div class="u-glass u-neon rounded-xl p-4 card-hover">
+                <p class="text-2xl font-bold text-fuchsia-400">72–90</p>
+                <p class="text-xs text-gray-400">FPS on Quest<br><span class="u-es">rendimiento en Quest</span></p>
+            </div>
+            <div class="u-glass u-neon rounded-xl p-4 card-hover">
+                <p class="text-2xl font-bold text-fuchsia-400">MP</p>
+                <p class="text-xs text-gray-400">Multiplayer ready<br><span class="u-es">multijugador listo</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= 2–3. PROJECT SCENES + CONNECTION LINE ================= -->
+<div class="relative max-w-6xl mx-auto px-6 pb-8">
+    <div class="u-timeline hidden md:block" aria-hidden="true"></div>
+
+    <!-- ===== a) HOLCIM — Virtual Training Simulator ===== -->
+    <article class="project-scene u-glass rounded-2xl my-14 p-6 md:p-10 section-reveal relative" data-project="holcim">
+        <span class="u-node hidden md:block" style="top:2.5rem"></span>
+        <div class="md:ml-10 grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <p class="text-fuchsia-400 text-xs tracking-[0.3em] uppercase font-semibold">01 · Industrial VR</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mt-2">Holcim — Virtual Training Simulator</h2>
+                <p class="u-es mt-1">Simulador virtual de entrenamiento</p>
+                <p class="text-gray-300 mt-4">VR simulator for an industrial plant. 360° tours, interactive hotspots, work-at-height modules and mining safety.</p>
+                <div class="flex flex-wrap gap-2 mt-5">
+                    <span class="u-tag">Unity 3D</span><span class="u-tag">XR Interaction Toolkit</span>
+                    <span class="u-tag">Oculus Quest</span><span class="u-tag">Blender</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">−40%</p><p class="text-xs text-gray-400">onboarding time</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">72–90 FPS</p><p class="text-xs text-gray-400">on Quest</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">Zero</p><p class="text-xs text-gray-400">accidents in VR training</p></div>
+                </div>
+            </div>
+            <!-- Visual: industrial plant silhouette + pulsing hotspots -->
+            <div class="u-neon rounded-xl p-4 bg-[#0a0a0a]">
+                <svg viewBox="0 0 320 200" class="w-full h-52" role="img" aria-label="Industrial plant with interactive hotspots">
+                    <defs>
+                        <linearGradient id="u-plant-g" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#d946ef" stop-opacity=".25"/><stop offset="1" stop-color="#d946ef" stop-opacity="0"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="0" y="150" width="320" height="50" fill="url(#u-plant-g)"/>
+                    <g stroke="#a855f7" stroke-width="2" fill="none" opacity=".85">
+                        <rect x="30" y="100" width="60" height="55"/>
+                        <rect x="110" y="70" width="34" height="85"/>
+                        <path d="M120 70 v-20 h14 v20"/>
+                        <rect x="170" y="110" width="70" height="45"/>
+                        <path d="M250 155 v-60 l18 -12 v72"/>
+                        <path d="M30 115 h60 M110 95 h34 M170 128 h70"/>
+                    </g>
+                    <g fill="none" stroke="#d946ef" stroke-width="1" stroke-dasharray="4 4" opacity=".5">
+                        <path d="M60 100 L90 60 L150 40" style="animation:u-dash 6s linear infinite"/>
+                    </g>
+                    <!-- harness / safety icons -->
+                    <g fill="#f0abfc" font-size="10" font-family="Inter,sans-serif">
+                        <path d="M286 40 l7 12 h-14 z" fill="none" stroke="#f0abfc" stroke-width="1.5"/><text x="283" y="50" fill="#f0abfc">!</text>
+                        <circle cx="40" cy="40" r="8" fill="none" stroke="#f0abfc" stroke-width="1.5"/><path d="M36 40 h8 M40 36 v8" stroke="#f0abfc" stroke-width="1.5"/>
+                    </g>
+                    <!-- pulsing hotspots -->
+                    <g>
+                        <circle cx="60" cy="95" r="4" fill="#d946ef" style="animation:u-pulse 1.8s ease-in-out infinite"/>
+                        <circle cx="60" cy="95" r="4" fill="none" stroke="#d946ef" style="animation:u-ping-dot 1.8s ease-out infinite;transform-origin:60px 95px"/>
+                        <circle cx="127" cy="45" r="4" fill="#d946ef" style="animation:u-pulse 1.8s ease-in-out .5s infinite"/>
+                        <circle cx="127" cy="45" r="4" fill="none" stroke="#d946ef" style="animation:u-ping-dot 1.8s ease-out .5s infinite;transform-origin:127px 45px"/>
+                        <circle cx="205" cy="105" r="4" fill="#d946ef" style="animation:u-pulse 1.8s ease-in-out 1s infinite"/>
+                        <circle cx="205" cy="105" r="4" fill="none" stroke="#d946ef" style="animation:u-ping-dot 1.8s ease-out 1s infinite;transform-origin:205px 105px"/>
+                        <circle cx="259" cy="80" r="4" fill="#d946ef" style="animation:u-pulse 1.8s ease-in-out 1.4s infinite"/>
+                    </g>
+                    <text x="14" y="188" fill="#6b7280" font-size="9" font-family="Inter,sans-serif">360° tour · hotspots · work-at-height · safety</text>
+                </svg>
+            </div>
+        </div>
+    </article>
+
+    <!-- ===== b) NERAVERSE — Multiplayer Racing ===== -->
+    <article class="project-scene u-glass rounded-2xl my-14 p-6 md:p-10 section-reveal relative" data-project="neraverse">
+        <span class="u-node hidden md:block" style="top:2.5rem"></span>
+        <div class="md:ml-10 grid md:grid-cols-2 gap-8 items-center">
+            <!-- Visual: racing track with 3 karts -->
+            <div class="u-neon rounded-xl p-4 bg-[#0a0a0a] md:order-1 order-2">
+                <svg viewBox="0 0 320 200" class="w-full h-52" role="img" aria-label="Multiplayer racing track">
+                    <path id="u-track" d="M160 30 C 250 30 290 70 290 100 C 290 145 220 170 160 170 C 100 170 30 145 30 100 C 30 70 70 30 160 30 Z"
+                          fill="none" stroke="#3b0764" stroke-width="18"/>
+                    <path d="M160 30 C 250 30 290 70 290 100 C 290 145 220 170 160 170 C 100 170 30 145 30 100 C 30 70 70 30 160 30 Z"
+                          fill="none" stroke="#d946ef" stroke-width="1.5" stroke-dasharray="8 8" style="animation:u-dash 4s linear infinite"/>
+                    <!-- connection lines between karts -->
+                    <g stroke="#f0abfc" stroke-width="1" stroke-dasharray="3 4" opacity=".6">
+                        <line x1="80" y1="70" x2="160" y2="40" style="animation:u-dash 3s linear infinite"/>
+                        <line x1="160" y1="40" x2="240" y2="120" style="animation:u-dash 3s linear infinite"/>
+                        <line x1="240" y1="120" x2="80" y2="70" style="animation:u-dash 3s linear infinite"/>
+                    </g>
+                    <!-- 3 karts -->
+                    <g>
+                        <rect x="72" y="62" width="16" height="12" rx="4" fill="#d946ef" class="u-anim-float"/>
+                        <circle cx="76" cy="76" r="3" fill="#1f2937"/><circle cx="84" cy="76" r="3" fill="#1f2937"/>
+                        <rect x="152" y="32" width="16" height="12" rx="4" fill="#a855f7" class="u-anim-float" style="animation-delay:.6s"/>
+                        <circle cx="156" cy="46" r="3" fill="#1f2937"/><circle cx="164" cy="46" r="3" fill="#1f2937"/>
+                        <rect x="232" y="112" width="16" height="12" rx="4" fill="#f0abfc" class="u-anim-float" style="animation-delay:1.1s"/>
+                        <circle cx="236" cy="126" r="3" fill="#1f2937"/><circle cx="244" cy="126" r="3" fill="#1f2937"/>
+                    </g>
+                    <!-- player pings -->
+                    <g fill="#f0abfc" font-size="8" font-family="Inter,sans-serif">
+                        <text x="60" y="58">P1</text><text x="172" y="38">P2</text><text x="252" y="118">P3</text>
+                    </g>
+                    <text x="14" y="192" fill="#6b7280" font-size="9" font-family="Inter,sans-serif">Photon sync · 8 players · &lt;100 ms</text>
+                </svg>
+            </div>
+            <div class="md:order-2 order-1">
+                <p class="text-fuchsia-400 text-xs tracking-[0.3em] uppercase font-semibold">02 · Multiplayer</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mt-2">Neraverse — Multiplayer Racing</h2>
+                <p class="u-es mt-1">Carreras multijugador en tiempo real</p>
+                <p class="text-gray-300 mt-4">Mario Kart-style multiplayer. Photon sync, optimized 3D scenarios, UI state flow and real-time calibration.</p>
+                <div class="flex flex-wrap gap-2 mt-5">
+                    <span class="u-tag">Unity 3D</span><span class="u-tag">Photon PUN/Fusion</span>
+                    <span class="u-tag">C#</span><span class="u-tag">Blender</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">60 FPS</p><p class="text-xs text-gray-400">stable</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">&lt;100 ms</p><p class="text-xs text-gray-400">latency</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">8 players</p><p class="text-xs text-gray-400">real-time</p></div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- ===== c) ARTEMISVISION — WebGL & MR ===== -->
+    <article class="project-scene u-glass rounded-2xl my-14 p-6 md:p-10 section-reveal relative" data-project="artemisvision">
+        <span class="u-node hidden md:block" style="top:2.5rem"></span>
+        <div class="md:ml-10 grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <p class="text-fuchsia-400 text-xs tracking-[0.3em] uppercase font-semibold">03 · WebGL / MR</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mt-2">ArtemisVision — WebGL &amp; MR</h2>
+                <p class="u-es mt-1">Showrooms 3D en el navegador y realidad mixta</p>
+                <p class="text-gray-300 mt-4">WebGL multiplayer and Mixed Reality apps. 3D showrooms with 360° orbital controls, dynamic multi-camera and draw-call optimization.</p>
+                <div class="flex flex-wrap gap-2 mt-5">
+                    <span class="u-tag">Unity WebGL</span><span class="u-tag">Web3</span>
+                    <span class="u-tag">AWS</span><span class="u-tag">MR</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">360°</p><p class="text-xs text-gray-400">orbital control</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">WebGL</p><p class="text-xs text-gray-400">60 FPS</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">MR</p><p class="text-xs text-gray-400">ready</p></div>
+                </div>
+            </div>
+            <!-- Visual: circular showroom with orbiting camera -->
+            <div class="u-neon rounded-xl p-4 bg-[#0a0a0a]">
+                <svg viewBox="0 0 320 200" class="w-full h-52" role="img" aria-label="360 degree showroom with orbiting camera">
+                    <ellipse cx="160" cy="120" rx="110" ry="42" fill="none" stroke="#3b0764" stroke-width="1.5"/>
+                    <ellipse cx="160" cy="120" rx="110" ry="42" fill="none" stroke="#d946ef" stroke-width="1" stroke-dasharray="5 7" style="animation:u-dash 8s linear infinite"/>
+                    <!-- orbiting camera -->
+                    <g style="transform-origin:160px 120px;animation:u-orbit 9s linear infinite">
+                        <g transform="translate(270 120)">
+                            <rect x="-8" y="-6" width="16" height="12" rx="2" fill="#d946ef"/>
+                            <path d="M8 -3 l7 -4 v14 l-7 -4 z" fill="#f0abfc"/>
+                        </g>
+                    </g>
+                    <!-- floating product platforms -->
+                    <g stroke="#a855f7" fill="none" stroke-width="1.5">
+                        <g class="u-anim-float">
+                            <ellipse cx="110" cy="115" rx="22" ry="8" fill="rgba(217,70,239,.08)"/>
+                            <rect x="102" y="96" width="16" height="14" fill="rgba(168,85,247,.25)"/>
+                        </g>
+                        <g class="u-anim-float" style="animation-delay:.8s">
+                            <ellipse cx="160" cy="135" rx="22" ry="8" fill="rgba(217,70,239,.08)"/>
+                            <circle cx="160" cy="118" r="9" fill="rgba(168,85,247,.25)"/>
+                        </g>
+                        <g class="u-anim-float" style="animation-delay:1.5s">
+                            <ellipse cx="212" cy="112" rx="22" ry="8" fill="rgba(217,70,239,.08)"/>
+                            <path d="M205 102 l7 -12 l7 12 z" fill="rgba(168,85,247,.25)"/>
+                        </g>
+                    </g>
+                    <text x="14" y="192" fill="#6b7280" font-size="9" font-family="Inter,sans-serif">orbital camera · multi-cam · draw-call optimized</text>
+                </svg>
+            </div>
+        </div>
+    </article>
+
+    <!-- ===== d) HAPE PRIME — Metaverse 3D Store ===== -->
+    <article class="project-scene u-glass rounded-2xl my-14 p-6 md:p-10 section-reveal relative" data-project="hape-prime">
+        <span class="u-node hidden md:block" style="top:2.5rem"></span>
+        <div class="md:ml-10 grid md:grid-cols-2 gap-8 items-center">
+            <!-- Visual: store facade + floating NFT tokens + purchase flash -->
+            <div class="u-neon rounded-xl p-4 bg-[#0a0a0a] md:order-1 order-2 relative overflow-hidden">
+                <svg viewBox="0 0 320 200" class="w-full h-52" role="img" aria-label="3D store with floating NFT tokens">
+                    <g stroke="#a855f7" stroke-width="2" fill="none">
+                        <path d="M70 160 v-70 l40 -20 h100 l40 20 v70" fill="rgba(217,70,239,.05)"/>
+                        <path d="M70 90 h180 M110 70 v90 M210 70 v90"/>
+                        <rect x="140" y="120" width="40" height="40" fill="rgba(168,85,247,.2)"/>
+                        <path d="M120 105 h30 M170 105 h30" stroke-dasharray="4 4"/>
+                    </g>
+                    <path d="M110 60 h100 l10 10 h-120 z" fill="#d946ef" opacity=".8"/>
+                    <text x="133" y="70" fill="#050505" font-size="9" font-weight="bold" font-family="Inter,sans-serif">HAPE PRIME</text>
+                    <!-- floating NFT tokens -->
+                    <g font-family="Inter,sans-serif" font-size="7" text-anchor="middle">
+                        <g class="u-anim-float">
+                            <polygon points="60,40 70,58 50,58" fill="rgba(217,70,239,.3)" stroke="#d946ef"/>
+                            <text x="60" y="55" fill="#f0abfc">NFT</text>
+                        </g>
+                        <g class="u-anim-float" style="animation-delay:.7s">
+                            <polygon points="260,30 271,49 249,49" fill="rgba(217,70,239,.3)" stroke="#d946ef"/>
+                            <text x="260" y="46" fill="#f0abfc">NFT</text>
+                        </g>
+                        <g class="u-anim-float" style="animation-delay:1.3s">
+                            <polygon points="245,85 254,100 236,100" fill="rgba(217,70,239,.3)" stroke="#d946ef"/>
+                            <text x="245" y="97" fill="#f0abfc">NFT</text>
+                        </g>
+                    </g>
+                    <!-- smart contract chain -->
+                    <g stroke="#f0abfc" stroke-width="1" fill="none" stroke-dasharray="3 4" opacity=".7">
+                        <path d="M60 58 C 100 90 200 60 245 95" style="animation:u-dash 5s linear infinite"/>
+                    </g>
+                    <!-- purchase flash -->
+                    <rect x="140" y="120" width="40" height="40" fill="#f0abfc" style="animation:u-flash 4s ease-in-out infinite"/>
+                    <text x="14" y="192" fill="#6b7280" font-size="9" font-family="Inter,sans-serif">smart contracts · browser + VR</text>
+                </svg>
+            </div>
+            <div class="md:order-2 order-1">
+                <p class="text-fuchsia-400 text-xs tracking-[0.3em] uppercase font-semibold">04 · Metaverse</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mt-2">Hape Prime — Metaverse 3D Store</h2>
+                <p class="u-es mt-1">Tienda virtual 3D con NFTs</p>
+                <p class="text-gray-300 mt-4">High-fidelity 3D virtual stores integrated with Smart Contracts for NFT transactions. Optimized rendering for browser and VR.</p>
+                <div class="flex flex-wrap gap-2 mt-5">
+                    <span class="u-tag">Unity 3D</span><span class="u-tag">WebGL</span>
+                    <span class="u-tag">Smart Contracts</span><span class="u-tag">Web3</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">High-fidelity</p><p class="text-xs text-gray-400">rendering</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">Smart contract</p><p class="text-xs text-gray-400">integration</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">Browser + VR</p><p class="text-xs text-gray-400">targets</p></div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- ===== e) SENNOVA — AR/VR Transportation ===== -->
+    <article class="project-scene u-glass rounded-2xl my-14 p-6 md:p-10 section-reveal relative" data-project="sennova">
+        <span class="u-node hidden md:block" style="top:2.5rem"></span>
+        <div class="md:ml-10 grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <p class="text-fuchsia-400 text-xs tracking-[0.3em] uppercase font-semibold">05 · AR / VR</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mt-2">SENNOVA — AR/VR Transportation</h2>
+                <p class="u-es mt-1">Simulaciones AR/VR para transporte</p>
+                <p class="text-gray-300 mt-4">AR/VR simulations for transportation technologies. ARFoundation, Vuforia, Laravel backend integration and AWS deployment.</p>
+                <div class="flex flex-wrap gap-2 mt-5">
+                    <span class="u-tag">ARFoundation</span><span class="u-tag">Vuforia</span>
+                    <span class="u-tag">Unity 3D</span><span class="u-tag">AWS</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">AR tracking</p><p class="text-xs text-gray-400">stable</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">Laravel</p><p class="text-xs text-gray-400">backend sync</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">AWS</p><p class="text-xs text-gray-400">deployed</p></div>
+                </div>
+            </div>
+            <!-- Visual: train silhouette + AR tracking planes + info cards -->
+            <div class="u-neon rounded-xl p-4 bg-[#0a0a0a]">
+                <svg viewBox="0 0 320 200" class="w-full h-52" role="img" aria-label="Train with AR tracking planes and info cards">
+                    <!-- AR ground plane grid -->
+                    <g stroke="#3b0764" stroke-width="1">
+                        <path d="M20 150 L300 150 M40 130 L280 130 M60 115 L260 115"/>
+                        <path d="M60 150 L100 110 M120 150 L140 110 M180 150 L180 110 M240 150 L220 110 M290 150 L255 110"/>
+                    </g>
+                    <rect x="20" y="110" width="280" height="45" fill="none" stroke="#d946ef" stroke-width="1" stroke-dasharray="5 6" style="animation:u-dash 7s linear infinite"/>
+                    <!-- train -->
+                    <g stroke="#a855f7" stroke-width="2" fill="rgba(168,85,247,.12)">
+                        <path d="M50 150 v-38 q0 -10 12 -10 h140 q26 0 40 22 l14 26 z"/>
+                        <rect x="66" y="112" width="26" height="16"/><rect x="104" y="112" width="26" height="16"/><rect x="142" y="112" width="26" height="16"/>
+                        <circle cx="90" cy="152" r="7" fill="#050505"/><circle cx="150" cy="152" r="7" fill="#050505"/><circle cx="215" cy="152" r="7" fill="#050505"/>
+                    </g>
+                    <!-- scan line -->
+                    <rect x="150" y="95" width="3" height="65" fill="#d946ef" style="animation:u-scan 3.5s ease-in-out infinite"/>
+                    <!-- info cards emerging -->
+                    <g font-family="Inter,sans-serif" font-size="8">
+                        <g class="u-anim-float">
+                            <rect x="30" y="55" width="64" height="26" rx="4" fill="rgba(217,70,239,.15)" stroke="#d946ef"/>
+                            <text x="36" y="66" fill="#f0abfc">Engine</text><text x="36" y="76" fill="#9ca3af">status: OK</text>
+                        </g>
+                        <g class="u-anim-float" style="animation-delay:.9s">
+                            <rect x="200" y="45" width="72" height="26" rx="4" fill="rgba(217,70,239,.15)" stroke="#d946ef"/>
+                            <text x="206" y="56" fill="#f0abfc">Route A-7</text><text x="206" y="66" fill="#9ca3af">ETA 4 min</text>
+                        </g>
+                        <path d="M62 81 L80 108 M236 71 L220 108" stroke="#f0abfc" stroke-width="1" stroke-dasharray="3 3"/>
+                    </g>
+                    <text x="14" y="192" fill="#6b7280" font-size="9" font-family="Inter,sans-serif">ARFoundation · Vuforia · Laravel + AWS</text>
+                </svg>
+            </div>
+        </div>
+    </article>
+
+    <!-- ===== f) QUÍMICAMENTE LOCOS — EdTech AR ===== -->
+    <article class="project-scene u-glass rounded-2xl my-14 p-6 md:p-10 section-reveal relative" data-project="quimicamente-locos">
+        <span class="u-node hidden md:block" style="top:2.5rem"></span>
+        <div class="md:ml-10 grid md:grid-cols-2 gap-8 items-center">
+            <!-- Visual: open book with floating atoms -->
+            <div class="u-neon rounded-xl p-4 bg-[#0a0a0a] md:order-1 order-2">
+                <svg viewBox="0 0 320 200" class="w-full h-52" role="img" aria-label="Open book with floating chemical molecules">
+                    <!-- open book -->
+                    <g stroke="#a855f7" stroke-width="2" fill="rgba(217,70,239,.06)">
+                        <path d="M160 160 C 120 145 80 145 50 155 v-55 C 80 90 120 90 160 105 z"/>
+                        <path d="M160 160 C 200 145 240 145 270 155 v-55 C 240 90 200 90 160 105 z"/>
+                        <path d="M160 105 v55" stroke-dasharray="3 4"/>
+                    </g>
+                    <g stroke="#4b5563" stroke-width="1" opacity=".7">
+                        <path d="M70 112 C 95 104 125 104 148 112 M70 124 C 95 116 125 116 148 124 M70 136 C 95 128 125 128 148 136"/>
+                        <path d="M172 112 C 195 104 225 104 250 112 M172 124 C 195 116 225 116 250 124 M172 136 C 195 128 225 128 250 136"/>
+                    </g>
+                    <!-- floating molecules -->
+                    <g>
+                        <g class="u-anim-float">
+                            <circle cx="105" cy="55" r="9" fill="rgba(217,70,239,.35)" stroke="#d946ef"/>
+                            <circle cx="128" cy="42" r="6" fill="rgba(168,85,247,.35)" stroke="#a855f7"/>
+                            <circle cx="126" cy="68" r="5" fill="rgba(240,171,252,.35)" stroke="#f0abfc"/>
+                            <path d="M113 49 L122 45 M112 61 L121 65" stroke="#d946ef" stroke-width="1.5"/>
+                        </g>
+                        <g class="u-anim-float" style="animation-delay:.8s">
+                            <circle cx="215" cy="48" r="7" fill="rgba(168,85,247,.35)" stroke="#a855f7"/>
+                            <circle cx="238" cy="60" r="9" fill="rgba(217,70,239,.35)" stroke="#d946ef"/>
+                            <path d="M222 53 L230 56" stroke="#d946ef" stroke-width="1.5"/>
+                        </g>
+                        <g style="transform-origin:160px 30px;animation:u-orbit 12s linear infinite">
+                            <circle cx="160" cy="18" r="4" fill="#f0abfc"/>
+                        </g>
+                    </g>
+                    <!-- flask icon -->
+                    <g stroke="#f0abfc" stroke-width="1.5" fill="rgba(217,70,239,.2)" class="u-anim-float" style="animation-delay:1.4s">
+                        <path d="M176 66 h10 M179 66 v10 l-8 14 q-2 4 3 4 h14 q5 0 3 -4 l-8 -14 v-10"/>
+                    </g>
+                    <text x="14" y="192" fill="#6b7280" font-size="9" font-family="Inter,sans-serif">3 AR books · 8 Blender experiments · Vuforia</text>
+                </svg>
+            </div>
+            <div class="md:order-2 order-1">
+                <p class="text-fuchsia-400 text-xs tracking-[0.3em] uppercase font-semibold">06 · EdTech AR</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mt-2">Químicamente Locos — EdTech AR</h2>
+                <p class="u-es mt-1">Libros físicos con experiencias de realidad aumentada</p>
+                <p class="text-gray-300 mt-4">Award-winning research project: physical books with AR experiences, 8 3D experiments modeled and animated in Blender, Vuforia tracking.</p>
+                <div class="flex flex-wrap gap-2 mt-5">
+                    <span class="u-tag">Vuforia</span><span class="u-tag">Blender</span>
+                    <span class="u-tag">Unity 3D</span><span class="u-tag">EdTech</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">3</p><p class="text-xs text-gray-400">AR books</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">8</p><p class="text-xs text-gray-400">3D experiments</p></div>
+                    <div class="u-metric"><p class="text-fuchsia-300 font-semibold text-sm">Award-winning</p><p class="text-xs text-gray-400">research</p></div>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+
+<!-- ================= 4. STACK ================= -->
+<div class="max-w-6xl mx-auto px-6 py-16 section-reveal">
+    <h2 class="text-3xl md:text-4xl font-bold text-white text-center">
+        Unity / XR <span class="text-fuchsia-400">Stack</span>
+    </h2>
+    <p class="u-es text-center mt-2">Tecnologías que uso a diario</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+        <div class="u-glass u-neon rounded-xl p-5 text-center u-anim-badge">
+            <p class="text-fuchsia-300 font-semibold text-sm">Unity 3D / C#</p><p class="u-es mt-1">motor principal</p>
+        </div>
+        <div class="u-glass u-neon rounded-xl p-5 text-center u-anim-badge" style="animation-delay:.2s">
+            <p class="text-fuchsia-300 font-semibold text-sm">XR Interaction Toolkit</p><p class="u-es mt-1">interacción VR</p>
+        </div>
+        <div class="u-glass u-neon rounded-xl p-5 text-center u-anim-badge" style="animation-delay:.4s">
+            <p class="text-fuchsia-300 font-semibold text-sm">Oculus / Meta Quest</p><p class="u-es mt-1">hardware VR</p>
+        </div>
+        <div class="u-glass u-neon rounded-xl p-5 text-center u-anim-badge" style="animation-delay:.6s">
+            <p class="text-fuchsia-300 font-semibold text-sm">ARFoundation / Vuforia</p><p class="u-es mt-1">realidad aumentada</p>
+        </div>
+        <div class="u-glass u-neon rounded-xl p-5 text-center u-anim-badge" style="animation-delay:.8s">
+            <p class="text-fuchsia-300 font-semibold text-sm">Photon PUN / Fusion</p><p class="u-es mt-1">multijugador</p>
+        </div>
+        <div class="u-glass u-neon rounded-xl p-5 text-center u-anim-badge" style="animation-delay:1s">
+            <p class="text-fuchsia-300 font-semibold text-sm">WebGL / WebXR</p><p class="u-es mt-1">3D en navegador</p>
+        </div>
+        <div class="u-glass u-neon rounded-xl p-5 text-center u-anim-badge" style="animation-delay:1.2s">
+            <p class="text-fuchsia-300 font-semibold text-sm">Blender</p><p class="u-es mt-1">3D / animación</p>
+        </div>
+        <div class="u-glass u-neon rounded-xl p-5 text-center u-anim-badge" style="animation-delay:1.4s">
+            <p class="text-fuchsia-300 font-semibold text-sm">Post-Processing Stack</p><p class="u-es mt-1">calidad visual</p>
+        </div>
+    </div>
+</div>
+
+<!-- ================= 5. FINAL MINI-CTA ================= -->
+<div class="max-w-4xl mx-auto px-6 pb-24 text-center section-reveal">
+    <div class="u-glass u-neon rounded-2xl px-8 py-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-white">
+            Let's build your next <span class="text-fuchsia-400">immersive simulation</span> or 3D showroom.
+        </h2>
+        <p class="u-es mt-2">Construyamos tu próxima simulación inmersiva o showroom 3D.</p>
+        <div class="flex flex-wrap justify-center gap-4 mt-8">
+            <a href="https://www.linkedin.com/in/leonardo-g-024042128/" target="_blank" rel="noopener"
+               class="px-6 py-3 rounded-full font-semibold text-sm text-white bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-400 hover:to-purple-500 transition-all shadow-lg shadow-fuchsia-500/25 card-hover">
+                LinkedIn
+            </a>
+            <a href="https://wa.me/573027464103" target="_blank" rel="noopener"
+               class="px-6 py-3 rounded-full font-semibold text-sm text-fuchsia-300 border border-fuchsia-500/50 hover:bg-fuchsia-500/10 transition-all card-hover">
+                WhatsApp
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ================= THREE.JS HERO SCENE (defined, not called — global JS calls initUnityHeroScene) ================= -->
+<script>
+window.initUnityHeroScene = function () {
+    var canvas = document.getElementById('unity-hero-canvas');
+    if (!canvas || typeof THREE === 'undefined') return;
+
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    var scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x050505, 0.028);
+    var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 200);
+    camera.position.set(0, 0.6, 8);
+
+    // ---- Lights ----
+    scene.add(new THREE.AmbientLight(0x4a1d5e, 1.4));
+    var keyLight = new THREE.PointLight(0xd946ef, 2.2, 40);
+    keyLight.position.set(4, 4, 5);
+    scene.add(keyLight);
+    var rimLight = new THREE.PointLight(0x7c3aed, 1.6, 40);
+    rimLight.position.set(-5, -2, -3);
+    scene.add(rimLight);
+
+    // ---- Procedural VR headset ----
+    var headset = new THREE.Group();
+    var bodyMat = new THREE.MeshStandardMaterial({ color: 0x16161c, roughness: 0.35, metalness: 0.75 });
+    var visor = new THREE.Mesh(new THREE.BoxGeometry(3.2, 1.7, 1.6), bodyMat);
+    // soften the box silhouette with an overlay shell
+    var shell = new THREE.Mesh(
+        new THREE.SphereGeometry(1.55, 32, 24),
+        new THREE.MeshStandardMaterial({ color: 0x1c1c24, roughness: 0.25, metalness: 0.85, transparent: true, opacity: 0.9 })
+    );
+    shell.scale.set(1.25, 0.62, 0.62);
+    headset.add(visor); headset.add(shell);
+
+    // emissive lenses
+    var lensMat = new THREE.MeshStandardMaterial({ color: 0x0b0b10, emissive: 0xd946ef, emissiveIntensity: 1.6, roughness: 0.2, metalness: 0.4 });
+    var lensGeo = new THREE.CylinderGeometry(0.42, 0.42, 0.16, 32);
+    var lensL = new THREE.Mesh(lensGeo, lensMat);
+    lensL.rotation.x = Math.PI / 2; lensL.position.set(-0.62, 0.05, 0.82);
+    var lensR = lensL.clone(); lensR.position.x = 0.62;
+    headset.add(lensL); headset.add(lensR);
+
+    // side strap torus
+    var strap = new THREE.Mesh(
+        new THREE.TorusGeometry(1.9, 0.09, 12, 64, Math.PI * 1.15),
+        new THREE.MeshStandardMaterial({ color: 0x2a2a33, roughness: 0.6, metalness: 0.4 })
+    );
+    strap.rotation.z = -Math.PI * 0.575;
+    strap.rotation.y = 0.12;
+    headset.add(strap);
+
+    // sensor dots
+    var dotMat = new THREE.MeshBasicMaterial({ color: 0xf0abfc });
+    var dotGeo = new THREE.SphereGeometry(0.05, 8, 8);
+    [[-1.35, 0.55, 0.72], [1.35, 0.55, 0.72], [-1.35, -0.55, 0.72], [1.35, -0.55, 0.72], [0, 0.75, 0.6]].forEach(function (p) {
+        var d = new THREE.Mesh(dotGeo, dotMat);
+        d.position.set(p[0], p[1], p[2]);
+        headset.add(d);
+    });
+    scene.add(headset);
+
+    // ---- Stars ----
+    var starGeo = new THREE.BufferGeometry();
+    var starCount = 700, starPos = new Float32Array(starCount * 3);
+    for (var i = 0; i < starCount * 3; i++) starPos[i] = (Math.random() - 0.5) * 90;
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    var stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.06, transparent: true, opacity: 0.75 }));
+    scene.add(stars);
+
+    // ---- Fuchsia nebula particles ----
+    var nebGeo = new THREE.BufferGeometry();
+    var nebCount = 350, nebPos = new Float32Array(nebCount * 3);
+    for (var j = 0; j < nebCount; j++) {
+        var r = 5 + Math.random() * 16, t = Math.random() * Math.PI * 2, ph = Math.acos(2 * Math.random() - 1);
+        nebPos[j * 3] = r * Math.sin(ph) * Math.cos(t);
+        nebPos[j * 3 + 1] = r * Math.sin(ph) * Math.sin(t) * 0.6;
+        nebPos[j * 3 + 2] = r * Math.cos(ph);
+    }
+    nebGeo.setAttribute('position', new THREE.BufferAttribute(nebPos, 3));
+    var nebula = new THREE.Points(nebGeo, new THREE.PointsMaterial({ color: 0xd946ef, size: 0.16, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending, depthWrite: false }));
+    scene.add(nebula);
+
+    // ---- Resize ----
+    function resize() {
+        var w = canvas.clientWidth, h = canvas.clientHeight;
+        if (canvas.width !== w || canvas.height !== h) {
+            renderer.setSize(w, h, false);
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+        }
+    }
+    window.addEventListener('resize', resize);
+
+    // ---- Animate ----
+    var clock = new THREE.Clock();
+    var mouseX = 0;
+    window.addEventListener('mousemove', function (e) {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    });
+    (function animate() {
+        requestAnimationFrame(animate);
+        resize();
+        var t = clock.getElapsedTime();
+        headset.position.y = Math.sin(t * 0.8) * 0.25;
+        headset.rotation.y = Math.sin(t * 0.4) * 0.35 + mouseX * 0.25;
+        headset.rotation.z = Math.sin(t * 0.3) * 0.05;
+        lensMat.emissiveIntensity = 1.4 + Math.sin(t * 2.2) * 0.5;
+        stars.rotation.y = t * 0.008;
+        nebula.rotation.y = -t * 0.02;
+        keyLight.intensity = 2 + Math.sin(t * 1.5) * 0.4;
+        renderer.render(scene, camera);
+    })();
+};
+</script>
+
+    </section>
+
+    <!-- TAB: WORDPRESS -->
+    <section id="tab-wordpress" class="tab-content hidden">
+        <!-- ============================================================================
+     TAB: WORDPRESS — Scrollytelling (adapted from cv-andres-landing-wordpress.html)
+     This file is the INNER HTML of <section id="tab-wordpress"> in
+     andres-portfolio-unificado.html (no <html>, <head> or <body> tags).
+
+     Dependencies (loaded globally by andres-portfolio-unificado.html):
+       - Tailwind CDN, Inter font, THREE r128, gsap 3.12.5, ScrollTrigger 3.12.5
+
+     Contract with parts/global.js:
+       - Call window.initWordPressScene() when the WordPress tab is shown.
+         It builds the 3D scene, ScrollTriggers, metrics, countdowns, tilt
+         and the analysis modal. It is NOT called from this file.
+       - window.initWordPressMetrics(sectionEl) animates the inline SVG metrics.
+       - window.openAnalysis(key) / window.closeAnalysis() drive the modal.
+
+     All IDs/classes are wp- prefixed or scoped under #tab-wordpress so they
+     cannot collide with the Full-Stack / Unity tabs or the global navigation.
+     ============================================================================ -->
+<style>
+  /* ===================== TAB SCOPE + STICKY 3D CANVAS ===================== */
+  #tab-wordpress { position: relative; background: #050505; }
+  #tab-wordpress #wp-stage { position: relative; }
+  /* Local (non-fixed) sticky layer: pins the canvas only while this tab scrolls */
+  #tab-wordpress .wp-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    margin-bottom: -100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  #tab-wordpress #wp-bg-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  /* Local progress bar + chapter pill live inside the sticky layer */
+  #tab-wordpress .wp-progress {
+    position: absolute;
+    top: 65px; /* clears the global sticky nav */
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    box-shadow: 0 0 12px rgba(16,185,129,0.55);
+    transition: width 0.1s linear;
+  }
+  #tab-wordpress .wp-chapter {
+    position: absolute;
+    right: 18px;
+    bottom: 16px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #9ca3af;
+    background: rgba(5,5,5,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px 14px;
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* ===================== SCENES ===================== */
+  #tab-wordpress .wp-scenes { position: relative; z-index: 1; }
+  #tab-wordpress .wp-scene {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 6%;
+    position: relative;
+  }
+  #tab-wordpress .wp-scene-content {
+    background: rgba(8,18,13,0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 24px;
+    padding: 40px 44px;
+    max-width: 540px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+  }
+  #tab-wordpress .wp-pos-left  { margin-right: auto; }
+  #tab-wordpress .wp-pos-right { margin-left: auto; }
+  #tab-wordpress .wp-pos-center-low { margin: 0 auto 6vh; align-self: flex-end; text-align: center; }
+  #tab-wordpress .wp-pos-center-wide { margin: 0 auto; max-width: 1080px; width: 100%; text-align: center; }
+
+  /* Graceful degradation: if initWordPressScene() never runs (or THREE/gsap
+     are missing), text stays fully visible instead of hidden by .section-reveal */
+  #tab-wordpress:not(.wp-js) .section-reveal { opacity: 1 !important; transform: none !important; }
+
+  #tab-wordpress .wp-tag {
+    display: inline-block;
+    background: rgba(16,185,129,0.14);
+    border: 1px solid rgba(16,185,129,0.32);
+    color: #6ee7b7;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  #tab-wordpress .wp-scene-content h1,
+  #tab-wordpress .wp-scene-content h2 {
+    margin: 0 0 14px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  #tab-wordpress .wp-scene-content h1 {
+    font-size: clamp(38px, 5.5vw, 64px);
+    background: linear-gradient(135deg, #fff 0%, #9ca3af 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  #tab-wordpress .wp-scene-content h2 { font-size: clamp(26px, 3.4vw, 40px); }
+  #tab-wordpress .wp-scene-content h3 {
+    font-size: clamp(18px, 2.4vw, 24px);
+    font-weight: 500;
+    color: #d1d5db;
+    margin: 0 0 18px;
+  }
+  #tab-wordpress .wp-scene-content p { font-size: 16px; color: #9ca3af; margin: 0 0 12px; }
+  /* Small Spanish subtitle (bilingual: EN main copy, ES subtitle) */
+  #tab-wordpress .wp-es-sub {
+    font-size: 13px !important;
+    color: rgba(110,231,183,0.65) !important;
+    letter-spacing: 0.4px;
+    margin: -6px 0 14px !important;
+  }
+
+  #tab-wordpress .wp-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16,185,129,0.15);
+    border: 1px solid rgba(16,185,129,0.3);
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #6ee7b7;
+    margin-bottom: 22px;
+  }
+  #tab-wordpress .wp-hero-bullets { list-style: none; margin: 0 0 26px; padding: 0; }
+  #tab-wordpress .wp-hero-bullets li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 10px;
+    color: #d1d5db;
+    font-size: 15px;
+  }
+  #tab-wordpress .wp-hero-bullets li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #34d399;
+    font-weight: 700;
+  }
+
+  #tab-wordpress .wp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 15px 30px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+  }
+  #tab-wordpress .wp-btn-primary {
+    background: #10b981;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(16,185,129,0.4);
+  }
+  #tab-wordpress .wp-btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 32px rgba(16,185,129,0.5); }
+  #tab-wordpress .wp-btn-outline {
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  #tab-wordpress .wp-btn-outline:hover { background: rgba(255,255,255,0.12); }
+  #tab-wordpress .wp-cta-buttons { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 8px; }
+
+  #tab-wordpress .wp-scroll-hint {
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #6b7280;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: wpBounce 2s infinite;
+    transition: opacity 0.4s ease;
+  }
+  #tab-wordpress .wp-scroll-hint.wp-hidden { opacity: 0; }
+  @keyframes wpBounce {
+    0%,20%,50%,80%,100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-9px); }
+    60% { transform: translateX(-50%) translateY(-4px); }
+  }
+
+  /* ===================== INLINE METRICS ===================== */
+  #tab-wordpress .wp-metric-block {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.09);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  #tab-wordpress .wp-metric-main { flex: 0 1 auto; }
+  #tab-wordpress .wp-metric-nums { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  #tab-wordpress .wp-metric-num {
+    font-size: 36px;
+    font-weight: 800;
+    color: #f39c12; /* gold = money metrics */
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-shadow: 0 0 26px rgba(243,156,18,0.4);
+  }
+  #tab-wordpress .wp-metric-num.wp-em { color: #10b981; text-shadow: 0 0 26px rgba(16,185,129,0.4); }
+  #tab-wordpress .wp-metric-label { font-size: 12px; color: #9ca3af; margin-top: 7px; max-width: 230px; }
+  #tab-wordpress .wp-metric-label b { color: #d1d5db; }
+  #tab-wordpress .wp-metric-chip {
+    display: inline-block;
+    background: rgba(243,156,18,0.12);
+    border: 1px solid rgba(243,156,18,0.32);
+    color: #f39c12;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  #tab-wordpress .wp-metric-chip.wp-em { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.32); color: #6ee7b7; }
+  #tab-wordpress .wp-metric-chart { flex: 1; min-width: 130px; max-width: 220px; }
+  #tab-wordpress .wp-metric-chart svg, #tab-wordpress svg.wp-metric-chart { width: 100%; height: auto; display: block; }
+  #tab-wordpress .wp-metric-donut { width: 58px; flex: 0 0 auto; }
+  #tab-wordpress .wp-honesty { font-size: 11px; color: #6b7280; margin: 16px 0 0; }
+
+  /* ===================== ANALYSIS MODAL (#wp-modal-*) ===================== */
+  #tab-wordpress .wp-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(2,8,5,0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+  }
+  #tab-wordpress .wp-modal-overlay.open { opacity: 1; visibility: visible; }
+  #tab-wordpress .wp-modal-card {
+    background: #0b0f0d;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    max-width: 640px;
+    width: 100%;
+    max-height: 86vh;
+    overflow-y: auto;
+    padding: 34px 36px;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    transform: translateY(14px) scale(0.97);
+    transition: transform 0.25s ease;
+  }
+  #tab-wordpress .wp-modal-overlay.open .wp-modal-card { transform: none; }
+  #tab-wordpress .wp-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  #tab-wordpress .wp-modal-close:hover { background: rgba(16,185,129,0.25); }
+  #tab-wordpress .wp-modal-tag {
+    color: #34d399;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+  #tab-wordpress .wp-modal-card h3 { margin: 0 0 18px; color: #fff; font-size: 24px; letter-spacing: -0.01em; }
+  #tab-wordpress .wp-modal-block {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-left: 3px solid #10b981;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+  }
+  #tab-wordpress .wp-modal-block h4 { margin: 0 0 6px; font-size: 13px; color: #34d399; letter-spacing: 0.4px; }
+  #tab-wordpress .wp-modal-block h4 span { color: #6b7280; font-weight: 400; font-size: 11px; }
+  #tab-wordpress .wp-modal-block p { margin: 0; font-size: 13.5px; color: #d1d5db; line-height: 1.65; }
+  #tab-wordpress .wp-window-foot { padding: 0 14px 12px; }
+  #tab-wordpress .wp-analysis-btn {
+    background: rgba(16,185,129,0.12);
+    border: 1px solid rgba(16,185,129,0.35);
+    color: #6ee7b7;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: inherit;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  #tab-wordpress .wp-analysis-btn:hover { background: rgba(16,185,129,0.28); color: #fff; }
+
+  /* ===================== LIVE PORTFOLIO (WINDOW CARDS) ===================== */
+  #tab-wordpress .wp-windows-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-top: 26px;
+    text-align: left;
+  }
+  #tab-wordpress .wp-window-float { animation: wpFloat 6s ease-in-out infinite; }
+  #tab-wordpress .wp-windows-grid > .wp-window-float:nth-child(2) { animation-delay: -1.5s; }
+  #tab-wordpress .wp-windows-grid > .wp-window-float:nth-child(3) { animation-delay: -3s; }
+  #tab-wordpress .wp-windows-grid > .wp-window-float:nth-child(4) { animation-delay: -4.5s; }
+  @keyframes wpFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  #tab-wordpress .wp-window-card {
+    background: #0a0f0d;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 18px 44px rgba(0,0,0,0.45);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    will-change: transform;
+  }
+  #tab-wordpress .wp-window-card:hover { box-shadow: 0 26px 60px rgba(16,185,129,0.18); }
+  #tab-wordpress .wp-window-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 12px;
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  #tab-wordpress .wp-wdot { width: 9px; height: 9px; border-radius: 50%; }
+  #tab-wordpress .wp-wdot.r { background: #ef6b60; }
+  #tab-wordpress .wp-wdot.y { background: #f39c12; }
+  #tab-wordpress .wp-wdot.g { background: #10b981; }
+  #tab-wordpress .wp-window-title { margin-left: 8px; font-size: 11px; color: #9ca3af; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  #tab-wordpress .wp-window-body { padding: 14px; font-size: 12px; }
+
+  /* Mockup: BuscadorPro map */
+  #tab-wordpress .wp-mock-map { width: 100%; height: auto; display: block; border-radius: 8px; }
+  #tab-wordpress .wp-marker-pulse { transform-box: fill-box; transform-origin: center; animation: wpMpulse 2.2s ease-out infinite; }
+  @keyframes wpMpulse { 0% { transform: scale(0.7); opacity: 0.9; } 100% { transform: scale(2.6); opacity: 0; } }
+
+  /* Mockup: Zoom TV grid */
+  #tab-wordpress .wp-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  #tab-wordpress .wp-mini-event { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; overflow: hidden; }
+  #tab-wordpress .wp-mini-thumb { height: 44px; position: relative; }
+  #tab-wordpress .wp-mini-thumb.g1 { background: linear-gradient(135deg, #10b981, #064e3b); }
+  #tab-wordpress .wp-mini-thumb.g2 { background: linear-gradient(135deg, #f39c12, #7c4a12); }
+  #tab-wordpress .wp-mini-thumb.g3 { background: linear-gradient(135deg, #38bdf8, #1e3a5f); }
+  #tab-wordpress .wp-mini-thumb.g4 { background: linear-gradient(135deg, #a78bfa, #3b2a63); }
+  #tab-wordpress .wp-live-badge {
+    position: absolute; top: 6px; left: 6px;
+    background: #10b981; color: #04110b;
+    font-size: 8.5px; font-weight: 800; letter-spacing: 0.5px;
+    padding: 2px 8px; border-radius: 999px;
+    animation: wpLivePulse 1.6s infinite;
+  }
+  @keyframes wpLivePulse { 0%,100% { opacity: 1; } 50% { opacity: 0.55; } }
+  #tab-wordpress .wp-mini-title { font-size: 10.5px; padding: 6px 8px 2px; color: #e5e7eb; font-weight: 600; }
+  #tab-wordpress .wp-cd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: #34d399; padding: 0 8px 7px; }
+
+  /* Mockup: Snippet Manager / MRR */
+  #tab-wordpress .wp-metric-row { display: flex; gap: 8px; margin-bottom: 10px; }
+  #tab-wordpress .wp-mc {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  #tab-wordpress .wp-mc-label { font-size: 9px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; }
+  #tab-wordpress .wp-mc-value { font-size: 16px; font-weight: 800; color: #fff; }
+  #tab-wordpress .wp-mc-delta { font-size: 9.5px; color: #9ca3af; }
+  #tab-wordpress .wp-mc-delta.up { color: #4ade80; }
+  #tab-wordpress .wp-diff-box {
+    background: #070b09;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 10.5px;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+  #tab-wordpress .wp-dl { white-space: pre; }
+  #tab-wordpress .wp-dl-add { color: #4ade80; background: rgba(74,222,128,0.08); }
+  #tab-wordpress .wp-dl-del { color: #f87171; background: rgba(248,113,113,0.08); }
+  #tab-wordpress .wp-dl-ctx { color: #6b7280; }
+
+  /* Mockup: Membership pricing */
+  #tab-wordpress .wp-mini-pricing { text-align: center; padding: 6px 4px 10px; }
+  #tab-wordpress .wp-vip-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f39c12, #d97706);
+    color: #1a1005;
+    font-weight: 800; font-size: 10.5px; letter-spacing: 1px;
+    padding: 4px 14px; border-radius: 999px;
+  }
+  #tab-wordpress .wp-mp-price { font-size: 34px; font-weight: 800; color: #fff; margin: 8px 0 2px; }
+  #tab-wordpress .wp-mp-price span { font-size: 12px; color: #9ca3af; font-weight: 500; }
+  #tab-wordpress .wp-mp-features { list-style: none; margin: 8px 0 12px; padding: 0; font-size: 11px; color: #d1d5db; }
+  #tab-wordpress .wp-mp-features li { padding: 3px 0; }
+  #tab-wordpress .wp-mp-features li::before { content: '\2713'; color: #34d399; font-weight: 700; margin-right: 7px; }
+  #tab-wordpress .wp-mp-btn {
+    display: inline-block;
+    background: #10b981; color: #fff;
+    font-weight: 700; font-size: 12px;
+    padding: 9px 26px; border-radius: 999px;
+    box-shadow: 0 6px 18px rgba(16,185,129,0.35);
+  }
+  #tab-wordpress .wp-mp-note { font-size: 9.5px; color: #6b7280; margin-top: 8px; }
+
+  @media (max-width: 820px) {
+    #tab-wordpress .wp-scene { padding: 72px 5%; align-items: flex-end; }
+    #tab-wordpress .wp-scene-content { max-width: 100%; width: 100%; padding: 28px 24px; margin: 0 auto 4vh; }
+    #tab-wordpress .wp-pos-center-low { margin-bottom: 4vh; }
+    #tab-wordpress .wp-scene-content h1 { font-size: 32px; }
+    #tab-wordpress .wp-chapter { right: 12px; bottom: 12px; }
+    #tab-wordpress .wp-windows-grid { grid-template-columns: 1fr; }
+    #tab-wordpress .wp-pos-center-wide { padding: 24px 18px; }
+    #tab-wordpress .wp-metric-row { flex-wrap: wrap; }
+    #tab-wordpress .wp-metric-num { font-size: 30px; }
+    #tab-wordpress .wp-metric-chart { max-width: 100%; }
+    #tab-wordpress .wp-modal-overlay { padding: 0; }
+    #tab-wordpress .wp-modal-card { max-width: 100%; height: 100%; max-height: 100%; border-radius: 0; padding: 30px 22px; }
+  }
+</style>
+
+<div id="wp-stage">
+  <!-- Local sticky 3D background + HUD (only visible while this tab scrolls) -->
+  <div class="wp-sticky" aria-hidden="true">
+    <canvas id="wp-bg-canvas"></canvas>
+    <div class="wp-progress" id="wp-progress"></div>
+    <div class="wp-chapter" id="wp-chapter">01 / 09</div>
+  </div>
+
+  <main class="wp-scenes">
+    <!-- 00 · HERO -->
+    <section class="wp-scene" id="wp-scene-0">
+      <div class="wp-scene-content wp-pos-left">
+        <span class="wp-hero-badge section-reveal" title="Disponible para proyectos">📍 Bogotá, Colombia · Available for projects</span>
+        <h1 class="section-reveal">WordPress Full-Stack Developer</h1>
+        <h3 class="section-reveal">Memberships, subscriptions &amp; automation that pay for themselves.</h3>
+        <p class="wp-es-sub section-reveal">Membresías, suscripciones y automatización con WordPress.</p>
+        <ul class="wp-hero-bullets">
+          <li class="section-reveal">I recover failed payments automatically.</li>
+          <li class="section-reveal">I eliminate hours of manual work per event.</li>
+          <li class="section-reveal">I replace third-party licenses with in-house systems.</li>
+        </ul>
+        <div class="wp-cta-buttons section-reveal" style="justify-content:flex-start;">
+          <a href="#wp-scene-1" class="wp-btn wp-btn-primary" title="Sigue haciendo scroll y te lo demuestro">Keep scrolling — I'll prove it.</a>
+        </div>
+      </div>
+      <div class="wp-scroll-hint" id="wp-scroll-hint">Scroll ↓</div>
+    </section>
+
+    <!-- 01 · MEMBERSHIPS (Vault model) -->
+    <section class="wp-scene" id="wp-scene-1">
+      <div class="wp-scene-content wp-pos-right">
+        <span class="wp-tag section-reveal">01 · Memberships</span>
+        <h2 class="section-reveal">I protect your premium content</h2>
+        <p class="wp-es-sub section-reveal">Membresías · Protejo tu contenido premium</p>
+        <p class="section-reveal">Gated content with no access leaks, fewer support tickets and zero expensive plugins.</p>
+        <div class="wp-metric-block section-reveal">
+          <div class="wp-metric-nums">
+            <span class="wp-metric-num wp-em" data-target="40" data-prefix="−" data-suffix="%">−40%</span>
+            <span class="wp-metric-chip wp-em" title="0 fugas de acceso">0 access leaks</span>
+          </div>
+          <div class="wp-metric-label">fewer support tickets for logins &amp; passwords</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · SUBSCRIPTIONS (Coins model) -->
+    <section class="wp-scene" id="wp-scene-2">
+      <div class="wp-scene-content wp-pos-left">
+        <span class="wp-tag section-reveal">02 · Subscriptions</span>
+        <h2 class="section-reveal">I recover revenue you're losing</h2>
+        <p class="wp-es-sub section-reveal">Suscripciones · Recupero ingresos que se pierden</p>
+        <p class="section-reveal">Automatic dunning, revocation and reactivation of failed payments.</p>
+        <div class="wp-metric-block section-reveal">
+          <div class="wp-metric-main">
+            <div class="wp-metric-nums">
+              <span class="wp-metric-num" data-target="13.9" data-dec="1" data-prefix="+$" data-suffix="k">+$13.9k</span>
+              <span class="wp-metric-chip" title="Pagos fallidos recuperados">+18% failed payments</span>
+            </div>
+            <div class="wp-metric-label">recovered in 6 months with automatic dunning</div>
+          </div>
+          <svg class="wp-metric-chart" viewBox="0 0 140 52" role="img" aria-label="Recovered revenue per month">
+            <rect class="wp-mbar" x="8" y="38.2" width="14" height="7.8" rx="3" fill="#f39c12" data-h="7.8" data-y="38.2"/>
+            <rect class="wp-mbar" x="30" y="33.3" width="14" height="12.7" rx="3" fill="#f39c12" data-h="12.7" data-y="33.3"/>
+            <rect class="wp-mbar" x="52" y="27.5" width="14" height="18.5" rx="3" fill="#f39c12" data-h="18.5" data-y="27.5"/>
+            <rect class="wp-mbar" x="74" y="20.7" width="14" height="25.3" rx="3" fill="#f39c12" data-h="25.3" data-y="20.7"/>
+            <rect class="wp-mbar" x="96" y="14.8" width="14" height="31.2" rx="3" fill="#f39c12" data-h="31.2" data-y="14.8"/>
+            <rect class="wp-mbar" x="118" y="6" width="14" height="40" rx="3" fill="#f39c12" data-h="40" data-y="6"/>
+            <line x1="4" y1="46" x2="136" y2="46" stroke="rgba(255,255,255,0.12)"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · EVENTS (Calendar model) -->
+    <section class="wp-scene" id="wp-scene-3">
+      <div class="wp-scene-content wp-pos-right">
+        <span class="wp-tag section-reveal">03 · Events</span>
+        <h2 class="section-reveal">Events in minutes, not hours</h2>
+        <p class="wp-es-sub section-reveal">Eventos · Creo eventos en minutos, no en horas</p>
+        <p class="section-reveal">The Events Calendar + Zoom API: AI and Google Sheets generate the event, ticket and Zoom meeting automatically.</p>
+        <div class="wp-metric-block section-reveal">
+          <div class="wp-metric-main">
+            <div class="wp-metric-nums">
+              <span class="wp-metric-num wp-em" data-target="92" data-prefix="−" data-suffix="%">−92%</span>
+            </div>
+            <div class="wp-metric-label">of operational time per event</div>
+          </div>
+          <svg class="wp-metric-chart" viewBox="0 0 220 74" role="img" aria-label="From 60 minutes to 5 minutes">
+            <text x="0" y="12" fill="#9ca3af" font-size="9">Before · 60 min</text>
+            <rect class="wp-mwbar" x="0" y="18" width="200" height="12" rx="6" fill="#ef6b60" data-w="200"/>
+            <text x="0" y="48" fill="#9ca3af" font-size="9">After · 5 min</text>
+            <rect class="wp-mwbar" x="0" y="54" width="17" height="12" rx="6" fill="#10b981" data-w="17"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · AUTOMATION (Phone model) -->
+    <section class="wp-scene" id="wp-scene-4">
+      <div class="wp-scene-content wp-pos-left">
+        <span class="wp-tag section-reveal">04 · Automation</span>
+        <h2 class="section-reveal">24/7 customer service without more staff</h2>
+        <p class="wp-es-sub section-reveal">Automatización · Atiendo clientes 24/7 sin más personal</p>
+        <p class="section-reveal">WhatsApp bots, n8n workflows and Gemini AI flows that reply, qualify and follow up on their own.</p>
+        <div class="wp-metric-block section-reveal">
+          <div class="wp-metric-nums">
+            <span class="wp-metric-num" data-target="1200" data-prefix="+">+1,200</span>
+            <span class="wp-metric-chip" title="24/7 sin pausas">24/7 always on</span>
+          </div>
+          <div class="wp-metric-label">automated conversations every month via WhatsApp bots + n8n + Gemini AI</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · DASHBOARDS (Bars model) -->
+    <section class="wp-scene" id="wp-scene-5">
+      <div class="wp-scene-content wp-pos-right">
+        <span class="wp-tag section-reveal">05 · Dashboards</span>
+        <h2 class="section-reveal">I see losses before they happen</h2>
+        <p class="wp-es-sub section-reveal">Paneles · Veo pérdidas antes de que ocurran</p>
+        <p class="section-reveal">MRR, ARR and churn in real time, so you act before it's too late.</p>
+        <div class="wp-metric-block section-reveal">
+          <div class="wp-metric-main">
+            <div class="wp-metric-nums">
+              <span class="wp-metric-num" data-target="21.6" data-dec="1" data-prefix="+$" data-suffix="k">+$21.6k</span>
+              <span class="wp-metric-chip">+163% MRR</span>
+            </div>
+            <div class="wp-metric-label">MRR in 12 months · churn 6.8% → <b>5.3%</b> (−22%)</div>
+          </div>
+          <svg class="wp-metric-chart" viewBox="0 0 220 64" role="img" aria-label="MRR growth">
+            <defs>
+              <linearGradient id="wpGradMini" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#10b981" stop-opacity="0.45"/>
+                <stop offset="1" stop-color="#10b981" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path class="wp-marea" fill="url(#wpGradMini)" d="M6,56 L6,39.6 L25,37.8 L44,35.2 L63,34 L82,31.4 L101,29.8 L120,26.4 L139,25.6 L158,22.2 L177,19.2 L196,16.4 L215,12.8 L215,56 Z"/>
+            <path class="wp-mline" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M6,39.6 L25,37.8 L44,35.2 L63,34 L82,31.4 L101,29.8 L120,26.4 L139,25.6 L158,22.2 L177,19.2 L196,16.4 L215,12.8"/>
+          </svg>
+          <svg class="wp-metric-donut" viewBox="0 0 64 64" role="img" aria-label="Churn after: 5.3%">
+            <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="9"/>
+            <circle class="wp-marc" cx="32" cy="32" r="26" fill="none" stroke="#10b981" stroke-width="9" stroke-linecap="round" stroke-dasharray="8.7 163.4" data-dash="8.7 163.4" transform="rotate(-90 32 32)"/>
+            <text x="32" y="36" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">5.3%</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · CUSTOM TOOLS (Gear model) -->
+    <section class="wp-scene" id="wp-scene-6">
+      <div class="wp-scene-content wp-pos-left">
+        <span class="wp-tag section-reveal">06 · Custom Tools</span>
+        <h2 class="section-reveal">I replace third-party licenses</h2>
+        <p class="wp-es-sub section-reveal">Herramientas a medida · Reemplazo licencias de terceros</p>
+        <p class="section-reveal">Custom modules inside WordPress — like my own snippet manager with REST sync and rollback — that centralize operations.</p>
+        <div class="wp-metric-block section-reveal">
+          <div class="wp-metric-nums">
+            <span class="wp-metric-num" data-target="4">4</span>
+          </div>
+          <div class="wp-metric-label">third-party licenses replaced · <span class="wp-metric-chip" title="Ahorro mensual recurrente">recurring monthly savings</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · LIVE PORTFOLIO (Nebula) -->
+    <section class="wp-scene" id="wp-scene-7">
+      <div class="wp-scene-content wp-pos-center-wide">
+        <span class="wp-tag section-reveal">07 · Portfolio</span>
+        <h2 class="section-reveal">Live portfolio</h2>
+        <p class="wp-es-sub section-reveal">Portafolio en vivo</p>
+        <p class="section-reveal">HTML/CSS recreations of systems I run in production. Click “View analysis” for the full breakdown of each one.</p>
+        <div class="wp-windows-grid">
+          <div class="wp-window-float section-reveal">
+            <div class="wp-window-card" data-wp-tilt>
+              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">buscadorpro.mapa — ZIP Finder</span></div>
+              <div class="wp-window-body">
+                <svg class="wp-mock-map" viewBox="0 0 320 200" role="img" aria-label="Map with ZIP polygons">
+                  <rect width="320" height="200" fill="#0a0f0d"/>
+                  <g stroke="#1f2937" stroke-width="7" stroke-linecap="round">
+                    <line x1="0" y1="60" x2="320" y2="80"/>
+                    <line x1="60" y1="0" x2="80" y2="200"/>
+                    <line x1="200" y1="0" x2="180" y2="200"/>
+                  </g>
+                  <g stroke="#243349" stroke-width="3">
+                    <line x1="0" y1="140" x2="320" y2="120"/>
+                    <line x1="120" y1="0" x2="320" y2="60"/>
+                  </g>
+                  <polygon points="40,42 128,26 158,80 88,110 36,88" fill="rgba(16,185,129,0.10)" stroke="#10b981" stroke-width="1.6" stroke-dasharray="6 5"/>
+                  <polygon points="196,58 282,44 302,108 228,138 182,106" fill="rgba(16,185,129,0.10)" stroke="#10b981" stroke-width="1.6" stroke-dasharray="6 5"/>
+                  <circle class="wp-marker-pulse" cx="92" cy="68" r="5" fill="none" stroke="#f39c12" stroke-width="1.5"/>
+                  <circle cx="92" cy="68" r="5" fill="#f39c12"/>
+                  <circle class="wp-marker-pulse" cx="240" cy="94" r="5" fill="none" stroke="#f39c12" stroke-width="1.5" style="animation-delay:-1s"/>
+                  <circle cx="240" cy="94" r="5" fill="#f39c12"/>
+                  <circle class="wp-marker-pulse" cx="152" cy="146" r="5" fill="none" stroke="#f39c12" stroke-width="1.5" style="animation-delay:-0.5s"/>
+                  <circle cx="152" cy="146" r="5" fill="#f39c12"/>
+                  <rect x="102" y="52" width="58" height="15" rx="7.5" fill="rgba(5,5,5,0.9)" stroke="rgba(255,255,255,0.15)"/>
+                  <text x="131" y="62.5" text-anchor="middle" fill="#e5e7eb" font-size="9" font-family="ui-monospace, monospace">ZIP 90001</text>
+                  <rect x="248" y="78" width="58" height="15" rx="7.5" fill="rgba(5,5,5,0.9)" stroke="rgba(255,255,255,0.15)"/>
+                  <text x="277" y="88.5" text-anchor="middle" fill="#e5e7eb" font-size="9" font-family="ui-monospace, monospace">ZIP 90026</text>
+                </svg>
+              </div>
+              <div class="wp-window-foot"><button class="wp-analysis-btn" data-analysis="map" title="Ver análisis">View analysis →</button></div>
+            </div>
+          </div>
+          <div class="wp-window-float section-reveal">
+            <div class="wp-window-card" data-wp-tilt>
+              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">zoom.tv — Live Events Grid</span></div>
+              <div class="wp-window-body">
+                <div class="wp-mini-grid">
+                  <div class="wp-mini-event">
+                    <div class="wp-mini-thumb g1"><span class="wp-live-badge" title="En vivo">● LIVE</span></div>
+                    <div class="wp-mini-title">VIP Seminar</div>
+                    <div class="wp-cd" data-secs="1530">25:30</div>
+                  </div>
+                  <div class="wp-mini-event">
+                    <div class="wp-mini-thumb g2"></div>
+                    <div class="wp-mini-title">Tax Workshop</div>
+                    <div class="wp-cd" data-secs="7320">2:02:00</div>
+                  </div>
+                  <div class="wp-mini-event">
+                    <div class="wp-mini-thumb g3"></div>
+                    <div class="wp-mini-title">Networking NYC</div>
+                    <div class="wp-cd" data-secs="420">7:00</div>
+                  </div>
+                  <div class="wp-mini-event">
+                    <div class="wp-mini-thumb g4"></div>
+                    <div class="wp-mini-title">Academy Live</div>
+                    <div class="wp-cd" data-secs="15153">4:12:33</div>
+                  </div>
+                </div>
+              </div>
+              <div class="wp-window-foot"><button class="wp-analysis-btn" data-analysis="zoom" title="Ver análisis">View analysis →</button></div>
+            </div>
+          </div>
+          <div class="wp-window-float section-reveal">
+            <div class="wp-window-card" data-wp-tilt>
+              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">snippet-manager — MRR dashboard</span></div>
+              <div class="wp-window-body">
+                <div class="wp-metric-row">
+                  <div class="wp-mc"><span class="wp-mc-label">MRR</span><span class="wp-mc-value">$21.6k</span><span class="wp-mc-delta up">▲ 12%</span></div>
+                  <div class="wp-mc"><span class="wp-mc-label">Churn</span><span class="wp-mc-value">5.3%</span><span class="wp-mc-delta up">▼ 22%</span></div>
+                  <div class="wp-mc"><span class="wp-mc-label">Snippets</span><span class="wp-mc-value">148</span><span class="wp-mc-delta">sync ✓</span></div>
+                </div>
+                <div class="wp-diff-box">
+                  <div class="wp-dl wp-dl-ctx">&nbsp; function sync_push($id, $content) {</div>
+                  <div class="wp-dl wp-dl-add">+&nbsp;&nbsp;guardar_backup_explicito($id);</div>
+                  <div class="wp-dl wp-dl-del">-&nbsp;&nbsp;wp_cache_flush(); // risky</div>
+                  <div class="wp-dl wp-dl-add">+&nbsp;&nbsp;invalidar_cache_wpcode();</div>
+                  <div class="wp-dl wp-dl-ctx">&nbsp; }</div>
+                </div>
+              </div>
+              <div class="wp-window-foot"><button class="wp-analysis-btn" data-analysis="mrr" title="Ver análisis">View analysis →</button></div>
+            </div>
+          </div>
+          <div class="wp-window-float section-reveal">
+            <div class="wp-window-card" data-wp-tilt>
+              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">membership.landing — Checkout</span></div>
+              <div class="wp-window-body">
+                <div class="wp-mini-pricing">
+                  <span class="wp-vip-badge">★ VIP</span>
+                  <div class="wp-mp-price">$29<span>/mo</span></div>
+                  <ul class="wp-mp-features">
+                    <li>Full Academy access</li>
+                    <li>Weekly live events</li>
+                    <li>Priority support</li>
+                  </ul>
+                  <div class="wp-mp-btn">Buy now</div>
+                  <div class="wp-mp-note">No commitment · Cancel anytime</div>
+                </div>
+              </div>
+              <div class="wp-window-foot"><button class="wp-analysis-btn" data-analysis="vip" title="Ver análisis">View analysis →</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 · CTA (Rocket model) -->
+    <section class="wp-scene" id="wp-scene-8">
+      <div class="wp-scene-content wp-pos-center-low">
+        <span class="wp-tag section-reveal">08 · Contact</span>
+        <h2 class="section-reveal">Let's talk and automate your business</h2>
+        <p class="wp-es-sub section-reveal">Hablemos y automatizamos tu negocio</p>
+        <div class="wp-cta-buttons section-reveal">
+          <a href="https://wa.me/573027464103" class="wp-btn wp-btn-primary" target="_blank" rel="noopener noreferrer" title="Escríbeme por WhatsApp">📲 Message me on WhatsApp</a>
+          <a href="https://www.linkedin.com/in/leonardo-g-024042128/" class="wp-btn wp-btn-outline" target="_blank" rel="noopener noreferrer" title="Ver LinkedIn">🔗 View LinkedIn</a>
+        </div>
+        <p class="wp-honesty section-reveal">Illustrative figures based on real projects. · Cifras ilustrativas basadas en proyectos reales.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ===================== ANALYSIS MODAL (#wp-modal-*) ===================== -->
+<div class="wp-modal-overlay" id="wp-modal-overlay" aria-hidden="true">
+  <div class="wp-modal-card" role="dialog" aria-modal="true" aria-labelledby="wp-modal-title">
+    <button class="wp-modal-close" id="wp-modal-close" aria-label="Close analysis" title="Cerrar análisis">×</button>
+    <div class="wp-modal-tag" id="wp-modal-tag"></div>
+    <h3 id="wp-modal-title"></h3>
+    <div class="wp-modal-block">
+      <h4>🧠 The Intelligence <span>· La inteligencia</span></h4>
+      <p id="wp-modal-intel"></p>
+    </div>
+    <div class="wp-modal-block">
+      <h4>💰 Revenue Impact <span>· Repercusiones en ingresos</span></h4>
+      <p id="wp-modal-rev"></p>
+    </div>
+    <div class="wp-modal-block">
+      <h4>🛠️ Resource-Saving Techniques <span>· Técnicas que ahorraron recursos</span></h4>
+      <p id="wp-modal-tech"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== WORDPRESS 3D SCENE + SCROLL ===================== -->
+<script>
+(function () {
+  'use strict';
+
+  /* Emerald-first palette (adapted from the coral/navy source) */
+  var EMERALD = 0x10b981, MINT = 0x34d399, GOLD = 0xf39c12, SLATE = 0x334155,
+      DARK = 0x111827, WHITE = 0xe5e7eb, GREEN = 0x25d366, SKY = 0x38bdf8;
+
+  var scene, camera, renderer, camTarget, clock;
+  var models = [];
+  var activeIndex = -1;
+  var tabEl, stageEl, stickyEl, chapterEl, progressEl, hintEl;
+  var initialized = false;
+
+  // Camera per section: position and look-at (model sits opposite the text)
+  var CAMS = [
+    { pos: [0, 0.2, 9.5], look: [1.4, 0, 0] },    // hero
+    { pos: [0, 0.3, 8.5], look: [-1.3, 0, 0] },   // vault    · memberships
+    { pos: [0, 0.7, 9.5], look: [1.3, 0.5, 0] },  // coins    · subscriptions
+    { pos: [0, 0.2, 8.5], look: [-1.3, -0.1, 0] },// calendar · events
+    { pos: [0, 0.3, 9.0], look: [1.3, 0, 0] },    // phone    · automation
+    { pos: [0, 0.5, 9.5], look: [-1.5, 0.2, 0] }, // bars     · dashboards
+    { pos: [0, 0.2, 8.5], look: [1.3, 0, 0] },    // gear     · custom tools
+    { pos: [0, 0.4, 10], look: [0, 0, 0] },       // portfolio (emerald nebula)
+    { pos: [0, 1.2, 9.5], look: [0, 1.3, 0] }     // rocket   · CTA
+  ];
+
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+
+  function tabHidden() {
+    return !!(tabEl && tabEl.classList.contains('hidden'));
+  }
+
+  function std(color, opts) {
+    return new THREE.MeshStandardMaterial(Object.assign({
+      color: color, metalness: 0.55, roughness: 0.35, transparent: true
+    }, opts || {}));
+  }
+
+  function part(mesh, pos, rot, bias, opacity) {
+    mesh.position.set(pos[0], pos[1], pos[2]);
+    if (rot) mesh.rotation.set(rot[0], rot[1], rot[2]);
+    mesh.userData.finalPos = new THREE.Vector3(pos[0], pos[1], pos[2]);
+    mesh.userData.finalRot = new THREE.Euler(rot ? rot[0] : 0, rot ? rot[1] : 0, rot ? rot[2] : 0);
+    if (bias) mesh.userData.bias = new THREE.Vector3(bias[0], bias[1], bias[2]);
+    mesh.userData.targetOpacity = (opacity === undefined) ? 1 : opacity;
+    return mesh;
+  }
+
+  // Ambient particle scale (fewer on mobile)
+  var COUNT_SCALE = (typeof window !== 'undefined' && window.innerWidth < 820) ? 0.5 : 1;
+
+  // Themed ambient particle cloud (does not scatter; only fades + drifts)
+  function ambientPoints(color, count, size, spread, yBias) {
+    var n = Math.max(20, Math.round(count * COUNT_SCALE));
+    var arr = new Float32Array(n * 3);
+    for (var i = 0; i < n; i++) {
+      arr[i * 3] = (Math.random() - 0.5) * spread;
+      arr[i * 3 + 1] = (Math.random() - 0.5) * spread * 0.6 + (yBias || 0);
+      arr[i * 3 + 2] = (Math.random() - 0.5) * spread * 0.55;
+    }
+    var geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+    var pts = new THREE.Points(geo, new THREE.PointsMaterial({
+      color: color, size: size, transparent: true, opacity: 0.55, depthWrite: false
+    }));
+    part(pts, [0, 0, 0], null, null, 0.55).userData.noScatter = true;
+    return pts;
+  }
+
+  function makeGroup(mx, parts, idle, my) {
+    var g = new THREE.Group();
+    g.userData.parts = parts;
+    g.userData.mx = mx;
+    g.userData.my = my || 0;
+    g.userData.baseY = 0;
+    g.userData.busy = false;
+    g.userData.t0 = 0;
+    g.userData.idle = idle || idleSway;
+    parts.forEach(function (p) { g.add(p); });
+    g.visible = false;
+    scene.add(g);
+    models.push(g);
+    return g;
+  }
+
+  function idleSway(t) {
+    if (this.userData.busy) return;
+    var tt = t - this.userData.t0;
+    this.rotation.y = Math.sin(tt * 0.35) * 0.16;
+  }
+
+  /* -------------------- PROCEDURAL MODELS -------------------- */
+
+  function buildHero(mx) {
+    var knot = part(new THREE.Mesh(
+      new THREE.TorusKnotGeometry(1.5, 0.45, 200, 28),
+      std(EMERALD, { metalness: 0.65, roughness: 0.3, emissive: 0x064e3b, emissiveIntensity: 0.35 })
+    ), [0, 0, 0]);
+    var n = 800, arr = new Float32Array(n * 3);
+    for (var i = 0; i < n * 3; i++) arr[i] = (Math.random() - 0.5) * 26;
+    var pgeo = new THREE.BufferGeometry();
+    pgeo.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+    var pts = part(new THREE.Points(pgeo, new THREE.PointsMaterial({
+      color: MINT, size: 0.05, transparent: true, opacity: 0.7
+    })), [0, 0, 0], null, null, 0.7);
+    return makeGroup(mx, [knot, pts], function (t, dt) {
+      if (this.userData.busy) return;
+      var tt = t - this.userData.t0;
+      knot.rotation.x = tt * 0.45;
+      knot.rotation.y = tt * 0.65;
+      knot.position.y = Math.sin(tt * 0.9) * 0.25;
+      pts.rotation.y = tt * 0.05;
+      this.rotation.y = Math.sin(tt * 0.25) * 0.18;
+    });
+  }
+
+  function buildVault(mx) {
+    var parts = [];
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(2.3, 2.7, 1.7),
+      std(SLATE, { metalness: 0.7, roughness: 0.35 })), [0, 0, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(1.8, 2.2, 0.2),
+      std(EMERALD)), [0, 0, 0.88]));
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.36, 0.08, 14, 40),
+      std(GOLD, { metalness: 0.85, roughness: 0.25 })), [0, 0, 1.04]));
+    [[-0.62, 0.78], [0.62, 0.78], [-0.62, -0.78], [0.62, -0.78]].forEach(function (xy) {
+      parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.55, 14),
+        std(GOLD, { metalness: 0.85, roughness: 0.25 })), [xy[0], xy[1], 1.0], [0, 0, Math.PI / 2]));
+    });
+    parts.push(ambientPoints(0x9ca3af, 90, 0.045, 7)); // steel dust
+    return makeGroup(mx, parts, null);
+  }
+
+  function buildCoins(mx) {
+    var parts = [];
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(2.1, 1.1, 2.1),
+      std(SLATE, { metalness: 0.6, roughness: 0.4 })), [0, -0.85, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(1.12, 0.09, 14, 48),
+      std(GOLD, { metalness: 0.85, roughness: 0.25 })), [0, -0.28, 0], [Math.PI / 2, 0, 0]));
+    var coinPos = [
+      [-0.5, 0.2, 0.2], [0.45, 0.5, -0.15], [0, 0.85, 0.3],
+      [-0.2, 1.2, -0.25], [0.6, 1.55, 0.15], [-0.6, 1.85, 0]
+    ];
+    coinPos.forEach(function (p, i) {
+      parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 0.08, 26),
+        std(GOLD, { metalness: 0.9, roughness: 0.2 })),
+        p, [1.2 + i * 0.3, i * 0.7, 0.25 * (i % 3)], [0, 1, 0]));
+    });
+    parts.push(ambientPoints(GOLD, 130, 0.05, 7, 0.6)); // gold dust
+    return makeGroup(mx, parts, null);
+  }
+
+  function buildCalendar(mx) {
+    var parts = [];
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(2.3, 1.7, 0.22),
+      std(SLATE, { metalness: 0.6, roughness: 0.4 })), [0, 0.3, 0]));
+    for (var i = 0; i < 4; i++) {
+      parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(2.15, 1.55, 0.03),
+        std(WHITE, { metalness: 0.1, roughness: 0.6 })),
+        [0.02 * i, 0.34 + 0.03 * i, 0.14 + 0.05 * i], [0, 0, (i - 1.5) * 0.03]));
+    }
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.72, 0.06),
+      std(EMERALD)), [0.55, -1.05, 0.4], [0, 0, -0.12], [1.8, -0.6, 0.4]));
+    parts.push(ambientPoints(WHITE, 80, 0.04, 7)); // paper motes
+    return makeGroup(mx, parts, null);
+  }
+
+  function buildPhone(mx) {
+    var parts = [];
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(1.5, 3.0, 0.18),
+      std(DARK, { metalness: 0.6, roughness: 0.35 })), [0, 0, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(1.3, 2.78, 0.05),
+      std(SKY, { metalness: 0.1, roughness: 0.2, emissive: SKY, emissiveIntensity: 0.22 })), [0, 0, 0.1]));
+    for (var i = 0; i < 5; i++) {
+      var a = i * (Math.PI * 2 / 5) + 0.5;
+      parts.push(part(new THREE.Mesh(new THREE.SphereGeometry(0.17, 20, 16),
+        std(GREEN, { metalness: 0.3, roughness: 0.4, emissive: GREEN, emissiveIntensity: 0.15 })),
+        [Math.cos(a) * 1.6, ((i % 3) - 1) * 0.7, Math.sin(a) * 1.6]));
+    }
+    parts.push(ambientPoints(GREEN, 90, 0.05, 8)); // micro bubbles
+    return makeGroup(mx, parts, function (t, dt) {
+      if (this.userData.busy) return;
+      this.rotation.y = (t - this.userData.t0) * 0.3;
+    });
+  }
+
+  function buildBars(mx) {
+    var parts = [];
+    var heights = [0.8, 1.5, 1.1, 2.0, 2.6];
+    heights.forEach(function (h, i) {
+      parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.55, h, 0.55),
+        std(EMERALD, { metalness: 0.45, roughness: 0.35 })),
+        [(i - 2) * 0.72, -1.3 + h / 2, 0], null, [0, -1, 0]));
+    });
+    for (var i = 0; i < 8; i++) {
+      parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 0.07, 22),
+        std(GOLD, { metalness: 0.9, roughness: 0.2 })),
+        [(i - 3.5) * 0.45 + (i % 2) * 0.2, 1.1 + (i % 4) * 0.5, ((i * 37) % 10) / 10 - 0.5],
+        [1.3, i * 0.8, 0.2], [0, 1.4, 0]));
+    }
+    parts.push(ambientPoints(GOLD, 100, 0.05, 7, 0.4)); // gold dust
+    return makeGroup(mx, parts, null);
+  }
+
+  function buildGear(mx) {
+    var parts = [];
+    parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.5, 28),
+      std(GOLD, { metalness: 0.85, roughness: 0.25 })), [0, 0, 0], [Math.PI / 2, 0, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(1.15, 0.3, 16, 48),
+      std(SLATE, { metalness: 0.7, roughness: 0.35 })), [0, 0, 0]));
+    for (var i = 0; i < 8; i++) {
+      var a = i * Math.PI / 4;
+      parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.55, 0.42),
+        std(EMERALD)), [Math.cos(a) * 1.5, Math.sin(a) * 1.5, 0], [0, 0, a]));
+    }
+    parts.push(ambientPoints(MINT, 140, 0.05, 7)); // sparks
+    return makeGroup(mx, parts, function (t, dt) {
+      if (this.userData.busy) return;
+      this.rotation.z = -(t - this.userData.t0) * 0.3;
+    });
+  }
+
+  function buildRocket(mx) {
+    var parts = [];
+    parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.55, 2.1, 24),
+      std(WHITE, { metalness: 0.35, roughness: 0.3 })), [0, 0, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.ConeGeometry(0.42, 0.9, 24),
+      std(EMERALD)), [0, 1.5, 0]));
+    parts.push(part(new THREE.Mesh(new THREE.SphereGeometry(0.16, 18, 14),
+      std(GOLD, { metalness: 0.85, roughness: 0.2 })), [0, 0.35, 0.42]));
+    for (var i = 0; i < 3; i++) {
+      var a = i * Math.PI * 2 / 3;
+      parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.85, 0.1),
+        std(GOLD, { metalness: 0.8, roughness: 0.3 })),
+        [Math.sin(a) * 0.6, -0.95, Math.cos(a) * 0.6], [0, a, 0.18]));
+    }
+    parts.push(part(new THREE.Mesh(new THREE.ConeGeometry(0.3, 0.8, 20),
+      std(GOLD, { emissive: GOLD, emissiveIntensity: 0.6, metalness: 0.1, roughness: 0.5 })),
+      [0, -1.5, 0], [Math.PI, 0, 0], [0, -1, 0]));
+    parts.push(ambientPoints(WHITE, 110, 0.045, 8)); // stardust
+    return makeGroup(mx, parts, function (t, dt) {
+      if (this.userData.busy) return;
+      var tt = t - this.userData.t0;
+      this.position.y = this.userData.baseY + Math.sin(tt * 1.1) * 0.18;
+      this.rotation.y = Math.sin(tt * 0.5) * 0.25;
+    }, 2.3);
+  }
+
+  // Ambient nebula (backdrop for wide-content sections)
+  function buildNebula(mx, color, count) {
+    var parts = [];
+    parts.push(ambientPoints(color, count, 0.07, 20));
+    parts.push(ambientPoints(WHITE, Math.round(count / 3), 0.05, 16));
+    return makeGroup(mx, parts, function (t, dt) {
+      if (this.userData.busy) return;
+      var tt = t - this.userData.t0;
+      this.rotation.y = tt * 0.05;
+      this.position.y = this.userData.baseY + Math.sin(tt * 0.4) * 0.3;
+    });
+  }
+
+  /* -------------------- SCENE -------------------- */
+
+  function sizeRenderer() {
+    if (!renderer || !stickyEl) return;
+    var w = stickyEl.clientWidth || window.innerWidth;
+    var h = stickyEl.clientHeight || window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  }
+
+  function initScene() {
+    var canvas = document.getElementById('wp-bg-canvas');
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0.2, 9.5);
+    camTarget = new THREE.Vector3(1.4, 0, 0);
+
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+    if ('outputColorSpace' in renderer && THREE.SRGBColorSpace) {
+      renderer.outputColorSpace = THREE.SRGBColorSpace; // no-op on r128, applies on r152+
+    }
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.15;
+    sizeRenderer();
+
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x050505, 1.2));
+    var dir = new THREE.DirectionalLight(0xffffff, 1.8);
+    dir.position.set(5, 8, 6);
+    scene.add(dir);
+    var pEmerald = new THREE.PointLight(EMERALD, 40, 40);
+    pEmerald.position.set(-6, 3, 4);
+    scene.add(pEmerald);
+    var pGold = new THREE.PointLight(GOLD, 30, 40);
+    pGold.position.set(6, -3, 5);
+    scene.add(pGold);
+
+    // Build all models up front (order = section order)
+    buildHero(2.5);
+    buildVault(-2.5);
+    buildCoins(2.5);
+    buildCalendar(-2.5);
+    buildPhone(2.5);
+    buildBars(-2.9);
+    buildGear(2.5);
+    buildNebula(0, EMERALD, 140);  // 07 · Portfolio
+    buildRocket(0);
+
+    clock = new THREE.Clock();
+
+    window.addEventListener('resize', sizeRenderer);
+
+    animate();
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (tabHidden()) return; // skip GPU work while another tab is active
+    var dt = clock.getDelta();
+    var t = clock.elapsedTime;
+    var g = models[activeIndex];
+    if (g && g.userData.idle) g.userData.idle.call(g, t, dt);
+    camera.lookAt(camTarget);
+    renderer.render(scene, camera);
+  }
+
+  /* -------------------- ASSEMBLY -------------------- */
+
+  function scatterOffset(p) {
+    var v;
+    if (p.userData.bias) {
+      v = p.userData.bias.clone().multiplyScalar(3.5 + Math.random() * 2.5);
+      v.x += (Math.random() - 0.5) * 2;
+      v.y += (Math.random() - 0.5) * 2;
+      v.z += (Math.random() - 0.5) * 2;
+    } else {
+      v = new THREE.Vector3(
+        (Math.random() - 0.5) * 11,
+        (Math.random() - 0.5) * 9,
+        (Math.random() - 0.5) * 7
+      );
+      if (v.length() < 3.5) v.setLength(3.5 + Math.random() * 3);
+    }
+    return v;
+  }
+
+  // Disassemble the outgoing model: parts scatter + fade out (reverse of assembly)
+  function hideModel(g) {
+    g.userData.leaving = true;
+    g.userData.parts.forEach(function (p, k) {
+      var delay = k * 0.04;
+      if (!p.userData.noScatter) {
+        gsap.killTweensOf(p.position);
+        gsap.killTweensOf(p.rotation);
+        var fp = p.userData.finalPos;
+        var off = scatterOffset(p).multiplyScalar(0.7);
+        gsap.to(p.position, { x: fp.x + off.x, y: fp.y + off.y, z: fp.z + off.z, duration: 0.55, delay: delay, ease: 'power2.in' });
+        gsap.to(p.rotation, { x: '+=' + (Math.random() * 2.5), y: '+=' + (Math.random() * 2.5), duration: 0.55, delay: delay, ease: 'power2.in' });
+      }
+      if (p.material) {
+        gsap.killTweensOf(p.material);
+        gsap.to(p.material, { opacity: 0, duration: 0.5, delay: delay, ease: 'power2.in' });
+      }
+    });
+    gsap.delayedCall(0.85, function () {
+      if (models[activeIndex] !== g) g.visible = false;
+      g.userData.leaving = false;
+    });
+  }
+
+  function setActive(i) {
+    if (i === activeIndex || !models[i]) return;
+    var prev = models[activeIndex];
+    activeIndex = i;
+    if (prev && prev !== models[i]) hideModel(prev);
+    models.forEach(function (g, idx) {
+      if (idx !== i && g !== prev) g.visible = false;
+    });
+    var g = models[i];
+    g.visible = true;
+    g.userData.leaving = false;
+    var isMobile = window.innerWidth < 820;
+    g.position.x = isMobile ? 0 : g.userData.mx;
+    g.userData.baseY = isMobile ? 1.6 : g.userData.my;
+    g.position.y = g.userData.baseY;
+    g.rotation.set(0, 0, 0);
+    g.userData.busy = true;
+
+    g.userData.parts.forEach(function (p, k) {
+      var delay = 0.12 + k * 0.09;
+      if (!p.userData.noScatter) {
+        gsap.killTweensOf(p.position);
+        gsap.killTweensOf(p.rotation);
+        var fp = p.userData.finalPos, fr = p.userData.finalRot;
+        var off = scatterOffset(p);
+        p.position.set(fp.x + off.x, fp.y + off.y, fp.z + off.z);
+        p.rotation.set(
+          fr.x + (Math.random() - 0.5) * 5,
+          fr.y + (Math.random() - 0.5) * 5,
+          fr.z + (Math.random() - 0.5) * 5
+        );
+        gsap.to(p.position, { x: fp.x, y: fp.y, z: fp.z, duration: 1.15, delay: delay, ease: 'power3.out' });
+        gsap.to(p.rotation, { x: fr.x, y: fr.y, z: fr.z, duration: 1.25, delay: delay, ease: 'power3.out' });
+      }
+      if (p.material) {
+        gsap.killTweensOf(p.material);
+        p.material.opacity = 0;
+        gsap.to(p.material, { opacity: p.userData.targetOpacity, duration: 0.7, delay: delay + 0.15, ease: 'power2.out' });
+      }
+    });
+    gsap.delayedCall(1.7, function () {
+      g.userData.t0 = clock.elapsedTime;
+      g.userData.busy = false;
+    });
+
+    var cam = CAMS[i];
+    var lx = isMobile ? 0 : cam.look[0];
+    gsap.killTweensOf(camera.position);
+    gsap.killTweensOf(camTarget);
+    gsap.to(camera.position, { x: cam.pos[0], y: cam.pos[1], z: cam.pos[2], duration: 1.5, ease: 'power2.inOut' });
+    gsap.to(camTarget, { x: lx, y: cam.look[1], z: cam.look[2], duration: 1.5, ease: 'power2.inOut' });
+
+    if (chapterEl) chapterEl.textContent = pad2(i + 1) + ' / ' + pad2(models.length);
+  }
+
+  /* -------------------- SCROLL -------------------- */
+
+  function revealText(sec) {
+    var items = sec.querySelectorAll('.section-reveal');
+    if (!items.length) return;
+    gsap.fromTo(items,
+      { opacity: 0, y: 34 },
+      { opacity: 1, y: 0, duration: 0.85, stagger: 0.1, ease: 'power3.out', overwrite: 'auto' });
+  }
+
+  function initScroll() {
+    gsap.registerPlugin(ScrollTrigger);
+    var sections = tabEl.querySelectorAll('.wp-scene');
+    sections.forEach(function (sec, i) {
+      ScrollTrigger.create({
+        trigger: sec,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: function () { setActive(i); revealText(sec); if (i >= 1 && i <= 6) window.initWordPressMetrics(sec); },
+        onEnterBack: function () { setActive(i); revealText(sec); if (i >= 1 && i <= 6) window.initWordPressMetrics(sec); }
+      });
+    });
+
+    // Local progress: relative to this tab's stage, not the whole page
+    window.addEventListener('scroll', function () {
+      if (tabHidden() || !stageEl) return;
+      var rect = stageEl.getBoundingClientRect();
+      var total = stageEl.offsetHeight - window.innerHeight;
+      var p = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
+      if (progressEl) progressEl.style.width = (p * 100).toFixed(2) + '%';
+      if (hintEl) hintEl.classList.toggle('wp-hidden', -rect.top > 80);
+    }, { passive: true });
+
+    setActive(0);
+    gsap.delayedCall(0.3, function () {
+      revealText(document.getElementById('wp-scene-0'));
+    });
+    ScrollTrigger.refresh();
+  }
+
+  /* -------------------- INLINE METRICS (SVG + GSAP) -------------------- */
+
+  // Global per contract: window.initWordPressMetrics(sectionEl)
+  window.initWordPressMetrics = function (sec) {
+    if (!sec || typeof gsap === 'undefined') return;
+    // Big animated counters
+    sec.querySelectorAll('.wp-metric-num[data-target]').forEach(function (el, k) {
+      var target = parseFloat(el.getAttribute('data-target'));
+      var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+      var prefix = el.getAttribute('data-prefix') || '';
+      var suffix = el.getAttribute('data-suffix') || '';
+      var o = { v: 0 };
+      gsap.to(o, {
+        v: target, duration: 1.5, delay: 0.3 + k * 0.18, ease: 'power2.out', overwrite: 'auto',
+        onUpdate: function () {
+          el.textContent = prefix + (dec ? o.v.toFixed(dec) : Math.round(o.v).toLocaleString('en-US')) + suffix;
+        }
+      });
+    });
+    // Vertical bars (revenue sparkline)
+    sec.querySelectorAll('.wp-mbar').forEach(function (r, k) {
+      var h = parseFloat(r.getAttribute('data-h')), y = parseFloat(r.getAttribute('data-y'));
+      gsap.fromTo(r,
+        { attr: { height: 0, y: 46 } },
+        { attr: { height: h, y: y }, duration: 0.8, delay: 0.4 + k * 0.07, ease: 'power3.out', overwrite: 'auto' });
+    });
+    // Horizontal bars (before/after)
+    sec.querySelectorAll('.wp-mwbar').forEach(function (r, k) {
+      var w = parseFloat(r.getAttribute('data-w'));
+      gsap.fromTo(r,
+        { attr: { width: 0 } },
+        { attr: { width: w }, duration: 0.9, delay: 0.4 + k * 0.25, ease: 'power3.out', overwrite: 'auto' });
+    });
+    // Mini MRR line/area
+    var line = sec.querySelector('.wp-mline');
+    if (line) {
+      var len = line.getTotalLength();
+      gsap.fromTo(line,
+        { strokeDasharray: len, strokeDashoffset: len },
+        { strokeDashoffset: 0, duration: 1.5, delay: 0.3, ease: 'power2.inOut', overwrite: 'auto' });
+    }
+    var area = sec.querySelector('.wp-marea');
+    if (area) gsap.fromTo(area, { opacity: 0 }, { opacity: 1, duration: 1.1, delay: 0.7, overwrite: 'auto' });
+    // Donut arcs (churn)
+    sec.querySelectorAll('.wp-marc').forEach(function (c, k) {
+      var dash = c.getAttribute('data-dash');
+      gsap.fromTo(c,
+        { attr: { 'stroke-dasharray': '0 163.4' } },
+        { attr: { 'stroke-dasharray': dash }, duration: 1.1, delay: 0.4 + k * 0.2, ease: 'power2.out', overwrite: 'auto' });
+    });
+  };
+
+  /* -------------------- ANALYSIS MODAL -------------------- */
+
+  var WP_ANALYSES = {
+    map: {
+      tag: 'buscadorpro.mapa — ZIP Finder',
+      title: 'BuscadorPro: geographic finder for financial centers',
+      intel: 'GeoDirectory + Leaflet with ZIP polygons served from a local boundaries file: the map works without Google Maps, and searches run custom SQL against the polygons instead of an external API. The slot logic (10 per ZIP) turns every territory into limited, sellable inventory.',
+      rev: 'Turns the map into a revenue channel: each ZIP is monetized directly through a territory-purchase flow, and the 10-slot limit per ZIP creates scarcity that pushes the buying decision. Plus, zero Google Maps API bill on every map load.',
+      tech: 'Local ZIP boundaries file (GeoJSON) instead of Google Maps; custom SQL on GeoDirectory instead of premium search plugins; open-source Leaflet as the renderer. Result: zero map licenses and zero paid directory plugins.'
+    },
+    zoom: {
+      tag: 'zoom.tv — Live Events Grid',
+      title: 'Zoom TV Grid: centralized live events',
+      intel: 'A live grid that fuses The Events Calendar with the Zoom API: every card validates visitor access, resolves their timezone and shows a real-time countdown. The system knows which event is LIVE and which one is next, with zero manual work.',
+      rev: 'Centralizes every event without paying external event platforms and cuts no-shows: countdown urgency and validated access raise effective attendance at the events that sell.',
+      tech: 'Server-side timezone handling, access validation built into the shortcode and lightweight JS countdowns. Replaces third-party event landings and manual reminders.'
+    },
+    mrr: {
+      tag: 'snippet-manager — MRR dashboard',
+      title: 'Snippet Manager + MRR Dashboard',
+      intel: 'A snippet manager with its own REST sync on top of WPCode: every push stores an explicit backup, shows the diff before applying and allows deterministic rollback. On top, a dashboard with MRR/ARR/churn computed straight from subscription data.',
+      rev: 'Less downtime = less lost revenue: instant rollback keeps a code error from taking checkout down, and the dashboard spots MRR leaks before they turn into churn.',
+      tech: 'Dedicated REST API with its own capability instead of third-party reporting tools; explicit backups in post meta instead of generic revisions; local diff before writing to production. Replaces monitoring and reporting licenses.'
+    },
+    vip: {
+      tag: 'membership.landing — Checkout',
+      title: 'Membership Landing: high-conversion checkout',
+      intel: 'Membership landing with dynamic WooCommerce variations, cross-product discounts and AJAX add-to-cart with no reload. Urgency badges (VIP, limited seats) respond to the real cart state.',
+      rev: 'More conversion and fewer abandoned carts: buying is one click with no refresh, and cross-discounts raise the average ticket. All without paying for a funnel builder.',
+      tech: 'Native WooCommerce + custom AJAX instead of ClickFunnels-style tools; dynamic pricing computed in PHP; zero paid page builders in the checkout flow.'
+    }
+  };
+
+  var modalOverlay, lastFocused = null;
+
+  window.openAnalysis = function (key) {
+    var a = WP_ANALYSES[key];
+    if (!a || !modalOverlay) return;
+    document.getElementById('wp-modal-tag').textContent = a.tag;
+    document.getElementById('wp-modal-title').textContent = a.title;
+    document.getElementById('wp-modal-intel').textContent = a.intel;
+    document.getElementById('wp-modal-rev').textContent = a.rev;
+    document.getElementById('wp-modal-tech').textContent = a.tech;
+    lastFocused = document.activeElement;
+    modalOverlay.classList.add('open');
+    modalOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('wp-modal-close').focus();
+  };
+
+  window.closeAnalysis = function () {
+    if (!modalOverlay) return;
+    modalOverlay.classList.remove('open');
+    modalOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+    lastFocused = null;
+  };
+
+  function initModal() {
+    modalOverlay = document.getElementById('wp-modal-overlay');
+    if (!modalOverlay) return;
+    tabEl.querySelectorAll('.wp-analysis-btn[data-analysis]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        window.openAnalysis(btn.getAttribute('data-analysis'));
+      });
+    });
+    document.getElementById('wp-modal-close').addEventListener('click', window.closeAnalysis);
+    modalOverlay.addEventListener('click', function (e) {
+      if (e.target === modalOverlay) window.closeAnalysis();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!modalOverlay.classList.contains('open')) return;
+      if (e.key === 'Escape') window.closeAnalysis();
+      if (e.key === 'Tab') { // trap-ish: the only focusable element is the close button
+        e.preventDefault();
+        document.getElementById('wp-modal-close').focus();
+      }
+    });
+  }
+
+  /* -------------------- PORTFOLIO: COUNTDOWNS + TILT -------------------- */
+
+  function initCountdowns() {
+    var els = tabEl.querySelectorAll('.wp-cd[data-secs]');
+    if (!els.length) return;
+    function tick() {
+      if (tabHidden()) return;
+      els.forEach(function (el) {
+        var s = parseInt(el.getAttribute('data-secs'), 10) || 0;
+        if (s > 0) { s--; el.setAttribute('data-secs', s); }
+        var h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), ss = s % 60;
+        el.textContent = (h > 0 ? h + ':' + pad2(m) : m) + ':' + pad2(ss);
+      });
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  function initTilt() {
+    tabEl.querySelectorAll('[data-wp-tilt]').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var rx = ((e.clientY - r.top) / r.height - 0.5) * -8;
+        var ry = ((e.clientX - r.left) / r.width - 0.5) * 8;
+        card.style.transform = 'perspective(700px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) scale(1.03)';
+      });
+      card.addEventListener('mouseleave', function () { card.style.transform = ''; });
+    });
+  }
+
+  /* -------------------- PUBLIC ENTRY POINT -------------------- */
+
+  // Global per contract: parts/global.js calls this when the WordPress tab is
+  // shown. NOT called from this file. Idempotent: a second call only refreshes
+  // ScrollTrigger positions and renderer size (needed after tab switches).
+  window.initWordPressScene = function () {
+    tabEl = tabEl || document.getElementById('tab-wordpress');
+    stageEl = stageEl || document.getElementById('wp-stage');
+    stickyEl = stickyEl || (stageEl ? stageEl.querySelector('.wp-sticky') : null);
+    if (!tabEl || !stageEl) return;
+
+    if (initialized) {
+      sizeRenderer();
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      return;
+    }
+    initialized = true;
+
+    chapterEl = document.getElementById('wp-chapter');
+    progressEl = document.getElementById('wp-progress');
+    hintEl = document.getElementById('wp-scroll-hint');
+
+    // These need no THREE/gsap — wire them regardless
+    initCountdowns();
+    initTilt();
+    initModal();
+
+    if (typeof THREE === 'undefined' || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      return; // graceful degradation: static text page (see :not(.wp-js) CSS rule)
+    }
+    tabEl.classList.add('wp-js');
+    try {
+      initScene();
+      initScroll();
+    } catch (e) {
+      tabEl.classList.remove('wp-js');
+      if (window.console) console.error('WordPress 3D init error:', e);
+    }
+  };
+})();
+</script>
+
+    </section>
+
+    <!-- FINAL CTA -->
+    <section id="final-cta" class="py-20 text-center border-t border-white/10 relative z-10">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Let's build something great</h2>
+            <p class="text-gray-400 mb-8">Available for remote full-time roles, freelance projects and consulting.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://www.linkedin.com/in/leonardo-g-024042128/" target="_blank" class="px-8 py-3 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition">LinkedIn</a>
+                <a href="https://wa.me/573027464103" target="_blank" class="px-8 py-3 rounded-full bg-green-600 hover:bg-green-500 text-white font-semibold transition">WhatsApp</a>
+                <a href="mailto:andresleonardogomez@gmail.com" class="px-8 py-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white font-semibold transition">Email</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm relative z-10">
+        <p>© 2026 Andrés Leonardo Gómez Gil · Full-Stack · Unity XR · WordPress Developer</p>
+    </footer>
+
+    <script>
+        /**
+ * global.js — Global behavior for andres-portfolio-unificado.html
+ * ==============================================================
+ * Plain JavaScript (no build step). Placed inside a <script> tag at the
+ * end of <body>. Assumes Tailwind CDN classes (`hidden`) and, optionally,
+ * GSAP + ScrollTrigger and Three.js loaded in <head> (all guarded).
+ *
+ * Provides:
+ *   1. Tab system .................. window.showTab(id)
+ *   2. Global particles background.. #global-particles (constellation, themed)
+ *   3. Procedural audio ............ #activate-immersive toggle (Web Audio API)
+ *   4. Scroll reveal ............... .section-reveal via IntersectionObserver
+ *   5. Cleanup / memory ............ scene-init registry + ScrollTrigger reset
+ *   6. Responsive / mobile ......... reduced particles, adaptive quality
+ *   7. Safety ...................... try/catch everywhere + window.Portfolio
+ *
+ * Contract for tab partials (fullstack.html / unity.html / wordpress.html):
+ *   - May define window.initFullStackScene / initUnityHeroScene /
+ *     initWordPressScene (called once per tab, receives { isMobile }).
+ *   - May define window.initFullStackScroll / initUnityScroll /
+ *     initWordPressScroll (optional; re-run after every tab switch to
+ *     rebuild ScrollTriggers).
+ */
+(function () {
+    'use strict';
+
+    /* ============================================================
+     * 0. Constants & shared state
+     * ============================================================ */
+    var TABS = ['fullstack', 'unity', 'wordpress'];
+
+    var TAB_COLORS = {
+        fullstack: '#06b6d4', // cyan
+        unity: '#d946ef',     // fuchsia
+        wordpress: '#10b981'  // emerald
+    };
+
+    var SCENE_INIT = {
+        fullstack: 'initFullStackScene',
+        unity: 'initUnityHeroScene',
+        wordpress: 'initWordPressScene'
+    };
+
+    var SCROLL_INIT = {
+        fullstack: 'initFullStackScroll',
+        unity: 'initUnityScroll',
+        wordpress: 'initWordPressScroll'
+    };
+
+    var INTERACTIVE_SEL = 'a, button, .card-hover, [role="button"]';
+
+    var state = {
+        activeTab: null,
+        initializedScenes: {},
+        isMobile: false,
+        reducedMotion: false
+    };
+
+    try {
+        state.isMobile = window.matchMedia('(max-width: 767px)').matches;
+        state.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch (err) { /* older browsers: defaults are fine */ }
+
+    function hexToRgb(hex) {
+        var n = parseInt(hex.replace('#', ''), 16);
+        return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+    }
+
+    function debounce(fn, ms) {
+        var t = null;
+        return function () {
+            var args = arguments, self = this;
+            clearTimeout(t);
+            t = setTimeout(function () { fn.apply(self, args); }, ms);
+        };
+    }
+
+    /* ============================================================
+     * 1. TAB SYSTEM
+     * ============================================================ */
+    function scrollToTop() {
+        // html { scroll-behavior: smooth } would make this animated; force instant.
+        var root = document.documentElement;
+        var prev = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo(0, 0);
+        root.style.scrollBehavior = prev;
+    }
+
+    function updateNav(id) {
+        TABS.forEach(function (t) {
+            var btn = document.getElementById('nav-' + t);
+            if (!btn) return;
+            if (t === id) {
+                btn.classList.add('tab-active');
+                btn.classList.remove('tab-inactive');
+                btn.style.color = TAB_COLORS[t]; // .tab-active uses currentColor
+            } else {
+                btn.classList.remove('tab-active');
+                btn.classList.add('tab-inactive');
+                btn.style.color = '';
+            }
+        });
+    }
+
+    function initSceneOnce(id) {
+        if (state.initializedScenes[id]) return;
+        var initFn = window[SCENE_INIT[id]];
+        if (typeof initFn !== 'function') {
+            // Tab has no 3D scene (or partial not loaded yet): nothing to do.
+            state.initializedScenes[id] = true;
+            return;
+        }
+        try {
+            initFn({ isMobile: state.isMobile });
+            state.initializedScenes[id] = true;
+        } catch (err) {
+            // Left uninitialized on purpose: a transient WebGL failure can
+            // retry on the next visit to this tab without breaking the page.
+            console.warn('[Portfolio] Scene init failed for "' + id + '":', err);
+        }
+    }
+
+    function resetScrollTriggers(id) {
+        try {
+            if (window.ScrollTrigger) {
+                window.ScrollTrigger.getAll().forEach(function (st) { st.kill(); });
+            }
+            var hook = window[SCROLL_INIT[id]];
+            if (typeof hook === 'function') hook();
+            if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        } catch (err) {
+            console.warn('[Portfolio] ScrollTrigger reset failed:', err);
+        }
+    }
+
+    function showTab(id) {
+        try {
+            if (TABS.indexOf(id) === -1) {
+                console.warn('[Portfolio] Unknown tab:', id);
+                return;
+            }
+            state.activeTab = id;
+
+            // Hide all tab sections, show the requested one (Tailwind `hidden`
+            // class + inline fallback in case the CDN failed).
+            document.querySelectorAll('.tab-content').forEach(function (sec) {
+                sec.classList.add('hidden');
+                sec.style.display = 'none';
+            });
+            var target = document.getElementById('tab-' + id);
+            if (target) {
+                target.classList.remove('hidden');
+                target.style.display = '';
+                if (!state.reducedMotion && typeof target.animate === 'function') {
+                    try {
+                        target.animate(
+                            [
+                                { opacity: 0, transform: 'translateY(16px)' },
+                                { opacity: 1, transform: 'translateY(0)' }
+                            ],
+                            { duration: 450, easing: 'cubic-bezier(.22,.61,.36,1)' }
+                        );
+                    } catch (err) { /* animation is cosmetic */ }
+                }
+            }
+
+            updateNav(id);
+
+            var intro = document.getElementById('intro');
+            if (intro) {
+                intro.classList.add('hidden');
+                intro.style.display = 'none';
+            }
+
+            initSceneOnce(id);
+            resetScrollTriggers(id);
+            setParticleColor(TAB_COLORS[id]);
+            scanReveals(document); // pick up any lazily injected content
+            scrollToTop();
+            transitionSound();
+        } catch (err) {
+            console.error('[Portfolio] showTab("' + id + '") failed:', err);
+        }
+    }
+
+    /* ============================================================
+     * 2. GLOBAL PARTICLES BACKGROUND (#global-particles)
+     * ============================================================ */
+    var particles = {
+        canvas: null,
+        ctx: null,
+        w: 0,
+        h: 0,
+        dpr: 1,
+        list: [],
+        rafId: null,
+        lastT: 0,
+        frameCount: 0,
+        emaDt: 16.7, // exponential moving average of frame delta (adaptive quality)
+        mouse: { x: -9999, y: -9999 },
+        pulse: 0,    // 0..1, spikes when hovering interactive elements
+        color: hexToRgb(TAB_COLORS.fullstack),
+        targetColor: hexToRgb(TAB_COLORS.fullstack)
+    };
+
+    function setParticleColor(hex) {
+        if (!hex) return;
+        particles.targetColor = hexToRgb(hex);
+    }
+
+    function particleTargetCount() {
+        if (state.isMobile) return 38;
+        var base = Math.round((window.innerWidth * window.innerHeight) / 16000);
+        return Math.max(60, Math.min(120, base));
+    }
+
+    function seedParticles(count) {
+        particles.list = [];
+        for (var i = 0; i < count; i++) {
+            particles.list.push({
+                x: Math.random() * particles.w,
+                y: Math.random() * particles.h,
+                vx: (Math.random() - 0.5) * 0.35,
+                vy: (Math.random() - 0.5) * 0.35,
+                r: 1 + Math.random() * 1.6,
+                seed: Math.random() * Math.PI * 2
+            });
+        }
+    }
+
+    function resizeParticleCanvas() {
+        var c = particles.canvas;
+        if (!c) return;
+        particles.dpr = Math.min(window.devicePixelRatio || 1, state.isMobile ? 1.5 : 2);
+        particles.w = window.innerWidth;
+        particles.h = window.innerHeight;
+        c.width = Math.round(particles.w * particles.dpr);
+        c.height = Math.round(particles.h * particles.dpr);
+        particles.ctx.setTransform(particles.dpr, 0, 0, particles.dpr, 0, 0);
+    }
+
+    function drawParticles(t) {
+        var ctx = particles.ctx;
+        var w = particles.w, h = particles.h;
+        var list = particles.list;
+        var linkDist = state.isMobile ? 90 : 120;
+        var linkDist2 = linkDist * linkDist;
+        var repelR = state.isMobile ? 90 : 130;
+        var repelR2 = repelR * repelR;
+
+        // Smooth theme color transition.
+        var c = particles.color, tc = particles.targetColor;
+        c.r += (tc.r - c.r) * 0.06;
+        c.g += (tc.g - c.g) * 0.06;
+        c.b += (tc.b - c.b) * 0.06;
+        var colBase = (c.r | 0) + ',' + (c.g | 0) + ',' + (c.b | 0);
+
+        particles.pulse *= 0.94; // decay of hover excitement
+        var pulse = particles.pulse;
+        var speedMul = 1 + pulse * 1.4;
+
+        var dt = Math.min(t - particles.lastT, 50);
+        particles.lastT = t;
+        var dtScale = Math.max(0.5, Math.min(dt / 16.7, 3));
+
+        // Adaptive quality: if frames run long, shed 25% of particles.
+        particles.emaDt = particles.emaDt * 0.95 + dt * 0.05;
+        particles.frameCount++;
+        if (particles.frameCount % 90 === 0 && particles.emaDt > 34 && list.length > 30) {
+            list.splice(Math.ceil(list.length * 0.75));
+        }
+
+        ctx.clearRect(0, 0, w, h);
+
+        var mx = particles.mouse.x, my = particles.mouse.y;
+        var i, j, p, dx, dy, d2;
+
+        // Move + wrap + gentle mouse repulsion.
+        for (i = 0; i < list.length; i++) {
+            p = list[i];
+            p.x += p.vx * speedMul * dtScale;
+            p.y += p.vy * speedMul * dtScale;
+            if (p.x < -10) p.x = w + 10; else if (p.x > w + 10) p.x = -10;
+            if (p.y < -10) p.y = h + 10; else if (p.y > h + 10) p.y = -10;
+
+            dx = p.x - mx; dy = p.y - my; d2 = dx * dx + dy * dy;
+            if (d2 < repelR2 && d2 > 0.01) {
+                var d = Math.sqrt(d2);
+                var f = (repelR - d) / repelR;
+                p.x += (dx / d) * f * 2.2 * dtScale;
+                p.y += (dy / d) * f * 2.2 * dtScale;
+            }
+        }
+
+        // Constellation lines.
+        ctx.lineWidth = state.isMobile ? 0.6 : 1;
+        for (i = 0; i < list.length; i++) {
+            for (j = i + 1; j < list.length; j++) {
+                dx = list[i].x - list[j].x;
+                dy = list[i].y - list[j].y;
+                d2 = dx * dx + dy * dy;
+                if (d2 < linkDist2) {
+                    var alpha = (1 - Math.sqrt(d2) / linkDist) * (0.26 + pulse * 0.2);
+                    ctx.strokeStyle = 'rgba(' + colBase + ',' + alpha.toFixed(3) + ')';
+                    ctx.beginPath();
+                    ctx.moveTo(list[i].x, list[i].y);
+                    ctx.lineTo(list[j].x, list[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Dots (radius wobbles while pulse is high -> "vibrate" effect).
+        ctx.fillStyle = 'rgba(' + colBase + ',' + (0.55 + pulse * 0.3).toFixed(3) + ')';
+        for (i = 0; i < list.length; i++) {
+            p = list[i];
+            var wobble = 1 + pulse * Math.sin(t * 0.02 + p.seed) * 0.6;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, Math.max(0.4, p.r * wobble), 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function particleFrame(t) {
+        particles.rafId = window.requestAnimationFrame(particleFrame);
+        try {
+            drawParticles(t);
+        } catch (err) {
+            window.cancelAnimationFrame(particles.rafId);
+            particles.rafId = null;
+            console.warn('[Portfolio] Particle loop stopped:', err);
+        }
+    }
+
+    function startParticleLoop() {
+        if (particles.rafId || state.reducedMotion || !particles.ctx) return;
+        particles.lastT = performance.now();
+        particles.rafId = window.requestAnimationFrame(particleFrame);
+    }
+
+    function stopParticleLoop() {
+        if (particles.rafId) window.cancelAnimationFrame(particles.rafId);
+        particles.rafId = null;
+    }
+
+    function initParticles() {
+        var canvas = document.getElementById('global-particles');
+        if (!canvas || !canvas.getContext) return;
+        particles.canvas = canvas;
+        particles.ctx = canvas.getContext('2d');
+        if (!particles.ctx) return;
+
+        resizeParticleCanvas();
+        seedParticles(particleTargetCount());
+
+        if (state.reducedMotion) {
+            drawParticles(performance.now()); // static field, no loop
+            return;
+        }
+
+        window.addEventListener('mousemove', function (e) {
+            particles.mouse.x = e.clientX;
+            particles.mouse.y = e.clientY;
+        }, { passive: true });
+        window.addEventListener('touchmove', function (e) {
+            if (e.touches && e.touches.length) {
+                particles.mouse.x = e.touches[0].clientX;
+                particles.mouse.y = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        // Pause rendering while the browser tab is hidden (performance).
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) stopParticleLoop();
+            else startParticleLoop();
+        });
+
+        window.addEventListener('resize', debounce(function () {
+            var wasMobile = state.isMobile;
+            try { state.isMobile = window.matchMedia('(max-width: 767px)').matches; } catch (err) { /* keep */ }
+            resizeParticleCanvas();
+            var target = particleTargetCount();
+            if (wasMobile !== state.isMobile || Math.abs(target - particles.list.length) > target * 0.25) {
+                seedParticles(target);
+            }
+            if (state.reducedMotion) drawParticles(performance.now());
+        }, 200));
+
+        startParticleLoop();
+    }
+
+    /* ============================================================
+     * 3. PROCEDURAL AUDIO (Web Audio API) — default OFF
+     * ============================================================ */
+    var audio = {
+        ctx: null,
+        master: null,
+        enabled: false,
+        droneOn: false,
+        lastHover: 0,
+        lastChime: 0
+    };
+
+    function ensureAudioContext() {
+        if (!audio.ctx) {
+            var AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) throw new Error('Web Audio API not supported');
+            // Created inside the click handler -> satisfies autoplay policy.
+            audio.ctx = new AC();
+            audio.master = audio.ctx.createGain();
+            audio.master.gain.value = 0.9;
+            audio.master.connect(audio.ctx.destination);
+        }
+        if (audio.ctx.state === 'suspended') {
+            audio.ctx.resume(); // async; sounds no-op until running
+        }
+    }
+
+    function startDrone() {
+        if (audio.droneOn || !audio.ctx) return;
+        var ctx = audio.ctx;
+
+        var filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 320;
+        filter.Q.value = 0.8;
+
+        var droneGain = ctx.createGain();
+        droneGain.gain.value = 0.05;
+
+        var voices = [
+            { freq: 55, type: 'sine', gain: 1 },
+            { freq: 82.41, type: 'sine', gain: 0.6 },
+            { freq: 110, type: 'triangle', gain: 0.3 }
+        ];
+        voices.forEach(function (v) {
+            var osc = ctx.createOscillator();
+            osc.type = v.type;
+            osc.frequency.value = v.freq;
+            var g = ctx.createGain();
+            g.gain.value = v.gain;
+            osc.connect(g);
+            g.connect(filter);
+            osc.start();
+        });
+
+        // Slow LFO breathing on the filter cutoff.
+        var lfo = ctx.createOscillator();
+        lfo.frequency.value = 0.08;
+        var lfoGain = ctx.createGain();
+        lfoGain.gain.value = 120;
+        lfo.connect(lfoGain);
+        lfoGain.connect(filter.frequency);
+        lfo.start();
+
+        filter.connect(droneGain);
+        droneGain.connect(audio.master);
+        audio.droneOn = true;
+    }
+
+    function blip(freqA, freqB, dur, type, vol) {
+        if (!audio.enabled || !audio.ctx || audio.ctx.state !== 'running') return;
+        var ctx = audio.ctx;
+        var t = ctx.currentTime;
+        var osc = ctx.createOscillator();
+        var g = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freqA, t);
+        if (freqB) osc.frequency.exponentialRampToValueAtTime(Math.max(freqB, 1), t + dur);
+        g.gain.setValueAtTime(vol, t);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        osc.connect(g);
+        g.connect(audio.master);
+        osc.start(t);
+        osc.stop(t + dur + 0.05);
+    }
+
+    function hoverSound() {
+        var now = performance.now();
+        if (now - audio.lastHover < 70) return; // throttle
+        audio.lastHover = now;
+        blip(620 + Math.random() * 260, 0, 0.07, 'sine', 0.05);
+    }
+
+    function transitionSound() {
+        blip(520, 220, 0.16, 'triangle', 0.08);
+        blip(1150, 900, 0.06, 'sine', 0.03);
+    }
+
+    function chimeSound() {
+        var now = performance.now();
+        if (now - audio.lastChime < 350) return; // throttle
+        audio.lastChime = now;
+        blip(880, 1320, 0.3, 'sine', 0.04);
+    }
+
+    function updateImmersiveButton() {
+        var btn = document.getElementById('activate-immersive');
+        if (!btn) return;
+        var icon = document.getElementById('immersive-icon');
+        if (icon) icon.textContent = audio.enabled ? '🔊' : '🔇';
+        btn.setAttribute('aria-pressed', audio.enabled ? 'true' : 'false');
+        btn.title = audio.enabled ? 'Immersive audio: ON (click to mute)' : 'Immersive audio: OFF (click to enable)';
+    }
+
+    function toggleImmersive() {
+        try {
+            if (!audio.enabled) {
+                ensureAudioContext();
+                startDrone();
+                audio.enabled = true;
+            } else {
+                audio.enabled = false;
+                if (audio.ctx) audio.ctx.suspend(); // mutes drone + all blips
+            }
+        } catch (err) {
+            console.warn('[Portfolio] Immersive audio unavailable:', err);
+            audio.enabled = false;
+        }
+        updateImmersiveButton();
+    }
+
+    function initAudio() {
+        var btn = document.getElementById('activate-immersive');
+        if (btn) {
+            btn.addEventListener('click', toggleImmersive);
+            updateImmersiveButton();
+        }
+    }
+
+    /* ============================================================
+     * 4. SCROLL REVEAL (.section-reveal via IntersectionObserver)
+     *    Also drives the hover-pulse + hover-sound delegation.
+     * ============================================================ */
+    var revealObserver = null;
+
+    function scanReveals(root) {
+        if (!revealObserver || !root || !root.querySelectorAll) return;
+        root.querySelectorAll('.section-reveal:not(.is-visible)').forEach(function (el) {
+            revealObserver.observe(el);
+        });
+    }
+
+    function initReveal() {
+        if (!('IntersectionObserver' in window)) {
+            // Fallback: just show everything.
+            document.querySelectorAll('.section-reveal').forEach(function (el) {
+                el.classList.add('is-visible');
+            });
+            return;
+        }
+
+        revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+                chimeSound(); // scroll milestone (no-op while audio is OFF)
+            });
+        }, { threshold: 0.15 });
+
+        scanReveals(document);
+
+        // Pick up .section-reveal elements injected later by scene scripts.
+        if ('MutationObserver' in window && document.body) {
+            var mo = new MutationObserver(function (mutations) {
+                for (var i = 0; i < mutations.length; i++) {
+                    var added = mutations[i].addedNodes;
+                    for (var k = 0; k < added.length; k++) {
+                        var node = added[k];
+                        if (node.nodeType !== 1) continue;
+                        if (node.matches && node.matches('.section-reveal:not(.is-visible)')) {
+                            revealObserver.observe(node);
+                        }
+                        scanReveals(node);
+                    }
+                }
+            });
+            mo.observe(document.body, { childList: true, subtree: true });
+        }
+    }
+
+    // Hover delegation: particles vibrate + (optional) hover sound.
+    function initHoverFeedback() {
+        document.addEventListener('mouseover', function (e) {
+            var t = e.target;
+            if (t && typeof t.closest === 'function' && t.closest(INTERACTIVE_SEL)) {
+                particles.pulse = 1;
+                hoverSound();
+            }
+        }, { passive: true });
+    }
+
+    /* ============================================================
+     * 7. Injected styles (reveal transition — the base rule in the
+     *    page only sets the hidden state, without a transition).
+     * ============================================================ */
+    function injectStyles() {
+        if (document.getElementById('portfolio-global-styles')) return;
+        var style = document.createElement('style');
+        style.id = 'portfolio-global-styles';
+        style.textContent =
+            '.section-reveal{transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform}' +
+            '.section-reveal.is-visible{opacity:1;transform:none}' +
+            '@media (prefers-reduced-motion:reduce){.section-reveal{transition:none}}';
+        document.head.appendChild(style);
+    }
+
+    /* ============================================================
+     * BOOT
+     * ============================================================ */
+    function boot() {
+        // Globals first: inline onclick="showTab(...)" must work even if a
+        // subsystem below blows up.
+        window.showTab = showTab;
+        window.Portfolio = {
+            showTab: showTab,
+            toggleImmersive: toggleImmersive,
+            isMobile: state.isMobile,
+            activeTab: function () { return state.activeTab; }
+        };
+
+        try { injectStyles(); } catch (err) { console.warn('[Portfolio] styles:', err); }
+        try { initParticles(); } catch (err) { console.warn('[Portfolio] particles:', err); }
+        try { initAudio(); } catch (err) { console.warn('[Portfolio] audio:', err); }
+        try { initReveal(); } catch (err) { console.warn('[Portfolio] reveal:', err); }
+        try { initHoverFeedback(); } catch (err) { console.warn('[Portfolio] hover:', err); }
+    }
+
+    try {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', boot);
+        } else {
+            boot();
+        }
+    } catch (err) {
+        console.error('[Portfolio] Boot failed:', err);
+    }
+})();
+
+    </script>
+</body>
+</html>
