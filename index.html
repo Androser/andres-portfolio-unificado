@@ -3428,16 +3428,34 @@ window.initUnityHeroScene = function () {
     initTilt();
     initModal();
 
-    if (typeof THREE === 'undefined' || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    // Always wire scroll so chapter/progress work even if WebGL fails
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      try {
+        initScroll();
+      } catch (e) {
+        if (window.console) console.error('WordPress scroll init error:', e);
+      }
+    }
+
+    if (typeof THREE === 'undefined' || typeof gsap === 'undefined') {
       return; // graceful degradation: static text page (see :not(.wp-js) CSS rule)
     }
     tabEl.classList.add('wp-js');
     try {
       initScene();
-      initScroll();
     } catch (e) {
       tabEl.classList.remove('wp-js');
       if (window.console) console.error('WordPress 3D init error:', e);
+    }
+  };
+
+  // Exposed so global.js can rebuild ScrollTriggers after tab switches
+  window.initWordPressScroll = function () {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    try {
+      initScroll();
+    } catch (e) {
+      if (window.console) console.error('WordPress scroll rebuild error:', e);
     }
   };
 })();
