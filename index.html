@@ -335,6 +335,102 @@
         .wp-ba-card.ba-active img {
             transform: scale(1.18);
         }
+        .wp-ba-card img { cursor: zoom-in; }
+
+        /* Before / After fullscreen lightbox */
+        #ba-lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0,0,0,0.94);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+            padding: 48px;
+        }
+        #ba-lightbox.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        #ba-lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 28px 90px rgba(0,0,0,0.8);
+            transform: scale(0.92);
+            transition: transform 0.45s cubic-bezier(.22,.61,.36,1);
+        }
+        #ba-lightbox.open img {
+            transform: scale(1);
+        }
+        .ba-lb-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 26px;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+        .ba-lb-close:hover { background: rgba(255,255,255,0.2); }
+        .ba-lb-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 30px;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+        .ba-lb-nav:hover { background: rgba(255,255,255,0.2); }
+        .ba-lb-prev { left: 24px; }
+        .ba-lb-next { right: 24px; }
+        .ba-lb-caption {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d1d5db;
+            font-size: 14px;
+            text-align: center;
+            max-width: 80%;
+            padding: 8px 18px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 999px;
+        }
+        @media (max-width: 767px) {
+            #ba-lightbox { padding: 16px; }
+            .ba-lb-prev { left: 8px; }
+            .ba-lb-next { right: 8px; }
+            .ba-lb-nav { width: 42px; height: 42px; font-size: 24px; }
+            .ba-lb-close { top: 12px; right: 12px; }
+        }
 
         /* Corporate CTA buttons */
         .corp-btn {
@@ -4615,6 +4711,75 @@ window.initUnityHeroScene = function () {
     }
 
     /* ============================================================
+     * BEFORE / AFTER FULLSCREEN LIGHTBOX
+     * ============================================================ */
+    function initBeforeAfterLightbox() {
+        var lightbox = document.getElementById('ba-lightbox');
+        var lbImg = document.getElementById('ba-lb-img');
+        var lbCaption = document.getElementById('ba-lb-caption');
+        if (!lightbox || !lbImg) return;
+
+        var images = [];
+        document.querySelectorAll('.wp-ba-card img').forEach(function (img, idx) {
+            var card = img.closest('.wp-ba-card');
+            var title = card ? (card.querySelector('h3') || {}).textContent || '' : '';
+            images.push({ src: img.src, alt: img.alt || '', caption: title });
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', function (e) {
+                e.stopPropagation();
+                openLightbox(idx);
+            });
+        });
+
+        function openLightbox(idx) {
+            var item = images[idx];
+            if (!item) return;
+            lbImg.src = item.src;
+            lbImg.alt = item.alt;
+            if (lbCaption) lbCaption.textContent = item.caption;
+            lightbox.dataset.index = idx;
+            lightbox.classList.add('open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        function next() {
+            var idx = parseInt(lightbox.dataset.index || '0', 10);
+            openLightbox((idx + 1) % images.length);
+        }
+        function prev() {
+            var idx = parseInt(lightbox.dataset.index || '0', 10);
+            openLightbox((idx - 1 + images.length) % images.length);
+        }
+
+        lightbox.querySelector('.ba-lb-close').addEventListener('click', function (e) {
+            e.stopPropagation();
+            closeLightbox();
+        });
+        lightbox.querySelector('.ba-lb-next').addEventListener('click', function (e) {
+            e.stopPropagation();
+            next();
+        });
+        lightbox.querySelector('.ba-lb-prev').addEventListener('click', function (e) {
+            e.stopPropagation();
+            prev();
+        });
+        lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') next();
+            if (e.key === 'ArrowLeft') prev();
+        });
+    }
+
+    /* ============================================================
      * MORE PROFILES DROPDOWN
      * ============================================================ */
     function initMoreProfiles() {
@@ -4707,6 +4872,7 @@ window.initUnityHeroScene = function () {
         try { initHoverFeedback(); } catch (err) { console.warn('[Portfolio] hover:', err); }
         try { initProfileBubble(); } catch (err) { console.warn('[Portfolio] bubble:', err); }
         try { initBeforeAfterHover(); } catch (err) { console.warn('[Portfolio] before/after hover:', err); }
+        try { initBeforeAfterLightbox(); } catch (err) { console.warn('[Portfolio] before/after lightbox:', err); }
         try { initMoreProfiles(); } catch (err) { console.warn('[Portfolio] more profiles:', err); }
         try { initCopyCode(); } catch (err) { console.warn('[Portfolio] copy code:', err); }
 
@@ -4730,5 +4896,14 @@ window.initUnityHeroScene = function () {
 
     <!-- BEFORE / AFTER FOCUS OVERLAY -->
     <div id="ba-focus-overlay" aria-hidden="true"></div>
+
+    <!-- BEFORE / AFTER FULLSCREEN LIGHTBOX -->
+    <div id="ba-lightbox" aria-hidden="true">
+        <button class="ba-lb-close" aria-label="Close lightbox">×</button>
+        <button class="ba-lb-nav ba-lb-prev" aria-label="Previous image">‹</button>
+        <img id="ba-lb-img" src="" alt="">
+        <button class="ba-lb-nav ba-lb-next" aria-label="Next image">›</button>
+        <div class="ba-lb-caption" id="ba-lb-caption"></div>
+    </div>
 </body>
 </html>
