@@ -297,6 +297,42 @@
             }
         }
 
+        /* Before / After card hover focus effect */
+        #ba-focus-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 80;
+            background: rgba(0,0,0,0.48);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            pointer-events: none;
+        }
+        #ba-focus-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .wp-ba-card {
+            position: relative;
+            z-index: 81;
+            transition: transform 0.4s cubic-bezier(.22,.61,.36,1), box-shadow 0.4s ease;
+            overflow: hidden;
+        }
+        .wp-ba-card img {
+            transition: transform 0.55s cubic-bezier(.22,.61,.36,1);
+        }
+        .wp-ba-card:hover,
+        .wp-ba-card.ba-active {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+        }
+        .wp-ba-card:hover img,
+        .wp-ba-card.ba-active img {
+            transform: scale(1.15);
+        }
+
         /* Corporate CTA buttons */
         .corp-btn {
             display: inline-flex;
@@ -2690,6 +2726,9 @@ window.initUnityHeroScene = function () {
     </div>
   </section>
 
+  <!-- BEFORE / AFTER FOCUS OVERLAY -->
+  <div id="ba-focus-overlay" aria-hidden="true"></div>
+
   <!-- 01b · BEFORE / AFTER AUTOMATIONS -->
   <section class="wp-section" id="wp-before-after">
     <div class="wp-scene-content wp-pos-center-wide">
@@ -2697,14 +2736,14 @@ window.initUnityHeroScene = function () {
       <h2 class="section-reveal">Automations that reduced manual work</h2>
       <p class="wp-es-sub section-reveal">Automatizaciones que redujeron el trabajo manual</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 text-left section-reveal">
-        <div class="wp-kpi-card overflow-hidden">
+        <div class="wp-kpi-card overflow-hidden wp-ba-card">
           <img src="assets/Automatización inteligente con WhatsApp y n8n.png" alt="WhatsApp and n8n automation flow" class="w-full h-48 object-cover rounded-xl mb-4">
           <h3 class="text-lg font-bold text-white mb-2">WhatsApp + n8n automation</h3>
           <p class="text-sm text-gray-400 mb-4">Automated support via WhatsApp, 24/7 responses, smart escalation to human agents.</p>
           <div class="wp-metric-num wp-em" style="font-size:28px;">14,400+</div>
           <div class="wp-kpi-label">automated conversations / year</div>
         </div>
-        <div class="wp-kpi-card overflow-hidden">
+        <div class="wp-kpi-card overflow-hidden wp-ba-card">
           <img src="assets/Flodesk Workflow negozee.png" alt="Flodesk VIP segmentation workflow" class="w-full h-48 object-cover rounded-xl mb-4">
           <h3 class="text-lg font-bold text-white mb-2">Flodesk workflow / VIP segmentation</h3>
           <p class="text-sm text-gray-400 mb-4">VIP segmentation, subscriber sync and lifecycle email workflows for a membership business.</p>
@@ -4558,6 +4597,24 @@ window.initUnityHeroScene = function () {
     }
 
     /* ============================================================
+     * BEFORE / AFTER CARD HOVER FOCUS
+     * ============================================================ */
+    function initBeforeAfterHover() {
+        var overlay = document.getElementById('ba-focus-overlay');
+        if (!overlay) return;
+        document.querySelectorAll('.wp-ba-card').forEach(function (card) {
+            card.addEventListener('mouseenter', function () {
+                overlay.classList.add('active');
+                card.classList.add('ba-active');
+            });
+            card.addEventListener('mouseleave', function () {
+                overlay.classList.remove('active');
+                card.classList.remove('ba-active');
+            });
+        });
+    }
+
+    /* ============================================================
      * MORE PROFILES DROPDOWN
      * ============================================================ */
     function initMoreProfiles() {
@@ -4649,6 +4706,7 @@ window.initUnityHeroScene = function () {
         try { initReveal(); } catch (err) { console.warn('[Portfolio] reveal:', err); }
         try { initHoverFeedback(); } catch (err) { console.warn('[Portfolio] hover:', err); }
         try { initProfileBubble(); } catch (err) { console.warn('[Portfolio] bubble:', err); }
+        try { initBeforeAfterHover(); } catch (err) { console.warn('[Portfolio] before/after hover:', err); }
         try { initMoreProfiles(); } catch (err) { console.warn('[Portfolio] more profiles:', err); }
         try { initCopyCode(); } catch (err) { console.warn('[Portfolio] copy code:', err); }
 
