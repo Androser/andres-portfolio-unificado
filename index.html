@@ -301,10 +301,10 @@
         #ba-focus-overlay {
             position: fixed;
             inset: 0;
-            z-index: 80;
-            background: rgba(0,0,0,0.48);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            z-index: 90;
+            background: rgba(0,0,0,0.52);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -314,9 +314,12 @@
             opacity: 1;
             visibility: visible;
         }
+        #wp-before-after {
+            position: relative;
+            z-index: 100;
+        }
         .wp-ba-card {
             position: relative;
-            z-index: 81;
             transition: transform 0.4s cubic-bezier(.22,.61,.36,1), box-shadow 0.4s ease;
             overflow: hidden;
         }
@@ -325,12 +328,12 @@
         }
         .wp-ba-card:hover,
         .wp-ba-card.ba-active {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+            transform: translateY(-10px) scale(1.04);
+            box-shadow: 0 36px 90px rgba(0,0,0,0.75);
         }
         .wp-ba-card:hover img,
         .wp-ba-card.ba-active img {
-            transform: scale(1.15);
+            transform: scale(1.18);
         }
 
         /* Corporate CTA buttons */
@@ -2116,7 +2119,7 @@ window.initUnityHeroScene = function () {
   }
 
   /* ===================== SCENES ===================== */
-  #tab-wordpress .wp-scenes { position: relative; z-index: 1; }
+  #tab-wordpress .wp-scenes { position: relative; }
   #tab-wordpress .wp-scene,
   #tab-wordpress .wp-section {
     min-height: 100vh;
@@ -2725,9 +2728,6 @@ window.initUnityHeroScene = function () {
       <p class="wp-honesty section-reveal" style="margin-top:22px;">Figures come from the actual membership platform report covering January – October 10, 2026.</p>
     </div>
   </section>
-
-  <!-- BEFORE / AFTER FOCUS OVERLAY -->
-  <div id="ba-focus-overlay" aria-hidden="true"></div>
 
   <!-- 01b · BEFORE / AFTER AUTOMATIONS -->
   <section class="wp-section" id="wp-before-after">
@@ -4727,5 +4727,8 @@ window.initUnityHeroScene = function () {
 })();
 
     </script>
+
+    <!-- BEFORE / AFTER FOCUS OVERLAY -->
+    <div id="ba-focus-overlay" aria-hidden="true"></div>
 </body>
 </html>
