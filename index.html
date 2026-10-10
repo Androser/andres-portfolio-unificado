@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        (function () {
+            var p = window.location.pathname || '';
+            if (p === '/operations' || p.replace(/\/$/, '') === '/operations' || window.location.hash === '#operations') {
+                document.documentElement.classList.add('is-operations-root');
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrés Gómez — Executive Assistant · Operations & Automation · WordPress Data & Ops</title>
@@ -54,8 +62,10 @@
         .corp-only { display: none !important; }
         body.is-operations .corp-only { display: block !important; }
         body.is-operations .corp-hidden { display: none !important; }
-        body.is-operations #intro { display: none !important; }
-        body.is-operations #main-nav { display: none !important; }
+        body.is-operations #intro,
+        html.is-operations-root #intro,
+        body.is-operations #main-nav,
+        html.is-operations-root #main-nav { display: none !important; }
 
         /* Floating profile bubble */
         #profile-bubble {
