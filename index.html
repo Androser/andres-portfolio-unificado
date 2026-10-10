@@ -48,12 +48,260 @@
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .section-reveal { opacity: 0; transform: translateY(34px); }
         .glow-border { box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 0 24px rgba(6,182,212,0.08); }
+
+        /* ===== CORPORATE / OPERATIONS MODE ===== */
+        .corp-hidden { display: none !important; }
+        .corp-only { display: none !important; }
+        body.is-operations .corp-only { display: block !important; }
+        body.is-operations .corp-hidden { display: none !important; }
+        body.is-operations #intro { display: none !important; }
+        body.is-operations #main-nav { display: none !important; }
+
+        /* Floating profile bubble */
+        #profile-bubble {
+            position: fixed;
+            z-index: 90;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            background: #111;
+            border: 2px solid rgba(255,255,255,0.18);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+            transition: width 0.45s cubic-bezier(.22,.61,.36,1),
+                        height 0.45s cubic-bezier(.22,.61,.36,1),
+                        top 0.45s cubic-bezier(.22,.61,.36,1),
+                        left 0.45s cubic-bezier(.22,.61,.36,1),
+                        right 0.45s cubic-bezier(.22,.61,.36,1),
+                        bottom 0.45s cubic-bezier(.22,.61,.36,1),
+                        transform 0.45s cubic-bezier(.22,.61,.36,1);
+            will-change: transform, width, height, top, left, right, bottom;
+        }
+        #profile-bubble img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        #profile-bubble .bubble-menu {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(10,10,10,0.92);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+            padding: 12px;
+            text-align: center;
+        }
+        #profile-bubble.expanded .bubble-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        #profile-bubble .bubble-menu a,
+        #profile-bubble .bubble-menu button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #e5e7eb;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            text-decoration: none;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        #profile-bubble .bubble-menu a:hover,
+        #profile-bubble .bubble-menu button:hover {
+            background: rgba(255,255,255,0.16);
+            transform: translateY(-1px);
+        }
+        #profile-bubble .bubble-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            font-size: 14px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        #profile-bubble.bubble-top {
+            width: 180px;
+            height: 180px;
+            top: 22vh;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #profile-bubble.bubble-corner {
+            width: 72px;
+            height: 72px;
+            right: 22px;
+            bottom: 22px;
+            left: auto;
+            top: auto;
+            transform: none;
+        }
+        #profile-bubble.bubble-corner.expanded {
+            width: 180px;
+            height: 180px;
+        }
+        @media (max-width: 767px) {
+            #profile-bubble.bubble-top {
+                width: 140px;
+                height: 140px;
+                top: 18vh;
+            }
+            #profile-bubble.bubble-corner {
+                width: 60px;
+                height: 60px;
+                right: 14px;
+                bottom: 14px;
+            }
+            #profile-bubble.bubble-corner.expanded {
+                width: 160px;
+                height: 160px;
+            }
+            #profile-bubble .bubble-menu a,
+            #profile-bubble .bubble-menu button {
+                font-size: 11px;
+                padding: 7px 8px;
+            }
+        }
+
+        /* Corporate CTA buttons */
+        .corp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+        .corp-btn-primary {
+            background: #111;
+            color: #fff;
+            border-color: rgba(255,255,255,0.25);
+        }
+        .corp-btn-primary:hover { background: #1a1a1a; transform: translateY(-2px); }
+        .corp-btn-secondary {
+            background: transparent;
+            color: #d1d5db;
+        }
+        .corp-btn-secondary:hover { background: rgba(255,255,255,0.08); color: #fff; }
+        .corp-btn-ghost {
+            background: transparent;
+            color: #9ca3af;
+            border-color: rgba(255,255,255,0.1);
+        }
+        .corp-btn-ghost:hover { color: #e5e7eb; background: rgba(255,255,255,0.05); }
+
+        /* More profiles dropdown in nav */
+        #more-profiles-wrap {
+            position: relative;
+        }
+        #more-profiles-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 180px;
+            background: rgba(8,8,8,0.96);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+        }
+        #more-profiles-wrap.open #more-profiles-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #more-profiles-menu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #d1d5db;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        #more-profiles-menu button:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+        /* Code snippet block */
+        .wp-code-block {
+            background: #0b0f0d;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            overflow: hidden;
+            text-align: left;
+        }
+        .wp-code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .wp-code-header span {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 11px;
+            color: #6b7280;
+        }
+        .wp-code-block pre {
+            margin: 0;
+            padding: 16px 18px;
+            overflow-x: auto;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 12px;
+            line-height: 1.65;
+            color: #d1d5db;
+        }
+        .wp-code-block code { color: #d1d5db; }
     </style>
 </head>
 <body class="antialiased min-h-screen">
 
     <!-- GLOBAL PARTICLES BACKGROUND -->
     <canvas id="global-particles"></canvas>
+
+    <!-- FLOATING PROFILE BUBBLE -->
+    <div id="profile-bubble" class="bubble-top" aria-label="Contact Andrés">
+        <img src="assets/Foto de Perfil Sin FOndo.png" alt="Andrés Gómez profile">
+        <div class="bubble-menu">
+            <button class="bubble-close" aria-label="Close contact menu">×</button>
+            <a href="mailto:andresleonardogomez@gmail.com" target="_blank" rel="noopener">Email</a>
+            <a href="https://www.linkedin.com/in/leonardo-g-024042128/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://wa.me/573027464103" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="assets/cv-andres-gomez-ea.pdf" download class="corp-btn-ghost">Download CV</a>
+        </div>
+    </div>
 
     <!-- INTRO / SELECTOR -->
     <section id="intro" class="min-h-screen flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
@@ -109,10 +357,17 @@
     <nav id="main-nav" class="sticky top-0 z-50 bg-[#050505]/90 backdrop-blur border-b border-white/10">
         <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="font-bold text-lg tracking-tight">Andrés Gómez</div>
-            <div class="flex space-x-6 text-sm font-semibold uppercase tracking-wide">
-                <button id="nav-fullstack" onclick="showTab('fullstack')" class="tab-inactive pb-1">Full-Stack</button>
-                <button id="nav-unity" onclick="showTab('unity')" class="tab-inactive pb-1">Unity / XR</button>
+            <div class="flex items-center space-x-4 text-sm font-semibold uppercase tracking-wide">
                 <button id="nav-wordpress" onclick="showTab('wordpress')" class="tab-inactive pb-1">WordPress Data & Ops</button>
+                <div id="more-profiles-wrap">
+                    <button id="more-profiles-btn" class="tab-inactive pb-1 flex items-center gap-1" aria-haspopup="true" aria-expanded="false">
+                        More profiles <span aria-hidden="true">▾</span>
+                    </button>
+                    <div id="more-profiles-menu" role="menu">
+                        <button role="menuitem" onclick="showTab('fullstack')">Full-Stack Developer</button>
+                        <button role="menuitem" onclick="showTab('unity')">Unity / XR Developer</button>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -1702,13 +1957,15 @@ window.initUnityHeroScene = function () {
 
   /* ===================== SCENES ===================== */
   #tab-wordpress .wp-scenes { position: relative; z-index: 1; }
-  #tab-wordpress .wp-scene {
+  #tab-wordpress .wp-scene,
+  #tab-wordpress .wp-section {
     min-height: 100vh;
     display: flex;
     align-items: center;
     padding: 80px 6%;
     position: relative;
   }
+  #tab-wordpress .wp-section { min-height: auto; padding: 110px 6%; }
   #tab-wordpress .wp-scene-content {
     background: rgba(8,18,13,0.55);
     backdrop-filter: blur(12px);
@@ -1865,9 +2122,8 @@ window.initUnityHeroScene = function () {
     color: #f39c12; /* gold = money metrics */
     letter-spacing: -0.02em;
     line-height: 1;
-    text-shadow: 0 0 26px rgba(243,156,18,0.4);
   }
-  #tab-wordpress .wp-metric-num.wp-em { color: #10b981; text-shadow: 0 0 26px rgba(16,185,129,0.4); }
+  #tab-wordpress .wp-metric-num.wp-em { color: #10b981; }
   #tab-wordpress .wp-metric-label { font-size: 12px; color: #9ca3af; margin-top: 7px; max-width: 230px; }
   #tab-wordpress .wp-metric-label b { color: #d1d5db; }
   #tab-wordpress .wp-metric-chip {
@@ -2167,7 +2423,7 @@ window.initUnityHeroScene = function () {
   }
   #tab-wordpress .wp-kpi-card {
     background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(16,185,129,0.25);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 16px;
     padding: 20px;
   }
@@ -2240,7 +2496,9 @@ window.initUnityHeroScene = function () {
         <li class="section-reveal">Automated reporting, renewals and lifecycle workflows</li>
       </ul>
       <div class="wp-cta-buttons section-reveal" style="justify-content:flex-start;">
-        <a href="#wp-scene-1" class="wp-btn wp-btn-primary" title="Explore the dashboard">Explore the dashboard</a>
+        <a href="mailto:andresleonardogomez@gmail.com" class="corp-btn corp-btn-primary" target="_blank" rel="noopener">Contact via email</a>
+        <a href="https://www.linkedin.com/in/leonardo-g-024042128/" class="corp-btn corp-btn-secondary" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="assets/cv-andres-gomez-ea.pdf" download class="corp-btn corp-btn-ghost">Download CV</a>
       </div>
     </div>
     <div class="wp-scroll-hint" id="wp-scroll-hint">Scroll ↓</div>
@@ -2305,6 +2563,31 @@ window.initUnityHeroScene = function () {
         </div>
       </div>
       <p class="wp-honesty section-reveal" style="margin-top:22px;">Figures come from the actual membership platform report covering January – October 10, 2026.</p>
+    </div>
+  </section>
+
+  <!-- 01b · BEFORE / AFTER AUTOMATIONS -->
+  <section class="wp-section" id="wp-before-after">
+    <div class="wp-scene-content wp-pos-center-wide">
+      <span class="wp-tag section-reveal">01b · Before &amp; After</span>
+      <h2 class="section-reveal">Automations that reduced manual work</h2>
+      <p class="wp-es-sub section-reveal">Automatizaciones que redujeron el trabajo manual</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 text-left section-reveal">
+        <div class="wp-kpi-card overflow-hidden">
+          <img src="assets/Automatización inteligente con WhatsApp y n8n.png" alt="WhatsApp and n8n automation flow" class="w-full h-48 object-cover rounded-xl mb-4">
+          <h3 class="text-lg font-bold text-white mb-2">WhatsApp + n8n automation</h3>
+          <p class="text-sm text-gray-400 mb-4">Automated support via WhatsApp, 24/7 responses, smart escalation to human agents.</p>
+          <div class="wp-metric-num wp-em" style="font-size:28px;">14,400+</div>
+          <div class="wp-kpi-label">automated conversations / year</div>
+        </div>
+        <div class="wp-kpi-card overflow-hidden">
+          <img src="assets/Flodesk Workflow negozee.png" alt="Flodesk VIP segmentation workflow" class="w-full h-48 object-cover rounded-xl mb-4">
+          <h3 class="text-lg font-bold text-white mb-2">Flodesk workflow / VIP segmentation</h3>
+          <p class="text-sm text-gray-400 mb-4">VIP segmentation, subscriber sync and lifecycle email workflows for a membership business.</p>
+          <div class="wp-metric-num" style="font-size:28px;">1,501 <span style="font-size:14px;color:#9ca3af;font-weight:500;">active members</span></div>
+          <div class="wp-kpi-label">6,395 renewals processed</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2409,6 +2692,60 @@ window.initUnityHeroScene = function () {
     </div>
   </section>
 
+  <!-- 07b · FLODESK CODE SNIPPET -->
+  <section class="wp-section" id="wp-flodesk-code">
+    <div class="wp-scene-content wp-pos-center-wide">
+      <span class="wp-tag section-reveal">07b · Integration Sample</span>
+      <h2 class="section-reveal">How subscriber segments sync to Flodesk</h2>
+      <p class="wp-es-sub section-reveal">Sincronización de segmentos de suscriptores a Flodesk</p>
+      <p class="text-sm text-gray-400 mt-2 mb-4 section-reveal">Action Scheduler worker that syncs WooCommerce customer segments to Flodesk in batches of 50.</p>
+      <div class="wp-code-block section-reveal">
+        <div class="wp-code-header">
+          <span>wc-flodesk-pro/flodeskintegration.php</span>
+          <button type="button" class="corp-btn corp-btn-ghost" id="wp-copy-code" style="padding:6px 12px;font-size:12px;">Copy code</button>
+        </div>
+        <pre><code id="wp-flodesk-snippet">public function worker_custom_segment_batch( $segment_id, $customers ) {
+    if ( ! $this->is_license_active() ) {
+        $this->log( 'worker_custom_segment_batch: licencia inactiva. Segmento ' . $segment_id );
+        return;
+    }
+    if ( empty( $customers ) || ! is_array( $customers ) ) {
+        $this->log( 'worker_custom_segment_batch: customers vacíos. Segmento ' . $segment_id );
+        return;
+    }
+
+    $subscribers = array();
+    foreach ( $customers as $customer ) {
+        if ( empty( $customer['email'] ) ) {
+            continue;
+        }
+        $subscribers[] = array(
+            'email'       => $customer['email'],
+            'first_name'  => isset( $customer['first_name'] ) ? $customer['first_name'] : '',
+            'segment_ids' => array( (string) $segment_id ),
+        );
+    }
+
+    $this->log( 'worker_custom_segment_batch: segmento ' . $segment_id . ' - ' . count( $subscribers ) . ' suscriptores a enviar.' );
+
+    if ( empty( $subscribers ) ) {
+        return;
+    }
+
+    $response = $this->flodesk_batch_upsert_subscribers( $subscribers );
+    if ( is_wp_error( $response ) ) {
+        $this->log( 'worker_custom_segment_batch: WP_Error segmento ' . $segment_id . ' - ' . $response->get_error_message() );
+        return;
+    }
+    $code = (int) wp_remote_retrieve_response_code( $response );
+    $body = wp_remote_retrieve_body( $response );
+    $this->log( 'worker_custom_segment_batch: segmento ' . $segment_id . ' - respuesta HTTP ' . $code . ' body: ' . substr( $body, 0, 200 ) );
+    $this->log_if_failed( $response, sprintf( 'custom segment batch -> segmento %s (%d suscriptores)', $segment_id, count( $subscribers ) ) );
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
   <!-- 08 · CTA -->
   <section class="wp-scene" id="wp-scene-8">
     <div class="wp-scene-content wp-pos-center-low">
@@ -2416,8 +2753,10 @@ window.initUnityHeroScene = function () {
       <h2 class="section-reveal">Let's turn your operational data into leverage</h2>
       <p class="wp-es-sub section-reveal">Convierte tus datos operativos en ventaja competitiva</p>
       <div class="wp-cta-buttons section-reveal">
-        <a href="https://wa.me/573027464103" class="wp-btn wp-btn-primary" target="_blank" rel="noopener noreferrer" title="Escríbeme por WhatsApp">📲 Message me on WhatsApp</a>
-        <a href="https://www.linkedin.com/in/leonardo-g-024042128/" class="wp-btn wp-btn-outline" target="_blank" rel="noopener noreferrer" title="Ver LinkedIn">🔗 View LinkedIn</a>
+        <a href="mailto:andresleonardogomez@gmail.com" class="corp-btn corp-btn-primary" target="_blank" rel="noopener noreferrer">Contact via email</a>
+        <a href="https://www.linkedin.com/in/leonardo-g-024042128/" class="corp-btn corp-btn-secondary" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://wa.me/573027464103" class="corp-btn corp-btn-ghost" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="assets/cv-andres-gomez-ea.pdf" download class="corp-btn corp-btn-ghost">Download CV</a>
       </div>
       <p class="wp-honesty section-reveal">Metrics shown are from the real membership platform report (Jan–Oct 2026).</p>
     </div>
@@ -2502,7 +2841,7 @@ window.initUnityHeroScene = function () {
 
   // Themed ambient particle cloud (does not scatter; only fades + drifts)
   function ambientPoints(color, count, size, spread, yBias) {
-    var n = Math.max(20, Math.round(count * COUNT_SCALE));
+    var n = Math.max(16, Math.round(count * COUNT_SCALE * 0.7));
     var arr = new Float32Array(n * 3);
     for (var i = 0; i < n; i++) {
       arr[i * 3] = (Math.random() - 0.5) * spread;
@@ -2512,9 +2851,9 @@ window.initUnityHeroScene = function () {
     var geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.BufferAttribute(arr, 3));
     var pts = new THREE.Points(geo, new THREE.PointsMaterial({
-      color: color, size: size, transparent: true, opacity: 0.55, depthWrite: false
+      color: color, size: size, transparent: true, opacity: 0.35, depthWrite: false
     }));
-    part(pts, [0, 0, 0], null, null, 0.55).userData.noScatter = true;
+    part(pts, [0, 0, 0], null, null, 0.35).userData.noScatter = true;
     return pts;
   }
 
@@ -2562,10 +2901,10 @@ window.initUnityHeroScene = function () {
       var wire = (i % 2 === 0);
       var m = part(new THREE.Mesh(DECO_GEOS[k](), new THREE.MeshStandardMaterial({
         color: EMERALD, metalness: 0.45, roughness: 0.3,
-        emissive: EMERALD, emissiveIntensity: 0.3,
-        transparent: true, opacity: wire ? 0.32 : 0.22,
+        emissive: EMERALD, emissiveIntensity: 0.18,
+        transparent: true, opacity: wire ? 0.18 : 0.12,
         wireframe: wire, depthWrite: false
-      })), [0, 0, 0], null, null, wire ? 0.32 : 0.22);
+      })), [0, 0, 0], null, null, wire ? 0.18 : 0.12);
       var a = (i / kinds.length) * Math.PI * 2 + 0.7;
       var r = 3.1 + (i % 2) * 1.4;
       m.position.set(Math.cos(a) * r, ((i % 3) - 1) * 1.8, -1.6 - (i % 3) * 1.2);
@@ -2619,15 +2958,15 @@ window.initUnityHeroScene = function () {
     var parts = [];
     var knot = part(new THREE.Mesh(
       new THREE.TorusKnotGeometry(1.5, 0.45, 220, 32),
-      std(EMERALD, { metalness: 0.65, roughness: 0.28, emissive: 0x064e3b, emissiveIntensity: 0.4 })
+      std(EMERALD, { metalness: 0.65, roughness: 0.28, emissive: 0x064e3b, emissiveIntensity: 0.2 })
     ), [0, 0, 0]);
     parts.push(knot);
     // Wireframe shell + two orbit rings + octahedron satellites
     parts.push(part(new THREE.Mesh(new THREE.IcosahedronGeometry(2.6, 1),
-      new THREE.MeshBasicMaterial({ color: MINT, wireframe: true, transparent: true, opacity: 0.16 })),
-      [0, 0, 0], null, null, 0.16));
+      new THREE.MeshBasicMaterial({ color: MINT, wireframe: true, transparent: true, opacity: 0.1 })),
+      [0, 0, 0], null, null, 0.1));
     var ring1 = part(new THREE.Mesh(new THREE.TorusGeometry(2.9, 0.05, 10, 90),
-      std(MINT, { emissive: MINT, emissiveIntensity: 0.35 })), [0, 0, 0], [1.1, 0.3, 0]);
+      std(MINT, { emissive: MINT, emissiveIntensity: 0.18 })), [0, 0, 0], [1.1, 0.3, 0]);
     var ring2 = part(new THREE.Mesh(new THREE.TorusGeometry(3.35, 0.04, 10, 90),
       std(GOLD, { metalness: 0.85, roughness: 0.25 })), [0, 0, 0], [-0.9, 0.6, 0]);
     parts.push(ring1);
@@ -2641,8 +2980,8 @@ window.initUnityHeroScene = function () {
     var pgeo = new THREE.BufferGeometry();
     pgeo.setAttribute('position', new THREE.BufferAttribute(arr, 3));
     var pts = part(new THREE.Points(pgeo, new THREE.PointsMaterial({
-      color: MINT, size: 0.05, transparent: true, opacity: 0.7
-    })), [0, 0, 0], null, null, 0.7);
+      color: MINT, size: 0.05, transparent: true, opacity: 0.4
+    })), [0, 0, 0], null, null, 0.4);
     parts.push(pts);
     var g = makeGroup(mx, parts, function (t, dt) {
       if (this.userData.busy) return;
@@ -2782,7 +3121,7 @@ window.initUnityHeroScene = function () {
     parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(1.5, 3.0, 0.18),
       std(DARK, { metalness: 0.6, roughness: 0.35 })), [0, 0, 0]));
     parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(1.3, 2.78, 0.05),
-      std(SKY, { metalness: 0.1, roughness: 0.2, emissive: SKY, emissiveIntensity: 0.22 })), [0, 0, 0.1]));
+      std(SKY, { metalness: 0.1, roughness: 0.2, emissive: SKY, emissiveIntensity: 0.12 })), [0, 0, 0.1]));
     // Earpiece, home bar, side buttons and rear camera
     parts.push(part(new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.045, 0.02),
       std(DARK)), [0, 1.28, 0.135]));
@@ -2795,14 +3134,14 @@ window.initUnityHeroScene = function () {
     parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 0.04, 18),
       std(SLATE, { metalness: 0.8, roughness: 0.3 })), [0.42, 1.28, -0.1], [Math.PI / 2, 0, 0]));
     parts.push(part(new THREE.Mesh(new THREE.SphereGeometry(0.045, 14, 10),
-      std(SKY, { emissive: SKY, emissiveIntensity: 0.5 })), [0.42, 1.28, -0.12]));
+      std(SKY, { emissive: SKY, emissiveIntensity: 0.25 })), [0.42, 1.28, -0.12]));
     // Orbit ring linking the chat bubbles
     parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(1.95, 0.03, 10, 64),
-      std(GREEN, { emissive: GREEN, emissiveIntensity: 0.3 })), [0, 0, 0], [1.35, 0.2, 0]));
+      std(GREEN, { emissive: GREEN, emissiveIntensity: 0.15 })), [0, 0, 0], [1.35, 0.2, 0]));
     for (var i = 0; i < 7; i++) {
       var a = i * (Math.PI * 2 / 7) + 0.5;
       parts.push(part(new THREE.Mesh(new THREE.SphereGeometry(0.17, 20, 16),
-        std(i === 3 ? EMERALD : GREEN, { metalness: 0.3, roughness: 0.4, emissive: i === 3 ? EMERALD : GREEN, emissiveIntensity: 0.18 })),
+        std(i === 3 ? EMERALD : GREEN, { metalness: 0.3, roughness: 0.4, emissive: i === 3 ? EMERALD : GREEN, emissiveIntensity: 0.09 })),
         [Math.cos(a) * 1.7, ((i % 3) - 1) * 0.8, Math.sin(a) * 1.7]));
     }
     parts.push(ambientPoints(GREEN, 135, 0.05, 8)); // micro bubbles
@@ -2833,9 +3172,9 @@ window.initUnityHeroScene = function () {
     });
     // Emissive trend arrow above the bars
     parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 3.4, 10),
-      std(MINT, { emissive: MINT, emissiveIntensity: 0.45 })), [0.2, 0.9, 0.35], [0, 0, -1.05]));
+      std(MINT, { emissive: MINT, emissiveIntensity: 0.22 })), [0.2, 0.9, 0.35], [0, 0, -1.05]));
     parts.push(part(new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.4, 14),
-      std(MINT, { emissive: MINT, emissiveIntensity: 0.45 })), [1.68, 1.75, 0.35], [0, 0, -1.05]));
+      std(MINT, { emissive: MINT, emissiveIntensity: 0.22 })), [1.68, 1.75, 0.35], [0, 0, -1.05]));
     for (var i = 0; i < 10; i++) {
       parts.push(part(new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 0.07, 22),
         std(GOLD, { metalness: 0.9, roughness: 0.2, emissive: 0x7c4a12, emissiveIntensity: 0.15 })),
@@ -2923,11 +3262,11 @@ window.initUnityHeroScene = function () {
         std(GOLD, { metalness: 0.8, roughness: 0.3 })), [bx, 0.42, -0.15]));
     }
     parts.push(part(new THREE.Mesh(new THREE.ConeGeometry(0.3, 0.8, 20),
-      std(GOLD, { emissive: GOLD, emissiveIntensity: 0.6, metalness: 0.1, roughness: 0.5 })),
+      std(GOLD, { emissive: GOLD, emissiveIntensity: 0.3, metalness: 0.1, roughness: 0.5 })),
       [0, -1.5, 0], [Math.PI, 0, 0], [0, -1, 0]));
     // Glowing exhaust ring above the flame
     parts.push(part(new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.05, 10, 26),
-      std(0xf97316, { emissive: 0xf97316, emissiveIntensity: 0.7, metalness: 0.1, roughness: 0.5 })),
+      std(0xf97316, { emissive: 0xf97316, emissiveIntensity: 0.35, metalness: 0.1, roughness: 0.5 })),
       [0, -1.28, 0], [Math.PI / 2, 0, 0], [0, -1, 0]));
     parts.push(ambientPoints(WHITE, 165, 0.045, 8)); // stardust
     var g = makeGroup(mx, parts, function (t, dt) {
@@ -2984,23 +3323,23 @@ window.initUnityHeroScene = function () {
       renderer.outputColorSpace = THREE.SRGBColorSpace; // no-op on r128, applies on r152+
     }
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    renderer.toneMappingExposure = 0.85;
     sizeRenderer();
 
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x050505, 1.45));
-    var dir = new THREE.DirectionalLight(0xffffff, 2.4);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x050505, 1.05));
+    var dir = new THREE.DirectionalLight(0xffffff, 1.6);
     dir.position.set(5, 8, 6);
     scene.add(dir);
-    var pEmerald = new THREE.PointLight(EMERALD, 55, 45);
+    var pEmerald = new THREE.PointLight(EMERALD, 28, 45);
     pEmerald.position.set(-6, 3, 4);
     scene.add(pEmerald);
-    var pGold = new THREE.PointLight(GOLD, 42, 45);
+    var pGold = new THREE.PointLight(GOLD, 21, 45);
     pGold.position.set(6, -3, 5);
     scene.add(pGold);
-    var pMint = new THREE.PointLight(MINT, 26, 40);
+    var pMint = new THREE.PointLight(MINT, 13, 40);
     pMint.position.set(0, 6, -4);
     scene.add(pMint);
-    var pSky = new THREE.PointLight(SKY, 18, 40);
+    var pSky = new THREE.PointLight(SKY, 9, 40);
     pSky.position.set(0, -5, 6);
     scene.add(pSky);
 
@@ -3405,9 +3744,10 @@ window.initUnityHeroScene = function () {
             <h2 class="text-3xl md:text-4xl font-bold mb-4">Let's streamline your operations</h2>
             <p class="text-gray-400 mb-8">Available for Executive Assistant / Operations & Automation roles, remote and across US time zones.</p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://www.linkedin.com/in/leonardo-g-024042128/" target="_blank" class="px-8 py-3 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition">LinkedIn</a>
-                <a href="https://wa.me/573027464103" target="_blank" class="px-8 py-3 rounded-full bg-green-600 hover:bg-green-500 text-white font-semibold transition">WhatsApp</a>
-                <a href="mailto:andresleonardogomez@gmail.com" class="px-8 py-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white font-semibold transition">Email</a>
+                <a href="mailto:andresleonardogomez@gmail.com" target="_blank" class="corp-btn corp-btn-primary">Contact via email</a>
+                <a href="https://www.linkedin.com/in/leonardo-g-024042128/" target="_blank" class="corp-btn corp-btn-secondary">LinkedIn</a>
+                <a href="https://wa.me/573027464103" target="_blank" class="corp-btn corp-btn-ghost">WhatsApp</a>
+                <a href="assets/cv-andres-gomez-ea.pdf" download class="corp-btn corp-btn-ghost">Download CV</a>
             </div>
         </div>
     </section>
@@ -3629,9 +3969,9 @@ window.initUnityHeroScene = function () {
     }
 
     function particleTargetCount() {
-        if (state.isMobile) return 38;
-        var base = Math.round((window.innerWidth * window.innerHeight) / 16000);
-        return Math.max(60, Math.min(120, base));
+        if (state.isMobile) return 28;
+        var base = Math.round((window.innerWidth * window.innerHeight) / 24000);
+        return Math.max(40, Math.min(80, base));
     }
 
     function seedParticles(count) {
@@ -3720,7 +4060,7 @@ window.initUnityHeroScene = function () {
                 dy = list[i].y - list[j].y;
                 d2 = dx * dx + dy * dy;
                 if (d2 < linkDist2) {
-                    var alpha = (1 - Math.sqrt(d2) / linkDist) * (0.26 + pulse * 0.2);
+                    var alpha = (1 - Math.sqrt(d2) / linkDist) * (0.14 + pulse * 0.12);
                     ctx.strokeStyle = 'rgba(' + colBase + ',' + alpha.toFixed(3) + ')';
                     ctx.beginPath();
                     ctx.moveTo(list[i].x, list[i].y);
@@ -3731,7 +4071,7 @@ window.initUnityHeroScene = function () {
         }
 
         // Dots (radius wobbles while pulse is high -> "vibrate" effect).
-        ctx.fillStyle = 'rgba(' + colBase + ',' + (0.55 + pulse * 0.3).toFixed(3) + ')';
+        ctx.fillStyle = 'rgba(' + colBase + ',' + (0.38 + pulse * 0.2).toFixed(3) + ')';
         for (i = 0; i < list.length; i++) {
             p = list[i];
             var wobble = 1 + pulse * Math.sin(t * 0.02 + p.seed) * 0.6;
@@ -4027,6 +4367,140 @@ window.initUnityHeroScene = function () {
     }
 
     /* ============================================================
+     * OPERATIONS / WORDPRESS DIRECT MODE
+     * ============================================================ */
+    function isOperationsPath() {
+        var p = window.location.pathname || '';
+        return p === '/operations' || p.replace(/\/$/, '') === '/operations' || window.location.hash === '#operations';
+    }
+
+    function initOperationsMode() {
+        if (!isOperationsPath()) return;
+        document.body.classList.add('is-operations');
+    }
+
+    /* ============================================================
+     * FLOATING PROFILE BUBBLE
+     * ============================================================ */
+    function initProfileBubble() {
+        var bubble = document.getElementById('profile-bubble');
+        if (!bubble) return;
+        var img = bubble.querySelector('img');
+        var menu = bubble.querySelector('.bubble-menu');
+        var closeBtn = bubble.querySelector('.bubble-close');
+        var expanded = false;
+
+        function setCorner() {
+            bubble.classList.remove('bubble-top');
+            bubble.classList.add('bubble-corner');
+        }
+        function setTop() {
+            bubble.classList.remove('bubble-corner');
+            bubble.classList.add('bubble-top');
+        }
+        function updateShape() {
+            var y = window.scrollY || window.pageYOffset || 0;
+            if (y > 120) setCorner();
+            else setTop();
+        }
+        function toggleMenu(e) {
+            if (e) e.stopPropagation();
+            expanded = !expanded;
+            bubble.classList.toggle('expanded', expanded);
+        }
+        function closeMenu() {
+            expanded = false;
+            bubble.classList.remove('expanded');
+        }
+
+        updateShape();
+        window.addEventListener('scroll', updateShape, { passive: true });
+        bubble.addEventListener('click', function (e) {
+            if (e.target.closest('.bubble-menu a, .bubble-menu button, .bubble-close')) return;
+            toggleMenu(e);
+        });
+        if (closeBtn) closeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeMenu(); });
+        document.addEventListener('click', function (e) {
+            if (expanded && !bubble.contains(e.target)) closeMenu();
+        });
+        // On operations path start in corner so it does not overlap the hero text.
+        if (isOperationsPath()) {
+            setCorner();
+            window.scrollTo(0, 0);
+        }
+    }
+
+    /* ============================================================
+     * MORE PROFILES DROPDOWN
+     * ============================================================ */
+    function initMoreProfiles() {
+        var wrap = document.getElementById('more-profiles-wrap');
+        var btn = document.getElementById('more-profiles-btn');
+        if (!wrap || !btn) return;
+        function toggle() {
+            var open = wrap.classList.toggle('open');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        function close() {
+            wrap.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggle();
+        });
+        wrap.querySelectorAll('#more-profiles-menu button').forEach(function (b) {
+            b.addEventListener('click', function () { close(); });
+        });
+        document.addEventListener('click', function (e) {
+            if (!wrap.contains(e.target)) close();
+        });
+    }
+
+    /* ============================================================
+     * COPY CODE BUTTON
+     * ============================================================ */
+    function initCopyCode() {
+        var btn = document.getElementById('wp-copy-code');
+        var snippet = document.getElementById('wp-flodesk-snippet');
+        if (!btn || !snippet) return;
+        btn.addEventListener('click', function () {
+            var text = snippet.textContent || '';
+            var original = btn.textContent;
+            function revert() { btn.textContent = original; }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function () {
+                    btn.textContent = 'Copied!';
+                    setTimeout(revert, 1800);
+                }).catch(function () {
+                    fallbackCopy(text, btn, revert);
+                });
+            } else {
+                fallbackCopy(text, btn, revert);
+            }
+        });
+    }
+
+    function fallbackCopy(text, btn, revert) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+            document.execCommand('copy');
+            btn.textContent = 'Copied!';
+            setTimeout(revert, 1800);
+        } catch (err) {
+            btn.textContent = 'Copy failed';
+            setTimeout(revert, 1800);
+        }
+        document.body.removeChild(ta);
+    }
+
+    /* ============================================================
      * BOOT
      * ============================================================ */
     function boot() {
@@ -4040,11 +4514,20 @@ window.initUnityHeroScene = function () {
             activeTab: function () { return state.activeTab; }
         };
 
+        initOperationsMode();
+
         try { injectStyles(); } catch (err) { console.warn('[Portfolio] styles:', err); }
         try { initParticles(); } catch (err) { console.warn('[Portfolio] particles:', err); }
         try { initAudio(); } catch (err) { console.warn('[Portfolio] audio:', err); }
         try { initReveal(); } catch (err) { console.warn('[Portfolio] reveal:', err); }
         try { initHoverFeedback(); } catch (err) { console.warn('[Portfolio] hover:', err); }
+        try { initProfileBubble(); } catch (err) { console.warn('[Portfolio] bubble:', err); }
+        try { initMoreProfiles(); } catch (err) { console.warn('[Portfolio] more profiles:', err); }
+        try { initCopyCode(); } catch (err) { console.warn('[Portfolio] copy code:', err); }
+
+        if (isOperationsPath()) {
+            try { showTab('wordpress'); } catch (err) { console.warn('[Portfolio] operations tab:', err); }
+        }
     }
 
     try {

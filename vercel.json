@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/operations", "destination": "/index.html" },
+    { "source": "/operations/:path*", "destination": "/index.html" }
+  ]
+}
