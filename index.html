@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrés Gómez — Full-Stack · Unity XR · WordPress Developer</title>
-    <meta name="description" content="Bilingual senior software engineer: Full-Stack architectures, Unity XR simulations and WordPress automation. Available for remote roles and international projects.">
+    <title>Andrés Gómez — Executive Assistant · Operations & Automation · WordPress Data & Ops</title>
+    <meta name="description" content="Bilingual operations professional and founder's right hand: WordPress membership operations, automation with n8n/Google Apps Script/REST APIs, dashboards, SOPs and vendor management. Remote.">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -58,10 +58,11 @@
     <!-- INTRO / SELECTOR -->
     <section id="intro" class="min-h-screen flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.08),transparent_60%)]"></div>
-        <p class="text-cyan-400 tracking-widest text-sm uppercase mb-4 z-10">Bilingual Senior Software Engineer</p>
+        <p class="text-cyan-400 tracking-widest text-sm uppercase mb-4 z-10">Bilingual Operations & Automation Professional</p>
         <h1 class="text-4xl md:text-6xl font-extrabold mb-4 z-10">Andrés Leonardo Gómez Gil</h1>
         <p class="text-gray-400 max-w-2xl text-lg mb-8 z-10">
-            Ingeniero de software bilingüe con 8+ años entregando simulaciones inmersivas, arquitecturas full-stack y soluciones WordPress escalables para clientes internacionales.
+            Founder's right hand for a high-traffic WordPress membership business. I run operations, build automations, manage vendors, write SOPs and turn data into dashboards so the business scales without chaos.
+            <span class="block text-sm text-gray-500 mt-2">Mano derecha del fundador para un negocio de membresías WordPress de alto tráfico: operaciones, automatización, proveedores y reportes.</span>
         </p>
 
         <button id="activate-immersive" class="mb-10 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-600 to-fuchsia-600 text-white font-semibold hover:scale-105 transition z-10 flex items-center gap-2">
@@ -87,19 +88,20 @@
             <button onclick="showTab('wordpress')" class="group relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-gray-900/60 p-8 text-left card-hover">
                 <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
                 <div class="text-4xl mb-4">🚀</div>
-                <h3 class="text-xl font-bold text-white mb-2">WordPress Full-Stack</h3>
-                <p class="text-gray-400 text-sm">Memberships · Subscriptions · Automation · Integrations · Dashboards</p>
+                <h3 class="text-xl font-bold text-white mb-2">WordPress Data & Operations</h3>
+                <p class="text-gray-400 text-sm">Membership Operations · Automation · Reporting · n8n · Google Apps Script · REST APIs</p>
             </button>
         </div>
 
         <div class="mt-12 flex flex-wrap justify-center gap-3 z-10">
-            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">Unity 3D</span>
-            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">C#</span>
-            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">PHP/Laravel</span>
-            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">AWS</span>
-            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">Oculus Quest</span>
-            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">Web3</span>
-            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">IoT</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">WordPress Operations</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">n8n Automation</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">Google Apps Script</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">REST APIs</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">Dashboards & Reporting</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">SOPs & Documentation</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">Vendor Management</span>
+            <span class="px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-300 text-xs">English C1 / Bilingual</span>
         </div>
     </section>
 
@@ -110,7 +112,7 @@
             <div class="flex space-x-6 text-sm font-semibold uppercase tracking-wide">
                 <button id="nav-fullstack" onclick="showTab('fullstack')" class="tab-inactive pb-1">Full-Stack</button>
                 <button id="nav-unity" onclick="showTab('unity')" class="tab-inactive pb-1">Unity / XR</button>
-                <button id="nav-wordpress" onclick="showTab('wordpress')" class="tab-inactive pb-1">WordPress</button>
+                <button id="nav-wordpress" onclick="showTab('wordpress')" class="tab-inactive pb-1">WordPress Data & Ops</button>
             </div>
         </div>
     </nav>
@@ -2166,14 +2168,14 @@ window.initUnityHeroScene = function () {
     <!-- 00 · HERO -->
     <section class="wp-scene" id="wp-scene-0">
       <div class="wp-scene-content wp-pos-left">
-        <span class="wp-hero-badge section-reveal" title="Disponible para proyectos">📍 Bogotá, Colombia · Available for projects</span>
-        <h1 class="section-reveal">WordPress Full-Stack Developer</h1>
-        <h3 class="section-reveal">Memberships, subscriptions &amp; automation that pay for themselves.</h3>
-        <p class="wp-es-sub section-reveal">Membresías, suscripciones y automatización con WordPress.</p>
+        <span class="wp-hero-badge section-reveal" title="Disponible para proyectos">📍 Bogotá, Colombia · Available for remote roles</span>
+        <h1 class="section-reveal">WordPress Data &amp; Operations</h1>
+        <h3 class="section-reveal">Founder's right hand for a high-traffic WordPress membership business.</h3>
+        <p class="wp-es-sub section-reveal">Mano derecha del fundador para un negocio de membresías WordPress de alto tráfico.</p>
         <ul class="wp-hero-bullets">
-          <li class="section-reveal">I recover failed payments automatically.</li>
-          <li class="section-reveal">I eliminate hours of manual work per event.</li>
-          <li class="section-reveal">I replace third-party licenses with in-house systems.</li>
+          <li class="section-reveal">I run day-to-day operations for 80,000+ users and ~800 paying members.</li>
+          <li class="section-reveal">I automate workflows with n8n, Google Apps Script and REST APIs.</li>
+          <li class="section-reveal">I build dashboards, SOPs and vendor processes that keep the business moving.</li>
         </ul>
         <div class="wp-cta-buttons section-reveal" style="justify-content:flex-start;">
           <a href="#wp-scene-1" class="wp-btn wp-btn-primary" title="Sigue haciendo scroll y te lo demuestro">Keep scrolling — I'll prove it.</a>
@@ -2185,22 +2187,24 @@ window.initUnityHeroScene = function () {
     <!-- 01 · MEMBERSHIPS (Vault model) -->
     <section class="wp-scene" id="wp-scene-1">
       <div class="wp-scene-content wp-pos-right">
-        <span class="wp-tag section-reveal">01 · Memberships</span>
-        <h2 class="section-reveal">I protect your premium content</h2>
-        <p class="wp-es-sub section-reveal">Membresías · Protejo tu contenido premium</p>
-        <p class="section-reveal">Gated content with no access leaks, fewer support tickets and zero expensive plugins.</p>
+        <span class="wp-tag section-reveal">01 · Membership Operations</span>
+        <h2 class="section-reveal">I operate a high-traffic membership platform</h2>
+        <p class="wp-es-sub section-reveal">Operaciones de membresía · Plataforma de alto tráfico</p>
+        <p class="section-reveal">Server-side gating, user lifecycle management and daily operations for tens of thousands of page views and 80,000+ registered users.</p>
         <div class="wp-metric-block section-reveal">
           <div class="wp-metric-nums">
-            <span class="wp-metric-num wp-em" data-target="40" data-prefix="−" data-suffix="%">−40%</span>
-            <span class="wp-metric-chip wp-em" title="0 fugas de acceso">0 access leaks</span>
+            <span class="wp-metric-num wp-em" data-target="80000" data-prefix="">80,000</span>
+            <span class="wp-metric-chip wp-em" title="Usuarios registrados">registered users</span>
+            <span class="wp-metric-num" data-target="800" data-prefix="~" data-suffix="">~800</span>
+            <span class="wp-metric-chip" title="Miembros pagos">paying members</span>
           </div>
-          <div class="wp-metric-label">fewer support tickets for logins &amp; passwords</div>
+          <div class="wp-metric-label">plus tens of thousands of daily page views, with <b>0 access leaks</b> and fewer support tickets</div>
         </div>
         <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">How do I stop access leaks in my membership site?</p>
-          <p class="wp-qa-a">Server-side gating on every request — no leaky plugins, no shared passwords slipping through.</p>
-          <p class="wp-qa-es">Cero fugas de acceso, validado en el servidor.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20How%20do%20I%20stop%20access%20leaks%20in%20my%20membership%20site%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+          <p class="wp-qa-q">Can you run a large WordPress membership operation without leaks?</p>
+          <p class="wp-qa-a">Yes — server-side gating, automated user sync and clear SOPs keep 80,000+ users and ~800 paying members moving smoothly.</p>
+          <p class="wp-qa-es">Operaciones limpias para miles de usuarios y cientos de miembros pagos.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20run%20a%20large%20WordPress%20membership%20operation%20without%20leaks%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
         </div>
       </div>
     </section>
@@ -2208,17 +2212,17 @@ window.initUnityHeroScene = function () {
     <!-- 02 · SUBSCRIPTIONS (Coins model) -->
     <section class="wp-scene" id="wp-scene-2">
       <div class="wp-scene-content wp-pos-left">
-        <span class="wp-tag section-reveal">02 · Subscriptions</span>
-        <h2 class="section-reveal">I recover revenue you're losing</h2>
-        <p class="wp-es-sub section-reveal">Suscripciones · Recupero ingresos que se pierden</p>
-        <p class="section-reveal">Automatic dunning, revocation and reactivation of failed payments.</p>
+        <span class="wp-tag section-reveal">02 · Revenue Operations</span>
+        <h2 class="section-reveal">I recover revenue before it churns</h2>
+        <p class="wp-es-sub section-reveal">Ingresos recurrentes · Recupero pagos antes de perderlos</p>
+        <p class="section-reveal">Automatic dunning, failed-payment tracking and subscription lifecycle management that protect MRR without constant manual follow-up.</p>
         <div class="wp-metric-block section-reveal">
           <div class="wp-metric-main">
             <div class="wp-metric-nums">
               <span class="wp-metric-num" data-target="13.9" data-dec="1" data-prefix="+$" data-suffix="k">+$13.9k</span>
               <span class="wp-metric-chip" title="Pagos fallidos recuperados">+18% failed payments</span>
             </div>
-            <div class="wp-metric-label">recovered in 6 months with automatic dunning</div>
+            <div class="wp-metric-label">recovered in 6 months with automated dunning and status tracking</div>
           </div>
           <svg class="wp-metric-chart" viewBox="0 0 140 52" role="img" aria-label="Recovered revenue per month">
             <rect class="wp-mbar" x="8" y="38.2" width="14" height="7.8" rx="3" fill="#f39c12" data-h="7.8" data-y="38.2"/>
@@ -2231,10 +2235,10 @@ window.initUnityHeroScene = function () {
           </svg>
         </div>
         <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">Why am I losing money from failed payments?</p>
-          <p class="wp-qa-a">Because nobody retries them. Automatic dunning retries, revokes and reactivates — before the subscriber churns.</p>
-          <p class="wp-qa-es">Recupero pagos fallidos antes de que se pierdan.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Why%20am%20I%20losing%20money%20from%20failed%20payments%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+          <p class="wp-qa-q">How do you stop failed payments from draining MRR?</p>
+          <p class="wp-qa-a">With automated dunning, clear status tracking and fast escalation — revenue is recovered before the subscriber churns.</p>
+          <p class="wp-qa-es">Recupero ingresos recurrentes con seguimiento automatizado.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20How%20do%20you%20stop%20failed%20payments%20from%20draining%20MRR%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
         </div>
       </div>
     </section>
@@ -2242,10 +2246,10 @@ window.initUnityHeroScene = function () {
     <!-- 03 · EVENTS (Calendar model) -->
     <section class="wp-scene" id="wp-scene-3">
       <div class="wp-scene-content wp-pos-right">
-        <span class="wp-tag section-reveal">03 · Events</span>
+        <span class="wp-tag section-reveal">03 · Event Operations</span>
         <h2 class="section-reveal">Events in minutes, not hours</h2>
-        <p class="wp-es-sub section-reveal">Eventos · Creo eventos en minutos, no en horas</p>
-        <p class="section-reveal">The Events Calendar + Zoom API: AI and Google Sheets generate the event, ticket and Zoom meeting automatically.</p>
+        <p class="wp-es-sub section-reveal">Eventos · Operativa de eventos en minutos, no horas</p>
+        <p class="section-reveal">n8n, Google Sheets, The Events Calendar and Zoom API work together to generate the event, ticket, meeting and reminders with almost no manual work.</p>
         <div class="wp-metric-block section-reveal">
           <div class="wp-metric-main">
             <div class="wp-metric-nums">
@@ -2261,10 +2265,10 @@ window.initUnityHeroScene = function () {
           </svg>
         </div>
         <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">Can you create events faster than my team?</p>
-          <p class="wp-qa-a">Yes — AI + Google Sheets generate the event, the ticket and the Zoom meeting. About 5 minutes, start to finish.</p>
-          <p class="wp-qa-es">Eventos listos en ~5 minutos, sin trabajo manual.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20create%20events%20faster%20than%20my%20team%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+          <p class="wp-qa-q">Can you run events without burning hours on setup?</p>
+          <p class="wp-qa-a">Yes — the workflow creates the event, ticket, Zoom meeting and reminders in about 5 minutes, every time.</p>
+          <p class="wp-qa-es">Eventos listos en ~5 minutos con n8n y Google Sheets.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20run%20events%20without%20burning%20hours%20on%20setup%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
         </div>
       </div>
     </section>
@@ -2273,21 +2277,21 @@ window.initUnityHeroScene = function () {
     <section class="wp-scene" id="wp-scene-4">
       <div class="wp-scene-content wp-pos-left">
         <span class="wp-tag section-reveal">04 · Automation</span>
-        <h2 class="section-reveal">24/7 customer service without more staff</h2>
-        <p class="wp-es-sub section-reveal">Automatización · Atiendo clientes 24/7 sin más personal</p>
-        <p class="section-reveal">WhatsApp bots, n8n workflows and Gemini AI flows that reply, qualify and follow up on their own.</p>
+        <h2 class="section-reveal">Operations that run while you sleep</h2>
+        <p class="wp-es-sub section-reveal">Automatización · Operaciones que corren solas</p>
+        <p class="section-reveal">n8n workflows, Google Apps Script, REST APIs and webhooks connect WordPress, spreadsheets, Zoom, payment providers and messaging so nothing falls through the cracks.</p>
         <div class="wp-metric-block section-reveal">
           <div class="wp-metric-nums">
             <span class="wp-metric-num" data-target="1200" data-prefix="+">+1,200</span>
-            <span class="wp-metric-chip" title="24/7 sin pausas">24/7 always on</span>
+            <span class="wp-metric-chip" title="24/7 sin pausas">24/7 automated tasks/mo</span>
           </div>
-          <div class="wp-metric-label">automated conversations every month via WhatsApp bots + n8n + Gemini AI</div>
+          <div class="wp-metric-label">automated actions every month across member sync, event setup, reporting and follow-ups</div>
         </div>
         <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">Can a bot reply to customers 24/7?</p>
-          <p class="wp-qa-a">It already does — WhatsApp bots + n8n + Gemini AI answer, qualify and follow up while you sleep.</p>
-          <p class="wp-qa-es">Bots que responden de día y de noche.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20a%20bot%20reply%20to%20my%20customers%2024%2F7%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+          <p class="wp-qa-q">Can you automate our recurring operational tasks?</p>
+          <p class="wp-qa-a">Yes — n8n + Google Apps Script + REST APIs handle member sync, event setup, reporting and follow-ups without manual intervention.</p>
+          <p class="wp-qa-es">Automatizaciones reales con n8n, Apps Script y APIs.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20automate%20our%20recurring%20operational%20tasks%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
         </div>
       </div>
     </section>
@@ -2295,17 +2299,17 @@ window.initUnityHeroScene = function () {
     <!-- 05 · DASHBOARDS (Bars model) -->
     <section class="wp-scene" id="wp-scene-5">
       <div class="wp-scene-content wp-pos-right">
-        <span class="wp-tag section-reveal">05 · Dashboards</span>
-        <h2 class="section-reveal">I see losses before they happen</h2>
-        <p class="wp-es-sub section-reveal">Paneles · Veo pérdidas antes de que ocurran</p>
-        <p class="section-reveal">MRR, ARR and churn in real time, so you act before it's too late.</p>
+        <span class="wp-tag section-reveal">05 · Reporting &amp; Dashboards</span>
+        <h2 class="section-reveal">I turn operational data into decisions</h2>
+        <p class="wp-es-sub section-reveal">Reportes · Convierto datos operativos en decisiones</p>
+        <p class="section-reveal">MRR, ARR, churn, failed payments and traffic trends in one place, so the founder sees the health of the business at a glance.</p>
         <div class="wp-metric-block section-reveal">
           <div class="wp-metric-main">
             <div class="wp-metric-nums">
               <span class="wp-metric-num" data-target="21.6" data-dec="1" data-prefix="+$" data-suffix="k">+$21.6k</span>
               <span class="wp-metric-chip">+163% MRR</span>
             </div>
-            <div class="wp-metric-label">MRR in 12 months · churn 6.8% → <b>5.3%</b> (−22%)</div>
+            <div class="wp-metric-label">tracked in 12 months · churn 6.8% → <b>5.3%</b> (−22%)</div>
           </div>
           <svg class="wp-metric-chart" viewBox="0 0 220 64" role="img" aria-label="MRR growth">
             <defs>
@@ -2324,10 +2328,10 @@ window.initUnityHeroScene = function () {
           </svg>
         </div>
         <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">How do I see revenue losses before they happen?</p>
-          <p class="wp-qa-a">Real-time MRR, ARR and churn dashboards flag the leak while there's still time to act on it.</p>
-          <p class="wp-qa-es">MRR y churn en tiempo real, sin sorpresas.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20How%20do%20I%20see%20revenue%20losses%20before%20they%20happen%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+          <p class="wp-qa-q">How do I track the business without chasing spreadsheets?</p>
+          <p class="wp-qa-a">A single dashboard pulls MRR, ARR, churn, failed payments and traffic trends — updated automatically from WordPress and payment data.</p>
+          <p class="wp-qa-es">Reportes automáticos con los KPIs clave del negocio.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20How%20do%20I%20track%20the%20business%20without%20chasing%20spreadsheets%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
         </div>
       </div>
     </section>
@@ -2335,21 +2339,22 @@ window.initUnityHeroScene = function () {
     <!-- 06 · CUSTOM TOOLS (Gear model) -->
     <section class="wp-scene" id="wp-scene-6">
       <div class="wp-scene-content wp-pos-left">
-        <span class="wp-tag section-reveal">06 · Custom Tools</span>
-        <h2 class="section-reveal">I replace third-party licenses</h2>
-        <p class="wp-es-sub section-reveal">Herramientas a medida · Reemplazo licencias de terceros</p>
-        <p class="section-reveal">Custom modules inside WordPress — like my own snippet manager with REST sync and rollback — that centralize operations.</p>
+        <span class="wp-tag section-reveal">06 · SOPs &amp; Systems</span>
+        <h2 class="section-reveal">I build the systems behind the operator</h2>
+        <p class="wp-es-sub section-reveal">Procesos · Construyo los sistemas detrás del operador</p>
+        <p class="section-reveal">SOPs, vendor tracking, contract renewal reminders and custom WordPress tools that keep the business running when I'm not online.</p>
         <div class="wp-metric-block section-reveal">
           <div class="wp-metric-nums">
             <span class="wp-metric-num" data-target="4">4</span>
+            <span class="wp-metric-chip" title="Ahorro mensual recurrente">licenses/tools replaced</span>
           </div>
-          <div class="wp-metric-label">third-party licenses replaced · <span class="wp-metric-chip" title="Ahorro mensual recurrente">recurring monthly savings</span></div>
+          <div class="wp-metric-label">third-party licenses replaced plus documented SOPs for intake, triage and escalation</div>
         </div>
         <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">Can you replace my expensive plugins?</p>
-          <p class="wp-qa-a">Already replaced four — custom WordPress modules that do more, sync better and cost $0/month in licenses.</p>
-          <p class="wp-qa-es">Módulos propios sin licencias mensuales.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20replace%20my%20expensive%20plugins%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+          <p class="wp-qa-q">Can you document our processes so anyone can run them?</p>
+          <p class="wp-qa-a">Yes — I write SOPs for intake, triage and escalation, plus build custom tools and vendor-tracking systems that remove single points of failure.</p>
+          <p class="wp-qa-es">SOPs claros y herramientas propias para que nada dependa de una sola persona.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20document%20our%20processes%20so%20anyone%20can%20run%20them%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
         </div>
       </div>
     </section>
@@ -2357,14 +2362,14 @@ window.initUnityHeroScene = function () {
     <!-- 07 · LIVE PORTFOLIO (Nebula) -->
     <section class="wp-scene" id="wp-scene-7">
       <div class="wp-scene-content wp-pos-center-wide">
-        <span class="wp-tag section-reveal">07 · Portfolio</span>
-        <h2 class="section-reveal">Live portfolio</h2>
-        <p class="wp-es-sub section-reveal">Portafolio en vivo</p>
-        <p class="section-reveal">HTML/CSS recreations of systems I run in production. Click “View analysis” for the full breakdown of each one.</p>
+        <span class="wp-tag section-reveal">07 · Live Systems</span>
+        <h2 class="section-reveal">Systems I operate in production</h2>
+        <p class="wp-es-sub section-reveal">Sistemas que opero en producción</p>
+        <p class="section-reveal">HTML/CSS recreations of the operational systems I run day to day. Click “View analysis” for the full breakdown of each one.</p>
         <div class="wp-windows-grid">
           <div class="wp-window-float section-reveal">
             <div class="wp-window-card" data-wp-tilt>
-              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">buscadorpro.mapa — ZIP Finder</span></div>
+              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">buscadorpro.mapa — Territory Operations</span></div>
               <div class="wp-window-body">
                 <svg class="wp-mock-map" viewBox="0 0 320 200" role="img" aria-label="Map with ZIP polygons">
                   <rect width="320" height="200" fill="#0a0f0d"/>
@@ -2396,7 +2401,7 @@ window.initUnityHeroScene = function () {
           </div>
           <div class="wp-window-float section-reveal">
             <div class="wp-window-card" data-wp-tilt>
-              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">zoom.tv — Live Events Grid</span></div>
+              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">zoom.tv — Event Operations Grid</span></div>
               <div class="wp-window-body">
                 <div class="wp-mini-grid">
                   <div class="wp-mini-event">
@@ -2426,7 +2431,7 @@ window.initUnityHeroScene = function () {
           </div>
           <div class="wp-window-float section-reveal">
             <div class="wp-window-card" data-wp-tilt>
-              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">snippet-manager — MRR dashboard</span></div>
+              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">snippet-manager — Operations Dashboard</span></div>
               <div class="wp-window-body">
                 <div class="wp-metric-row">
                   <div class="wp-mc"><span class="wp-mc-label">MRR</span><span class="wp-mc-value">$21.6k</span><span class="wp-mc-delta up">▲ 12%</span></div>
@@ -2446,7 +2451,7 @@ window.initUnityHeroScene = function () {
           </div>
           <div class="wp-window-float section-reveal">
             <div class="wp-window-card" data-wp-tilt>
-              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">membership.landing — Checkout</span></div>
+              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">membership.landing — Membership Ops</span></div>
               <div class="wp-window-body">
                 <div class="wp-mini-pricing">
                   <span class="wp-vip-badge">★ VIP</span>
@@ -2465,10 +2470,10 @@ window.initUnityHeroScene = function () {
           </div>
         </div>
         <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">Can you show me real systems you've built?</p>
-          <p class="wp-qa-a">These four run in production today. Open any “View analysis” card above for the full technical breakdown.</p>
-          <p class="wp-qa-es">Sistemas reales en producción, con análisis incluido.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20show%20me%20real%20systems%20you%27ve%20built%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
+          <p class="wp-qa-q">Can you show me operational systems you actually run?</p>
+          <p class="wp-qa-a">These four run in production today. Open any “View analysis” card above for the operational breakdown.</p>
+          <p class="wp-qa-es">Sistemas operativos reales en producción, con análisis incluido.</p>
+          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20show%20me%20operational%20systems%20you%20actually%20run%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
         </div>
       </div>
     </section>
@@ -2477,13 +2482,13 @@ window.initUnityHeroScene = function () {
     <section class="wp-scene" id="wp-scene-8">
       <div class="wp-scene-content wp-pos-center-low">
         <span class="wp-tag section-reveal">08 · Contact</span>
-        <h2 class="section-reveal">Let's talk and automate your business</h2>
-        <p class="wp-es-sub section-reveal">Hablemos y automatizamos tu negocio</p>
+        <h2 class="section-reveal">Let's talk operations, automation &amp; remote support</h2>
+        <p class="wp-es-sub section-reveal">Hablemos de operaciones, automatización y soporte remoto</p>
         <div class="wp-cta-buttons section-reveal">
           <a href="https://wa.me/573027464103" class="wp-btn wp-btn-primary" target="_blank" rel="noopener noreferrer" title="Escríbeme por WhatsApp">📲 Message me on WhatsApp</a>
           <a href="https://www.linkedin.com/in/leonardo-g-024042128/" class="wp-btn wp-btn-outline" target="_blank" rel="noopener noreferrer" title="Ver LinkedIn">🔗 View LinkedIn</a>
         </div>
-        <p class="wp-honesty section-reveal">Illustrative figures based on real projects. · Cifras ilustrativas basadas en proyectos reales.</p>
+        <p class="wp-honesty section-reveal">Metrics reflect a real high-traffic WordPress membership platform I operate. · Métricas basadas en una plataforma real que opero.</p>
       </div>
     </section>
   </main>
@@ -3293,32 +3298,32 @@ window.initUnityHeroScene = function () {
 
   var WP_ANALYSES = {
     map: {
-      tag: 'buscadorpro.mapa — ZIP Finder',
-      title: 'BuscadorPro: geographic finder for financial centers',
-      intel: 'GeoDirectory + Leaflet with ZIP polygons served from a local boundaries file: the map works without Google Maps, and searches run custom SQL against the polygons instead of an external API. The slot logic (10 per ZIP) turns every territory into limited, sellable inventory.',
-      rev: 'Turns the map into a revenue channel: each ZIP is monetized directly through a territory-purchase flow, and the 10-slot limit per ZIP creates scarcity that pushes the buying decision. Plus, zero Google Maps API bill on every map load.',
-      tech: 'Local ZIP boundaries file (GeoJSON) instead of Google Maps; custom SQL on GeoDirectory instead of premium search plugins; open-source Leaflet as the renderer. Result: zero map licenses and zero paid directory plugins.'
+      tag: 'buscadorpro.mapa — Territory Operations',
+      title: 'BuscadorPro: territory inventory and operations',
+      intel: 'GeoDirectory + Leaflet with local ZIP polygons: the map runs without Google Maps API costs and turns every territory into limited, sellable inventory. I manage the vendor relationship, monitor renewals and keep the boundary data current.',
+      rev: 'Each ZIP becomes a revenue unit with a 10-slot scarcity model, while zero Google Maps API usage keeps vendor costs predictable.',
+      tech: 'Local GeoJSON boundaries, custom SQL on GeoDirectory, open-source Leaflet. Result: no map licenses, no paid directory plugins, and a documented renewal process.'
     },
     zoom: {
-      tag: 'zoom.tv — Live Events Grid',
-      title: 'Zoom TV Grid: centralized live events',
-      intel: 'A live grid that fuses The Events Calendar with the Zoom API: every card validates visitor access, resolves their timezone and shows a real-time countdown. The system knows which event is LIVE and which one is next, with zero manual work.',
-      rev: 'Centralizes every event without paying external event platforms and cuts no-shows: countdown urgency and validated access raise effective attendance at the events that sell.',
-      tech: 'Server-side timezone handling, access validation built into the shortcode and lightweight JS countdowns. Replaces third-party event landings and manual reminders.'
+      tag: 'zoom.tv — Event Operations Grid',
+      title: 'Zoom TV Grid: event operations at scale',
+      intel: 'A live event grid fused with The Events Calendar and Zoom API. Access validation, timezone resolution and real-time countdowns run server-side, so the team spends minutes instead of hours per event.',
+      rev: 'Centralizes events without external event-platform fees and cuts no-shows: automated reminders and validated access raise attendance.',
+      tech: 'n8n + Google Sheets feed event data; server-side timezone handling and access validation; lightweight JS countdowns. Replaces manual event setup and third-party landing tools.'
     },
     mrr: {
-      tag: 'snippet-manager — MRR dashboard',
-      title: 'Snippet Manager + MRR Dashboard',
-      intel: 'A snippet manager with its own REST sync on top of WPCode: every push stores an explicit backup, shows the diff before applying and allows deterministic rollback. On top, a dashboard with MRR/ARR/churn computed straight from subscription data.',
-      rev: 'Less downtime = less lost revenue: instant rollback keeps a code error from taking checkout down, and the dashboard spots MRR leaks before they turn into churn.',
-      tech: 'Dedicated REST API with its own capability instead of third-party reporting tools; explicit backups in post meta instead of generic revisions; local diff before writing to production. Replaces monitoring and reporting licenses.'
+      tag: 'snippet-manager — Operations Dashboard',
+      title: 'Operations Dashboard + Change Control',
+      intel: 'A custom snippet manager with REST sync, explicit backups, diff previews and deterministic rollback — plus an MRR/ARR/churn dashboard computed from subscription data.',
+      rev: 'Fewer production incidents protect revenue, and automated reporting gives the founder visibility without chasing spreadsheets.',
+      tech: 'Dedicated REST API, Google Apps Script for reporting, explicit post-meta backups and local diff before production writes. Replaces monitoring and reporting licenses.'
     },
     vip: {
-      tag: 'membership.landing — Checkout',
-      title: 'Membership Landing: high-conversion checkout',
-      intel: 'Membership landing with dynamic WooCommerce variations, cross-product discounts and AJAX add-to-cart with no reload. Urgency badges (VIP, limited seats) respond to the real cart state.',
-      rev: 'More conversion and fewer abandoned carts: buying is one click with no refresh, and cross-discounts raise the average ticket. All without paying for a funnel builder.',
-      tech: 'Native WooCommerce + custom AJAX instead of ClickFunnels-style tools; dynamic pricing computed in PHP; zero paid page builders in the checkout flow.'
+      tag: 'membership.landing — Membership Ops',
+      title: 'Membership Ops: conversion and lifecycle',
+      intel: 'Membership landing with dynamic WooCommerce variations, cross-product discounts and one-click checkout. I also track renewals, failed payments and member lifecycle status behind the scenes.',
+      rev: 'Higher conversion and fewer abandoned carts, plus proactive lifecycle management that reduces churn before it happens.',
+      tech: 'Native WooCommerce + custom AJAX; n8n workflows for renewal and dunning; dynamic pricing computed in PHP. No funnel-builder fees.'
     }
   };
 
@@ -3466,8 +3471,8 @@ window.initUnityHeroScene = function () {
     <!-- FINAL CTA -->
     <section id="final-cta" class="py-20 text-center border-t border-white/10 relative z-10">
         <div class="max-w-3xl mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Let's build something great</h2>
-            <p class="text-gray-400 mb-8">Available for remote full-time roles, freelance projects and consulting.</p>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Let's streamline your operations</h2>
+            <p class="text-gray-400 mb-8">Available for Executive Assistant / Operations & Automation roles, remote and across US time zones.</p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="https://www.linkedin.com/in/leonardo-g-024042128/" target="_blank" class="px-8 py-3 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition">LinkedIn</a>
                 <a href="https://wa.me/573027464103" target="_blank" class="px-8 py-3 rounded-full bg-green-600 hover:bg-green-500 text-white font-semibold transition">WhatsApp</a>
@@ -3477,7 +3482,7 @@ window.initUnityHeroScene = function () {
     </section>
 
     <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm relative z-10">
-        <p>© 2026 Andrés Leonardo Gómez Gil · Full-Stack · Unity XR · WordPress Developer</p>
+        <p>© 2026 Andrés Leonardo Gómez Gil · Executive Assistant · Operations & Automation · WordPress Data & Ops</p>
     </footer>
 
     <script>
