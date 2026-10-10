@@ -63,11 +63,13 @@
         body.is-operations .corp-only { display: block !important; }
         body.is-operations .corp-hidden { display: none !important; }
         body.is-operations #intro,
-        html.is-operations-root #intro,
-        body.is-operations #main-nav,
-        html.is-operations-root #main-nav { display: none !important; }
+        html.is-operations-root #intro { display: none !important; }
 
-        /* Floating profile bubble */
+        /* Floating profile bubble: only on /operations */
+        #profile-bubble { display: none !important; }
+        body.is-operations #profile-bubble,
+        html.is-operations-root #profile-bubble { display: block !important; }
+
         #profile-bubble {
             position: fixed;
             z-index: 90;
@@ -4433,9 +4435,7 @@ window.initUnityHeroScene = function () {
         document.addEventListener('click', function (e) {
             if (expanded && !bubble.contains(e.target)) closeMenu();
         });
-        // On operations path start in corner so it does not overlap the hero text.
         if (isOperationsPath()) {
-            setCorner();
             window.scrollTo(0, 0);
         }
     }
