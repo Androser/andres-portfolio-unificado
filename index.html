@@ -73,125 +73,227 @@
         #profile-bubble {
             position: fixed;
             z-index: 90;
-            border-radius: 50%;
             overflow: hidden;
             cursor: pointer;
-            background: #111;
-            border: 2px solid rgba(255,255,255,0.18);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.45);
-            transition: width 0.45s cubic-bezier(.22,.61,.36,1),
-                        height 0.45s cubic-bezier(.22,.61,.36,1),
-                        top 0.45s cubic-bezier(.22,.61,.36,1),
-                        left 0.45s cubic-bezier(.22,.61,.36,1),
-                        right 0.45s cubic-bezier(.22,.61,.36,1),
-                        bottom 0.45s cubic-bezier(.22,.61,.36,1),
-                        transform 0.45s cubic-bezier(.22,.61,.36,1);
-            will-change: transform, width, height, top, left, right, bottom;
+            background: #0a0a0a;
+            border: 1px solid rgba(255,255,255,0.22);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+            transition: width 0.55s cubic-bezier(.22,.61,.36,1),
+                        height 0.55s cubic-bezier(.22,.61,.36,1),
+                        top 0.55s cubic-bezier(.22,.61,.36,1),
+                        right 0.55s cubic-bezier(.22,.61,.36,1),
+                        bottom 0.55s cubic-bezier(.22,.61,.36,1),
+                        left 0.55s cubic-bezier(.22,.61,.36,1),
+                        border-radius 0.55s cubic-bezier(.22,.61,.36,1),
+                        transform 0.55s cubic-bezier(.22,.61,.36,1);
+            will-change: transform, width, height, top, right, bottom, left, border-radius;
         }
         #profile-bubble img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center;
             display: block;
+            pointer-events: none;
         }
-        #profile-bubble .bubble-menu {
+        #profile-bubble .bubble-badge {
             position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: rgba(10,10,10,0.92);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.25s ease, visibility 0.25s ease;
-            padding: 12px;
-            text-align: center;
-        }
-        #profile-bubble.expanded .bubble-menu {
-            opacity: 1;
-            visibility: visible;
-        }
-        #profile-bubble .bubble-menu a,
-        #profile-bubble .bubble-menu button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            width: 100%;
-            padding: 8px 10px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #e5e7eb;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
-            text-decoration: none;
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
-        #profile-bubble .bubble-menu a:hover,
-        #profile-bubble .bubble-menu button:hover {
-            background: rgba(255,255,255,0.16);
-            transform: translateY(-1px);
-        }
-        #profile-bubble .bubble-close {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: #fff;
-            font-size: 14px;
-            line-height: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        #profile-bubble.bubble-top {
-            width: 180px;
-            height: 180px;
-            top: 22vh;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            padding: 5px 11px;
+            border-radius: 999px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        #profile-bubble.bubble-top .bubble-badge { opacity: 1; }
+
+        #profile-bubble.bubble-top {
+            width: 150px;
+            height: 200px;
+            top: 120px;
+            right: 6%;
+            left: auto;
+            bottom: auto;
+            border-radius: 22px;
         }
         #profile-bubble.bubble-corner {
-            width: 72px;
-            height: 72px;
+            width: 64px;
+            height: 64px;
             right: 22px;
             bottom: 22px;
             left: auto;
             top: auto;
-            transform: none;
+            border-radius: 50%;
         }
-        #profile-bubble.bubble-corner.expanded {
-            width: 180px;
-            height: 180px;
+        #profile-bubble.bubble-corner .bubble-badge { opacity: 0; }
+
+        @media (max-width: 1024px) {
+            #profile-bubble.bubble-top {
+                width: 130px;
+                height: 175px;
+                top: 110px;
+                right: 4%;
+            }
         }
         @media (max-width: 767px) {
             #profile-bubble.bubble-top {
-                width: 140px;
-                height: 140px;
-                top: 18vh;
+                width: 110px;
+                height: 150px;
+                top: 95px;
+                right: 12px;
             }
             #profile-bubble.bubble-corner {
-                width: 60px;
-                height: 60px;
+                width: 56px;
+                height: 56px;
                 right: 14px;
                 bottom: 14px;
             }
-            #profile-bubble.bubble-corner.expanded {
-                width: 160px;
-                height: 160px;
-            }
-            #profile-bubble .bubble-menu a,
-            #profile-bubble .bubble-menu button {
-                font-size: 11px;
-                padding: 7px 8px;
+        }
+
+        /* Contact menu overlay with animated border lines */
+        #contact-menu-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 95;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #contact-menu-overlay.open {
+            pointer-events: auto;
+            opacity: 1;
+            visibility: visible;
+        }
+        .cm-line {
+            position: absolute;
+            background: rgba(255,255,255,0.55);
+            box-shadow: 0 0 10px rgba(255,255,255,0.25);
+        }
+        .cm-line-bottom {
+            bottom: 46px;
+            right: 46px;
+            height: 1px;
+            width: 0;
+            transition: width 0.6s cubic-bezier(.22,.61,.36,1);
+        }
+        .cm-line-right {
+            bottom: 46px;
+            right: 46px;
+            width: 1px;
+            height: 0;
+            transition: height 0.6s cubic-bezier(.22,.61,.36,1) 0.15s;
+        }
+        .cm-line-top {
+            top: 24px;
+            right: 46px;
+            height: 1px;
+            width: 0;
+            transform-origin: right center;
+            transition: width 0.6s cubic-bezier(.22,.61,.36,1) 0.35s;
+        }
+        .cm-line-left {
+            bottom: 46px;
+            left: 24px;
+            width: 1px;
+            height: 0;
+            transform-origin: center bottom;
+            transition: height 0.6s cubic-bezier(.22,.61,.36,1) 0.35s;
+        }
+        #contact-menu-overlay.open .cm-line-bottom { width: calc(100vw - 70px); }
+        #contact-menu-overlay.open .cm-line-right { height: calc(100vh - 70px); }
+        #contact-menu-overlay.open .cm-line-top { width: calc(100vw - 70px); }
+        #contact-menu-overlay.open .cm-line-left { height: calc(100vh - 70px); }
+
+        .cm-panel {
+            position: absolute;
+            right: 28px;
+            bottom: 64px;
+            width: 260px;
+            background: rgba(8,8,8,0.96);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 18px;
+            padding: 22px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.65);
+            transform: translateY(20px) scale(0.96);
+            opacity: 0;
+            transition: transform 0.45s cubic-bezier(.22,.61,.36,1) 0.45s,
+                        opacity 0.45s ease 0.45s;
+        }
+        #contact-menu-overlay.open .cm-panel {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        .cm-panel h4 {
+            margin: 0 0 14px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .cm-panel a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 11px 14px;
+            margin-bottom: 8px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #e5e7eb;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            text-decoration: none;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .cm-panel a:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateX(-3px);
+        }
+        .cm-panel a:last-child { margin-bottom: 0; }
+        .cm-close {
+            position: absolute;
+            top: -44px;
+            right: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .cm-close:hover { background: rgba(255,255,255,0.18); }
+
+        @media (max-width: 767px) {
+            .cm-line-bottom { bottom: 38px; right: 38px; }
+            .cm-line-right { bottom: 38px; right: 38px; }
+            .cm-line-top { top: 16px; right: 38px; }
+            .cm-line-left { bottom: 38px; left: 16px; }
+            #contact-menu-overlay.open .cm-line-bottom { width: calc(100vw - 54px); }
+            #contact-menu-overlay.open .cm-line-right { height: calc(100vh - 54px); }
+            #contact-menu-overlay.open .cm-line-top { width: calc(100vw - 54px); }
+            #contact-menu-overlay.open .cm-line-left { height: calc(100vh - 54px); }
+            .cm-panel {
+                right: 16px;
+                bottom: 54px;
+                width: calc(100vw - 32px);
+                max-width: 320px;
             }
         }
 
@@ -306,12 +408,22 @@
     <!-- FLOATING PROFILE BUBBLE -->
     <div id="profile-bubble" class="bubble-top" aria-label="Contact Andrés">
         <img src="assets/Foto de Perfil Sin FOndo.png" alt="Andrés Gómez profile">
-        <div class="bubble-menu">
-            <button class="bubble-close" aria-label="Close contact menu">×</button>
+        <span class="bubble-badge">Contact me</span>
+    </div>
+
+    <!-- CONTACT MENU OVERLAY -->
+    <div id="contact-menu-overlay" aria-hidden="true">
+        <span class="cm-line cm-line-bottom"></span>
+        <span class="cm-line cm-line-right"></span>
+        <span class="cm-line cm-line-top"></span>
+        <span class="cm-line cm-line-left"></span>
+        <div class="cm-panel">
+            <button class="cm-close" aria-label="Close contact menu">×</button>
+            <h4>Get in touch</h4>
             <a href="mailto:andresleonardogomez@gmail.com" target="_blank" rel="noopener">Email</a>
             <a href="https://www.linkedin.com/in/leonardo-g-024042128/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://wa.me/573027464103" target="_blank" rel="noopener">WhatsApp</a>
-            <a href="assets/cv-andres-gomez-ea.pdf" download class="corp-btn-ghost">Download CV</a>
+            <a href="assets/cv-andres-gomez-ea.pdf" download>Download CV</a>
         </div>
     </div>
 
@@ -345,7 +457,7 @@
                 <p class="text-gray-400 text-sm">VR/AR · Oculus Quest · Industrial Training · Multiplayer · WebGL</p>
             </button>
 
-            <button onclick="showTab('wordpress')" class="group relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-gray-900/60 p-8 text-left card-hover">
+            <button onclick="window.location.href='/operations'" class="group relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-gray-900/60 p-8 text-left card-hover">
                 <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
                 <div class="text-4xl mb-4">🚀</div>
                 <h3 class="text-xl font-bold text-white mb-2">WordPress Data & Operations</h3>
@@ -4392,15 +4504,14 @@ window.initUnityHeroScene = function () {
     }
 
     /* ============================================================
-     * FLOATING PROFILE BUBBLE
+     * FLOATING PROFILE BUBBLE + CONTACT MENU OVERLAY
      * ============================================================ */
     function initProfileBubble() {
         var bubble = document.getElementById('profile-bubble');
-        if (!bubble) return;
-        var img = bubble.querySelector('img');
-        var menu = bubble.querySelector('.bubble-menu');
-        var closeBtn = bubble.querySelector('.bubble-close');
-        var expanded = false;
+        var overlay = document.getElementById('contact-menu-overlay');
+        if (!bubble || !overlay) return;
+        var closeBtn = overlay.querySelector('.cm-close');
+        var menuOpen = false;
 
         function setCorner() {
             bubble.classList.remove('bubble-top');
@@ -4411,29 +4522,35 @@ window.initUnityHeroScene = function () {
             bubble.classList.add('bubble-top');
         }
         function updateShape() {
+            if (menuOpen) return;
             var y = window.scrollY || window.pageYOffset || 0;
             if (y > 120) setCorner();
             else setTop();
         }
-        function toggleMenu(e) {
-            if (e) e.stopPropagation();
-            expanded = !expanded;
-            bubble.classList.toggle('expanded', expanded);
+        function openMenu() {
+            menuOpen = true;
+            setCorner();
+            overlay.classList.add('open');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
         }
         function closeMenu() {
-            expanded = false;
-            bubble.classList.remove('expanded');
+            menuOpen = false;
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            updateShape();
         }
 
         updateShape();
         window.addEventListener('scroll', updateShape, { passive: true });
-        bubble.addEventListener('click', function (e) {
-            if (e.target.closest('.bubble-menu a, .bubble-menu button, .bubble-close')) return;
-            toggleMenu(e);
-        });
+        bubble.addEventListener('click', openMenu);
         if (closeBtn) closeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeMenu(); });
-        document.addEventListener('click', function (e) {
-            if (expanded && !bubble.contains(e.target)) closeMenu();
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) closeMenu();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && menuOpen) closeMenu();
         });
         if (isOperationsPath()) {
             window.scrollTo(0, 0);
