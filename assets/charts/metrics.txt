@@ -1,0 +1,8 @@
+latest_subs=1501
+subs_growth=109
+total_revenue=225185.00
+avg_monthly_revenue=22518.50
+total_new=174
+total_cancel=54
+total_renewals=6395
+avg_churn=0.33

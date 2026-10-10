@@ -2157,344 +2157,275 @@ window.initUnityHeroScene = function () {
 </style>
 
 <div id="wp-stage">
-  <!-- Local sticky 3D background + HUD (only visible while this tab scrolls) -->
-  <div class="wp-sticky" aria-hidden="true">
-    <canvas id="wp-bg-canvas"></canvas>
-    <div class="wp-progress" id="wp-progress"></div>
-    <div class="wp-chapter" id="wp-chapter">01 / 09</div>
-  </div>
+<style>
+  #tab-wordpress .wp-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+    text-align: left;
+  }
+  #tab-wordpress .wp-kpi-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(16,185,129,0.25);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  #tab-wordpress .wp-kpi-value {
+    font-size: 32px !important;
+    font-weight: 800;
+    line-height: 1;
+    color: #f39c12;
+  }
+  #tab-wordpress .wp-kpi-value.wp-em { color: #10b981; }
+  #tab-wordpress .wp-kpi-label {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 8px;
+  }
+  #tab-wordpress .wp-kpi-delta {
+    font-size: 11px;
+    color: #6ee7b7;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+  #tab-wordpress .wp-chart-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 20px;
+    padding: 24px;
+  }
+  #tab-wordpress .wp-chart-img {
+    width: 100%;
+    height: auto;
+    max-height: 55vh;
+    object-fit: contain;
+    border-radius: 12px;
+    display: block;
+  }
+  #tab-wordpress .wp-source {
+    font-size: 11px;
+    color: #6b7280;
+    margin-top: 14px;
+  }
+  #tab-wordpress .wp-dash-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 8px;
+  }
+  @media (min-width: 1024px) {
+    #tab-wordpress .wp-dash-grid { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
+  }
+</style>
 
-  <main class="wp-scenes">
-    <!-- 00 · HERO -->
-    <section class="wp-scene" id="wp-scene-0">
-      <div class="wp-scene-content wp-pos-left">
-        <span class="wp-hero-badge section-reveal" title="Disponible para proyectos">📍 Bogotá, Colombia · Available for remote roles</span>
-        <h1 class="section-reveal">WordPress Data &amp; Operations</h1>
-        <h3 class="section-reveal">Founder's right hand for a high-traffic WordPress membership business.</h3>
-        <p class="wp-es-sub section-reveal">Mano derecha del fundador para un negocio de membresías WordPress de alto tráfico.</p>
-        <ul class="wp-hero-bullets">
-          <li class="section-reveal">I run day-to-day operations for 80,000+ users and ~800 paying members.</li>
-          <li class="section-reveal">I automate workflows with n8n, Google Apps Script and REST APIs.</li>
-          <li class="section-reveal">I build dashboards, SOPs and vendor processes that keep the business moving.</li>
-        </ul>
-        <div class="wp-cta-buttons section-reveal" style="justify-content:flex-start;">
-          <a href="#wp-scene-1" class="wp-btn wp-btn-primary" title="Sigue haciendo scroll y te lo demuestro">Keep scrolling — I'll prove it.</a>
-        </div>
-      </div>
-      <div class="wp-scroll-hint" id="wp-scroll-hint">Scroll ↓</div>
-    </section>
-
-    <!-- 01 · MEMBERSHIPS (Vault model) -->
-    <section class="wp-scene" id="wp-scene-1">
-      <div class="wp-scene-content wp-pos-right">
-        <span class="wp-tag section-reveal">01 · Membership Operations</span>
-        <h2 class="section-reveal">I operate a high-traffic membership platform</h2>
-        <p class="wp-es-sub section-reveal">Operaciones de membresía · Plataforma de alto tráfico</p>
-        <p class="section-reveal">Server-side gating, user lifecycle management and daily operations for tens of thousands of page views and 80,000+ registered users.</p>
-        <div class="wp-metric-block section-reveal">
-          <div class="wp-metric-nums">
-            <span class="wp-metric-num wp-em" data-target="80000" data-prefix="">80,000</span>
-            <span class="wp-metric-chip wp-em" title="Usuarios registrados">registered users</span>
-            <span class="wp-metric-num" data-target="800" data-prefix="~" data-suffix="">~800</span>
-            <span class="wp-metric-chip" title="Miembros pagos">paying members</span>
-          </div>
-          <div class="wp-metric-label">plus tens of thousands of daily page views, with <b>0 access leaks</b> and fewer support tickets</div>
-        </div>
-        <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">Can you run a large WordPress membership operation without leaks?</p>
-          <p class="wp-qa-a">Yes — server-side gating, automated user sync and clear SOPs keep 80,000+ users and ~800 paying members moving smoothly.</p>
-          <p class="wp-qa-es">Operaciones limpias para miles de usuarios y cientos de miembros pagos.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20run%20a%20large%20WordPress%20membership%20operation%20without%20leaks%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02 · SUBSCRIPTIONS (Coins model) -->
-    <section class="wp-scene" id="wp-scene-2">
-      <div class="wp-scene-content wp-pos-left">
-        <span class="wp-tag section-reveal">02 · Revenue Operations</span>
-        <h2 class="section-reveal">I recover revenue before it churns</h2>
-        <p class="wp-es-sub section-reveal">Ingresos recurrentes · Recupero pagos antes de perderlos</p>
-        <p class="section-reveal">Automatic dunning, failed-payment tracking and subscription lifecycle management that protect MRR without constant manual follow-up.</p>
-        <div class="wp-metric-block section-reveal">
-          <div class="wp-metric-main">
-            <div class="wp-metric-nums">
-              <span class="wp-metric-num" data-target="13.9" data-dec="1" data-prefix="+$" data-suffix="k">+$13.9k</span>
-              <span class="wp-metric-chip" title="Pagos fallidos recuperados">+18% failed payments</span>
-            </div>
-            <div class="wp-metric-label">recovered in 6 months with automated dunning and status tracking</div>
-          </div>
-          <svg class="wp-metric-chart" viewBox="0 0 140 52" role="img" aria-label="Recovered revenue per month">
-            <rect class="wp-mbar" x="8" y="38.2" width="14" height="7.8" rx="3" fill="#f39c12" data-h="7.8" data-y="38.2"/>
-            <rect class="wp-mbar" x="30" y="33.3" width="14" height="12.7" rx="3" fill="#f39c12" data-h="12.7" data-y="33.3"/>
-            <rect class="wp-mbar" x="52" y="27.5" width="14" height="18.5" rx="3" fill="#f39c12" data-h="18.5" data-y="27.5"/>
-            <rect class="wp-mbar" x="74" y="20.7" width="14" height="25.3" rx="3" fill="#f39c12" data-h="25.3" data-y="20.7"/>
-            <rect class="wp-mbar" x="96" y="14.8" width="14" height="31.2" rx="3" fill="#f39c12" data-h="31.2" data-y="14.8"/>
-            <rect class="wp-mbar" x="118" y="6" width="14" height="40" rx="3" fill="#f39c12" data-h="40" data-y="6"/>
-            <line x1="4" y1="46" x2="136" y2="46" stroke="rgba(255,255,255,0.12)"/>
-          </svg>
-        </div>
-        <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">How do you stop failed payments from draining MRR?</p>
-          <p class="wp-qa-a">With automated dunning, clear status tracking and fast escalation — revenue is recovered before the subscriber churns.</p>
-          <p class="wp-qa-es">Recupero ingresos recurrentes con seguimiento automatizado.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20How%20do%20you%20stop%20failed%20payments%20from%20draining%20MRR%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 · EVENTS (Calendar model) -->
-    <section class="wp-scene" id="wp-scene-3">
-      <div class="wp-scene-content wp-pos-right">
-        <span class="wp-tag section-reveal">03 · Event Operations</span>
-        <h2 class="section-reveal">Events in minutes, not hours</h2>
-        <p class="wp-es-sub section-reveal">Eventos · Operativa de eventos en minutos, no horas</p>
-        <p class="section-reveal">n8n, Google Sheets, The Events Calendar and Zoom API work together to generate the event, ticket, meeting and reminders with almost no manual work.</p>
-        <div class="wp-metric-block section-reveal">
-          <div class="wp-metric-main">
-            <div class="wp-metric-nums">
-              <span class="wp-metric-num wp-em" data-target="92" data-prefix="−" data-suffix="%">−92%</span>
-            </div>
-            <div class="wp-metric-label">of operational time per event</div>
-          </div>
-          <svg class="wp-metric-chart" viewBox="0 0 220 74" role="img" aria-label="From 60 minutes to 5 minutes">
-            <text x="0" y="12" fill="#9ca3af" font-size="9">Before · 60 min</text>
-            <rect class="wp-mwbar" x="0" y="18" width="200" height="12" rx="6" fill="#ef6b60" data-w="200"/>
-            <text x="0" y="48" fill="#9ca3af" font-size="9">After · 5 min</text>
-            <rect class="wp-mwbar" x="0" y="54" width="17" height="12" rx="6" fill="#10b981" data-w="17"/>
-          </svg>
-        </div>
-        <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">Can you run events without burning hours on setup?</p>
-          <p class="wp-qa-a">Yes — the workflow creates the event, ticket, Zoom meeting and reminders in about 5 minutes, every time.</p>
-          <p class="wp-qa-es">Eventos listos en ~5 minutos con n8n y Google Sheets.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20run%20events%20without%20burning%20hours%20on%20setup%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 · AUTOMATION (Phone model) -->
-    <section class="wp-scene" id="wp-scene-4">
-      <div class="wp-scene-content wp-pos-left">
-        <span class="wp-tag section-reveal">04 · Automation</span>
-        <h2 class="section-reveal">Operations that run while you sleep</h2>
-        <p class="wp-es-sub section-reveal">Automatización · Operaciones que corren solas</p>
-        <p class="section-reveal">n8n workflows, Google Apps Script, REST APIs and webhooks connect WordPress, spreadsheets, Zoom, payment providers and messaging so nothing falls through the cracks.</p>
-        <div class="wp-metric-block section-reveal">
-          <div class="wp-metric-nums">
-            <span class="wp-metric-num" data-target="1200" data-prefix="+">+1,200</span>
-            <span class="wp-metric-chip" title="24/7 sin pausas">24/7 automated tasks/mo</span>
-          </div>
-          <div class="wp-metric-label">automated actions every month across member sync, event setup, reporting and follow-ups</div>
-        </div>
-        <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">Can you automate our recurring operational tasks?</p>
-          <p class="wp-qa-a">Yes — n8n + Google Apps Script + REST APIs handle member sync, event setup, reporting and follow-ups without manual intervention.</p>
-          <p class="wp-qa-es">Automatizaciones reales con n8n, Apps Script y APIs.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20automate%20our%20recurring%20operational%20tasks%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 · DASHBOARDS (Bars model) -->
-    <section class="wp-scene" id="wp-scene-5">
-      <div class="wp-scene-content wp-pos-right">
-        <span class="wp-tag section-reveal">05 · Reporting &amp; Dashboards</span>
-        <h2 class="section-reveal">I turn operational data into decisions</h2>
-        <p class="wp-es-sub section-reveal">Reportes · Convierto datos operativos en decisiones</p>
-        <p class="section-reveal">MRR, ARR, churn, failed payments and traffic trends in one place, so the founder sees the health of the business at a glance.</p>
-        <div class="wp-metric-block section-reveal">
-          <div class="wp-metric-main">
-            <div class="wp-metric-nums">
-              <span class="wp-metric-num" data-target="21.6" data-dec="1" data-prefix="+$" data-suffix="k">+$21.6k</span>
-              <span class="wp-metric-chip">+163% MRR</span>
-            </div>
-            <div class="wp-metric-label">tracked in 12 months · churn 6.8% → <b>5.3%</b> (−22%)</div>
-          </div>
-          <svg class="wp-metric-chart" viewBox="0 0 220 64" role="img" aria-label="MRR growth">
-            <defs>
-              <linearGradient id="wpGradMini" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#10b981" stop-opacity="0.45"/>
-                <stop offset="1" stop-color="#10b981" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path class="wp-marea" fill="url(#wpGradMini)" d="M6,56 L6,39.6 L25,37.8 L44,35.2 L63,34 L82,31.4 L101,29.8 L120,26.4 L139,25.6 L158,22.2 L177,19.2 L196,16.4 L215,12.8 L215,56 Z"/>
-            <path class="wp-mline" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M6,39.6 L25,37.8 L44,35.2 L63,34 L82,31.4 L101,29.8 L120,26.4 L139,25.6 L158,22.2 L177,19.2 L196,16.4 L215,12.8"/>
-          </svg>
-          <svg class="wp-metric-donut" viewBox="0 0 64 64" role="img" aria-label="Churn after: 5.3%">
-            <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="9"/>
-            <circle class="wp-marc" cx="32" cy="32" r="26" fill="none" stroke="#10b981" stroke-width="9" stroke-linecap="round" stroke-dasharray="8.7 163.4" data-dash="8.7 163.4" transform="rotate(-90 32 32)"/>
-            <text x="32" y="36" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">5.3%</text>
-          </svg>
-        </div>
-        <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">How do I track the business without chasing spreadsheets?</p>
-          <p class="wp-qa-a">A single dashboard pulls MRR, ARR, churn, failed payments and traffic trends — updated automatically from WordPress and payment data.</p>
-          <p class="wp-qa-es">Reportes automáticos con los KPIs clave del negocio.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20How%20do%20I%20track%20the%20business%20without%20chasing%20spreadsheets%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 06 · CUSTOM TOOLS (Gear model) -->
-    <section class="wp-scene" id="wp-scene-6">
-      <div class="wp-scene-content wp-pos-left">
-        <span class="wp-tag section-reveal">06 · SOPs &amp; Systems</span>
-        <h2 class="section-reveal">I build the systems behind the operator</h2>
-        <p class="wp-es-sub section-reveal">Procesos · Construyo los sistemas detrás del operador</p>
-        <p class="section-reveal">SOPs, vendor tracking, contract renewal reminders and custom WordPress tools that keep the business running when I'm not online.</p>
-        <div class="wp-metric-block section-reveal">
-          <div class="wp-metric-nums">
-            <span class="wp-metric-num" data-target="4">4</span>
-            <span class="wp-metric-chip" title="Ahorro mensual recurrente">licenses/tools replaced</span>
-          </div>
-          <div class="wp-metric-label">third-party licenses replaced plus documented SOPs for intake, triage and escalation</div>
-        </div>
-        <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">Can you document our processes so anyone can run them?</p>
-          <p class="wp-qa-a">Yes — I write SOPs for intake, triage and escalation, plus build custom tools and vendor-tracking systems that remove single points of failure.</p>
-          <p class="wp-qa-es">SOPs claros y herramientas propias para que nada dependa de una sola persona.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20document%20our%20processes%20so%20anyone%20can%20run%20them%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 07 · LIVE PORTFOLIO (Nebula) -->
-    <section class="wp-scene" id="wp-scene-7">
-      <div class="wp-scene-content wp-pos-center-wide">
-        <span class="wp-tag section-reveal">07 · Live Systems</span>
-        <h2 class="section-reveal">Systems I operate in production</h2>
-        <p class="wp-es-sub section-reveal">Sistemas que opero en producción</p>
-        <p class="section-reveal">HTML/CSS recreations of the operational systems I run day to day. Click “View analysis” for the full breakdown of each one.</p>
-        <div class="wp-windows-grid">
-          <div class="wp-window-float section-reveal">
-            <div class="wp-window-card" data-wp-tilt>
-              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">buscadorpro.mapa — Territory Operations</span></div>
-              <div class="wp-window-body">
-                <svg class="wp-mock-map" viewBox="0 0 320 200" role="img" aria-label="Map with ZIP polygons">
-                  <rect width="320" height="200" fill="#0a0f0d"/>
-                  <g stroke="#1f2937" stroke-width="7" stroke-linecap="round">
-                    <line x1="0" y1="60" x2="320" y2="80"/>
-                    <line x1="60" y1="0" x2="80" y2="200"/>
-                    <line x1="200" y1="0" x2="180" y2="200"/>
-                  </g>
-                  <g stroke="#243349" stroke-width="3">
-                    <line x1="0" y1="140" x2="320" y2="120"/>
-                    <line x1="120" y1="0" x2="320" y2="60"/>
-                  </g>
-                  <polygon points="40,42 128,26 158,80 88,110 36,88" fill="rgba(16,185,129,0.10)" stroke="#10b981" stroke-width="1.6" stroke-dasharray="6 5"/>
-                  <polygon points="196,58 282,44 302,108 228,138 182,106" fill="rgba(16,185,129,0.10)" stroke="#10b981" stroke-width="1.6" stroke-dasharray="6 5"/>
-                  <circle class="wp-marker-pulse" cx="92" cy="68" r="5" fill="none" stroke="#f39c12" stroke-width="1.5"/>
-                  <circle cx="92" cy="68" r="5" fill="#f39c12"/>
-                  <circle class="wp-marker-pulse" cx="240" cy="94" r="5" fill="none" stroke="#f39c12" stroke-width="1.5" style="animation-delay:-1s"/>
-                  <circle cx="240" cy="94" r="5" fill="#f39c12"/>
-                  <circle class="wp-marker-pulse" cx="152" cy="146" r="5" fill="none" stroke="#f39c12" stroke-width="1.5" style="animation-delay:-0.5s"/>
-                  <circle cx="152" cy="146" r="5" fill="#f39c12"/>
-                  <rect x="102" y="52" width="58" height="15" rx="7.5" fill="rgba(5,5,5,0.9)" stroke="rgba(255,255,255,0.15)"/>
-                  <text x="131" y="62.5" text-anchor="middle" fill="#e5e7eb" font-size="9" font-family="ui-monospace, monospace">ZIP 90001</text>
-                  <rect x="248" y="78" width="58" height="15" rx="7.5" fill="rgba(5,5,5,0.9)" stroke="rgba(255,255,255,0.15)"/>
-                  <text x="277" y="88.5" text-anchor="middle" fill="#e5e7eb" font-size="9" font-family="ui-monospace, monospace">ZIP 90026</text>
-                </svg>
-              </div>
-              <div class="wp-window-foot"><button class="wp-analysis-btn" data-analysis="map" title="Ver análisis">View analysis →</button></div>
-            </div>
-          </div>
-          <div class="wp-window-float section-reveal">
-            <div class="wp-window-card" data-wp-tilt>
-              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">zoom.tv — Event Operations Grid</span></div>
-              <div class="wp-window-body">
-                <div class="wp-mini-grid">
-                  <div class="wp-mini-event">
-                    <div class="wp-mini-thumb g1"><span class="wp-live-badge" title="En vivo">● LIVE</span></div>
-                    <div class="wp-mini-title">VIP Seminar</div>
-                    <div class="wp-cd" data-secs="1530">25:30</div>
-                  </div>
-                  <div class="wp-mini-event">
-                    <div class="wp-mini-thumb g2"></div>
-                    <div class="wp-mini-title">Tax Workshop</div>
-                    <div class="wp-cd" data-secs="7320">2:02:00</div>
-                  </div>
-                  <div class="wp-mini-event">
-                    <div class="wp-mini-thumb g3"></div>
-                    <div class="wp-mini-title">Networking NYC</div>
-                    <div class="wp-cd" data-secs="420">7:00</div>
-                  </div>
-                  <div class="wp-mini-event">
-                    <div class="wp-mini-thumb g4"></div>
-                    <div class="wp-mini-title">Academy Live</div>
-                    <div class="wp-cd" data-secs="15153">4:12:33</div>
-                  </div>
-                </div>
-              </div>
-              <div class="wp-window-foot"><button class="wp-analysis-btn" data-analysis="zoom" title="Ver análisis">View analysis →</button></div>
-            </div>
-          </div>
-          <div class="wp-window-float section-reveal">
-            <div class="wp-window-card" data-wp-tilt>
-              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">snippet-manager — Operations Dashboard</span></div>
-              <div class="wp-window-body">
-                <div class="wp-metric-row">
-                  <div class="wp-mc"><span class="wp-mc-label">MRR</span><span class="wp-mc-value">$21.6k</span><span class="wp-mc-delta up">▲ 12%</span></div>
-                  <div class="wp-mc"><span class="wp-mc-label">Churn</span><span class="wp-mc-value">5.3%</span><span class="wp-mc-delta up">▼ 22%</span></div>
-                  <div class="wp-mc"><span class="wp-mc-label">Snippets</span><span class="wp-mc-value">148</span><span class="wp-mc-delta">sync ✓</span></div>
-                </div>
-                <div class="wp-diff-box">
-                  <div class="wp-dl wp-dl-ctx">&nbsp; function sync_push($id, $content) {</div>
-                  <div class="wp-dl wp-dl-add">+&nbsp;&nbsp;guardar_backup_explicito($id);</div>
-                  <div class="wp-dl wp-dl-del">-&nbsp;&nbsp;wp_cache_flush(); // risky</div>
-                  <div class="wp-dl wp-dl-add">+&nbsp;&nbsp;invalidar_cache_wpcode();</div>
-                  <div class="wp-dl wp-dl-ctx">&nbsp; }</div>
-                </div>
-              </div>
-              <div class="wp-window-foot"><button class="wp-analysis-btn" data-analysis="mrr" title="Ver análisis">View analysis →</button></div>
-            </div>
-          </div>
-          <div class="wp-window-float section-reveal">
-            <div class="wp-window-card" data-wp-tilt>
-              <div class="wp-window-bar"><span class="wp-wdot r"></span><span class="wp-wdot y"></span><span class="wp-wdot g"></span><span class="wp-window-title">membership.landing — Membership Ops</span></div>
-              <div class="wp-window-body">
-                <div class="wp-mini-pricing">
-                  <span class="wp-vip-badge">★ VIP</span>
-                  <div class="wp-mp-price">$29<span>/mo</span></div>
-                  <ul class="wp-mp-features">
-                    <li>Full Academy access</li>
-                    <li>Weekly live events</li>
-                    <li>Priority support</li>
-                  </ul>
-                  <div class="wp-mp-btn">Buy now</div>
-                  <div class="wp-mp-note">No commitment · Cancel anytime</div>
-                </div>
-              </div>
-              <div class="wp-window-foot"><button class="wp-analysis-btn" data-analysis="vip" title="Ver análisis">View analysis →</button></div>
-            </div>
-          </div>
-        </div>
-        <div class="wp-qa section-reveal">
-          <p class="wp-qa-q">Can you show me operational systems you actually run?</p>
-          <p class="wp-qa-a">These four run in production today. Open any “View analysis” card above for the operational breakdown.</p>
-          <p class="wp-qa-es">Sistemas operativos reales en producción, con análisis incluido.</p>
-          <a class="wp-qa-btn" href="https://wa.me/573027464103?text=Hi%20Andres!%20Can%20you%20show%20me%20operational%20systems%20you%20actually%20run%3F" target="_blank" rel="noopener noreferrer" title="Pregúntame por WhatsApp">💬 Ask me on WhatsApp</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 08 · CTA (Rocket model) -->
-    <section class="wp-scene" id="wp-scene-8">
-      <div class="wp-scene-content wp-pos-center-low">
-        <span class="wp-tag section-reveal">08 · Contact</span>
-        <h2 class="section-reveal">Let's talk operations, automation &amp; remote support</h2>
-        <p class="wp-es-sub section-reveal">Hablemos de operaciones, automatización y soporte remoto</p>
-        <div class="wp-cta-buttons section-reveal">
-          <a href="https://wa.me/573027464103" class="wp-btn wp-btn-primary" target="_blank" rel="noopener noreferrer" title="Escríbeme por WhatsApp">📲 Message me on WhatsApp</a>
-          <a href="https://www.linkedin.com/in/leonardo-g-024042128/" class="wp-btn wp-btn-outline" target="_blank" rel="noopener noreferrer" title="Ver LinkedIn">🔗 View LinkedIn</a>
-        </div>
-        <p class="wp-honesty section-reveal">Metrics reflect a real high-traffic WordPress membership platform I operate. · Métricas basadas en una plataforma real que opero.</p>
-      </div>
-    </section>
-  </main>
+<!-- Local sticky 3D background + HUD (only visible while this tab scrolls) -->
+<div class="wp-sticky" aria-hidden="true">
+  <canvas id="wp-bg-canvas"></canvas>
+  <div class="wp-progress" id="wp-progress"></div>
+  <div class="wp-chapter" id="wp-chapter">01 / 09</div>
 </div>
 
-<!-- ===================== ANALYSIS MODAL (#wp-modal-*) ===================== -->
+<main class="wp-scenes">
+  <!-- 00 · HERO -->
+  <section class="wp-scene" id="wp-scene-0">
+    <div class="wp-scene-content wp-pos-left">
+      <span class="wp-hero-badge section-reveal">Source: platform report Jan–Oct 2026</span>
+      <h1 class="section-reveal">WordPress Data &amp; Operations</h1>
+      <h3 class="section-reveal">Strategic operations dashboard for a high-traffic WordPress membership business.</h3>
+      <p class="wp-es-sub section-reveal">Panel estratégico de operaciones para un negocio de membresías WordPress de alto tráfico.</p>
+      <ul class="wp-hero-bullets">
+        <li class="section-reveal">1,501 active subscriptions · 80,000+ registered users</li>
+        <li class="section-reveal">$225,185 revenue YTD · 0.33% average monthly churn</li>
+        <li class="section-reveal">Automated reporting, renewals and lifecycle workflows</li>
+      </ul>
+      <div class="wp-cta-buttons section-reveal" style="justify-content:flex-start;">
+        <a href="#wp-scene-1" class="wp-btn wp-btn-primary" title="Explore the dashboard">Explore the dashboard</a>
+      </div>
+    </div>
+    <div class="wp-scroll-hint" id="wp-scroll-hint">Scroll ↓</div>
+  </section>
+
+  <!-- 01 · EXECUTIVE SNAPSHOT -->
+  <section class="wp-scene" id="wp-scene-1">
+    <div class="wp-scene-content wp-pos-center-wide">
+      <span class="wp-tag section-reveal">01 · Executive Snapshot</span>
+      <h2 class="section-reveal">Platform performance at a glance</h2>
+      <p class="wp-es-sub section-reveal">Rendimiento de la plataforma de un vistazo</p>
+      <div class="wp-kpi-grid section-reveal">
+        <div class="wp-kpi-card">
+          <div class="wp-metric-num wp-kpi-value wp-em" data-target="1501">1,501</div>
+          <div class="wp-kpi-label">Active subscriptions (Oct 2026)</div>
+          <div class="wp-kpi-delta">+109 (+7.8%) since Jan</div>
+        </div>
+        <div class="wp-kpi-card">
+          <div class="wp-metric-num wp-kpi-value" data-target="225185" data-prefix="$">$225,185</div>
+          <div class="wp-kpi-label">2026 revenue YTD (through Oct 10)</div>
+          <div class="wp-kpi-delta">Recurring membership revenue</div>
+        </div>
+        <div class="wp-kpi-card">
+          <div class="wp-metric-num wp-kpi-value" data-target="22519" data-prefix="~$">~$22,519</div>
+          <div class="wp-kpi-label">Average monthly revenue</div>
+          <div class="wp-kpi-delta">Jan–Oct 2026 average</div>
+        </div>
+        <div class="wp-kpi-card">
+          <div class="wp-metric-num wp-kpi-value wp-em" data-target="174" data-suffix="">174</div>
+          <div class="wp-kpi-label">New subscriptions YTD</div>
+          <div class="wp-kpi-delta">New member acquisitions</div>
+        </div>
+        <div class="wp-kpi-card">
+          <div class="wp-metric-num wp-kpi-value wp-em" data-target="6395" data-suffix="">6,395</div>
+          <div class="wp-kpi-label">Total renewals YTD</div>
+          <div class="wp-kpi-delta">Retention engine</div>
+        </div>
+        <div class="wp-kpi-card">
+          <div class="wp-metric-num wp-kpi-value" data-target="54" data-suffix="">54</div>
+          <div class="wp-kpi-label">Cancellations YTD</div>
+          <div class="wp-kpi-delta">Controlled churn</div>
+        </div>
+        <div class="wp-kpi-card">
+          <div class="wp-metric-num wp-kpi-value wp-em" data-target="0.33" data-dec="2" data-suffix="%">0.33%</div>
+          <div class="wp-kpi-label">Average monthly churn</div>
+          <div class="wp-kpi-delta">Well below industry average</div>
+        </div>
+        <div class="wp-kpi-card">
+          <div class="wp-metric-num wp-kpi-value wp-em" data-target="80000" data-prefix="~">~80,000</div>
+          <div class="wp-kpi-label">Registered users since Nov 2019</div>
+          <div class="wp-kpi-delta">Platform reach</div>
+        </div>
+        <div class="wp-kpi-card">
+          <div class="wp-metric-num wp-kpi-value wp-em" data-target="400" data-suffix="+">400+</div>
+          <div class="wp-kpi-label">New users Jun 03 – Oct 2026</div>
+          <div class="wp-kpi-delta">Recent user growth</div>
+        </div>
+        <div class="wp-kpi-card">
+          <div class="wp-metric-num wp-kpi-value" data-target="39" data-prefix="$">$39</div>
+          <div class="wp-kpi-label">Current membership price</div>
+          <div class="wp-kpi-delta">Historically $28 USD</div>
+        </div>
+      </div>
+      <p class="wp-honesty section-reveal" style="margin-top:22px;">Figures come from the actual membership platform report covering January – October 10, 2026.</p>
+    </div>
+  </section>
+
+  <!-- 02 · OPERATIONS DASHBOARD -->
+  <section class="wp-scene" id="wp-scene-2">
+    <div class="wp-scene-content wp-pos-center-wide">
+      <span class="wp-tag section-reveal">02 · Operations Dashboard</span>
+      <h2 class="section-reveal">End-to-end membership health</h2>
+      <p class="wp-es-sub section-reveal">Salud integral de la membresía</p>
+      <div class="wp-chart-card section-reveal">
+        <img src="assets/charts/operations_dashboard.png" alt="Operations dashboard showing active subscriptions, revenue, churn and renewal metrics" class="wp-chart-img">
+      </div>
+      <p class="wp-source section-reveal">Source: platform report Jan–Oct 2026 · 6,395 renewals processed YTD with 0.33% average monthly churn.</p>
+    </div>
+  </section>
+
+  <!-- 03 · SUBSCRIPTION GROWTH -->
+  <section class="wp-scene" id="wp-scene-3">
+    <div class="wp-scene-content wp-pos-center-wide">
+      <span class="wp-tag section-reveal">03 · Subscription Growth</span>
+      <h2 class="section-reveal">+109 net subscriptions since January</h2>
+      <p class="wp-es-sub section-reveal">+109 suscripciones netas desde enero</p>
+      <div class="wp-dash-grid">
+        <div class="wp-chart-card section-reveal">
+          <img src="assets/charts/subscriptions_growth.png" alt="Subscriptions growth chart January through October 2026" class="wp-chart-img">
+        </div>
+        <div class="wp-kpi-card section-reveal">
+          <div class="wp-metric-num wp-kpi-value wp-em" data-target="109" data-prefix="+" data-suffix="">+109</div>
+          <div class="wp-kpi-label">Net subscription growth YTD</div>
+          <div class="wp-kpi-delta">+7.8% since Jan 2026</div>
+          <p class="wp-source" style="margin-top:12px;">Steady organic growth with low churn, supported by lifecycle automation and renewals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · REVENUE -->
+  <section class="wp-scene" id="wp-scene-4">
+    <div class="wp-scene-content wp-pos-center-wide">
+      <span class="wp-tag section-reveal">04 · Revenue</span>
+      <h2 class="section-reveal">$225,185 YTD · ~$22,519/month</h2>
+      <p class="wp-es-sub section-reveal">Ingresos recurrentes hasta octubre</p>
+      <div class="wp-dash-grid">
+        <div class="wp-chart-card section-reveal">
+          <img src="assets/charts/monthly_revenue.png" alt="Monthly revenue trend January through October 2026" class="wp-chart-img">
+        </div>
+        <div class="wp-kpi-card section-reveal">
+          <div class="wp-metric-num wp-kpi-value" data-target="225185" data-prefix="$">$225,185</div>
+          <div class="wp-kpi-label">Revenue YTD through Oct 10</div>
+          <div class="wp-metric-num wp-kpi-value" style="margin-top:14px;" data-target="22519" data-prefix="~$">~$22,519</div>
+          <div class="wp-kpi-label">Average monthly revenue</div>
+          <p class="wp-source" style="margin-top:12px;">Recurring revenue from $28 historical and $39 current membership pricing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · REVENUE MIX -->
+  <section class="wp-scene" id="wp-scene-5">
+    <div class="wp-scene-content wp-pos-center-wide">
+      <span class="wp-tag section-reveal">05 · Revenue Mix</span>
+      <h2 class="section-reveal">Where the revenue comes from</h2>
+      <p class="wp-es-sub section-reveal">Composición de los ingresos</p>
+      <div class="wp-chart-card section-reveal">
+        <img src="assets/charts/revenue_mix.png" alt="Revenue mix breakdown" class="wp-chart-img">
+      </div>
+      <p class="wp-source section-reveal">Mix reflects membership tiers, renewal cycles and add-on services.</p>
+    </div>
+  </section>
+
+  <!-- 06 · LIFECYCLE -->
+  <section class="wp-scene" id="wp-scene-6">
+    <div class="wp-scene-content wp-pos-center-wide">
+      <span class="wp-tag section-reveal">06 · Lifecycle</span>
+      <h2 class="section-reveal">174 new · 54 cancelled YTD</h2>
+      <p class="wp-es-sub section-reveal">Nuevas suscripciones vs cancelaciones</p>
+      <div class="wp-dash-grid">
+        <div class="wp-chart-card section-reveal">
+          <img src="assets/charts/new_vs_cancel.png" alt="New subscriptions versus cancellations" class="wp-chart-img">
+        </div>
+        <div class="wp-kpi-card section-reveal">
+          <div class="wp-metric-num wp-kpi-value wp-em" data-target="174" data-suffix="">174</div>
+          <div class="wp-kpi-label">New subscriptions YTD</div>
+          <div class="wp-metric-num wp-kpi-value" style="margin-top:14px;" data-target="54" data-suffix="">54</div>
+          <div class="wp-kpi-label">Cancellations YTD</div>
+          <p class="wp-source" style="margin-top:12px;">Retention-first model: 6,395 renewals dwarf cancellations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · CHURN -->
+  <section class="wp-scene" id="wp-scene-7">
+    <div class="wp-scene-content wp-pos-center-wide">
+      <span class="wp-tag section-reveal">07 · Churn</span>
+      <h2 class="section-reveal">0.33% average monthly churn</h2>
+      <p class="wp-es-sub section-reveal">Tasa de cancelación mensual promedio</p>
+      <div class="wp-chart-card section-reveal">
+        <img src="assets/charts/churn_rate.png" alt="Monthly churn rate trend" class="wp-chart-img">
+      </div>
+      <p class="wp-source section-reveal">Low churn supports predictable MRR and reduces acquisition pressure.</p>
+    </div>
+  </section>
+
+  <!-- 08 · CTA -->
+  <section class="wp-scene" id="wp-scene-8">
+    <div class="wp-scene-content wp-pos-center-low">
+      <span class="wp-tag section-reveal">08 · Contact</span>
+      <h2 class="section-reveal">Let's turn your operational data into leverage</h2>
+      <p class="wp-es-sub section-reveal">Convierte tus datos operativos en ventaja competitiva</p>
+      <div class="wp-cta-buttons section-reveal">
+        <a href="https://wa.me/573027464103" class="wp-btn wp-btn-primary" target="_blank" rel="noopener noreferrer" title="Escríbeme por WhatsApp">📲 Message me on WhatsApp</a>
+        <a href="https://www.linkedin.com/in/leonardo-g-024042128/" class="wp-btn wp-btn-outline" target="_blank" rel="noopener noreferrer" title="Ver LinkedIn">🔗 View LinkedIn</a>
+      </div>
+      <p class="wp-honesty section-reveal">Metrics shown are from the real membership platform report (Jan–Oct 2026).</p>
+    </div>
+  </section>
+</main>
+</div>
+
+  <!-- ===================== ANALYSIS MODAL (#wp-modal-*) ===================== -->
 <div class="wp-modal-overlay" id="wp-modal-overlay" aria-hidden="true">
   <div class="wp-modal-card" role="dialog" aria-modal="true" aria-labelledby="wp-modal-title">
     <button class="wp-modal-close" id="wp-modal-close" aria-label="Close analysis" title="Cerrar análisis">×</button>
