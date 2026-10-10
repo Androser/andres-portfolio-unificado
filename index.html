@@ -314,28 +314,25 @@
             opacity: 1;
             visibility: visible;
         }
-        #wp-before-after {
+        .wp-lightbox-card {
             position: relative;
             z-index: 100;
-        }
-        .wp-ba-card {
-            position: relative;
             transition: transform 0.4s cubic-bezier(.22,.61,.36,1), box-shadow 0.4s ease;
             overflow: hidden;
         }
-        .wp-ba-card img {
+        .wp-lightbox-card img {
             transition: transform 0.55s cubic-bezier(.22,.61,.36,1);
+            cursor: zoom-in;
         }
-        .wp-ba-card:hover,
-        .wp-ba-card.ba-active {
+        .wp-lightbox-card:hover,
+        .wp-lightbox-card.ba-active {
             transform: translateY(-10px) scale(1.04);
             box-shadow: 0 36px 90px rgba(0,0,0,0.75);
         }
-        .wp-ba-card:hover img,
-        .wp-ba-card.ba-active img {
+        .wp-lightbox-card:hover img,
+        .wp-lightbox-card.ba-active img {
             transform: scale(1.18);
         }
-        .wp-ba-card img { cursor: zoom-in; }
 
         /* Before / After fullscreen lightbox */
         #ba-lightbox {
@@ -541,7 +538,7 @@
     <canvas id="global-particles"></canvas>
 
     <!-- FLOATING PROFILE BUBBLE -->
-    <div id="profile-bubble" class="bubble-top" aria-label="Contact Andrés">
+    <div id="profile-bubble" class="bubble-top wp-lightbox-card" aria-label="Contact Andrés">
         <img src="assets/Foto de Perfil Sin FOndo.png" alt="Andrés Gómez profile">
         <span class="bubble-badge">Contact me</span>
     </div>
@@ -753,7 +750,7 @@
       </div>
 
       <!-- fallback if the iframe does not load within 5s -->
-      <div id="fs-demo-fallback" class="hidden relative w-full h-[420px] md:h-[520px]">
+      <div id="fs-demo-fallback" class="hidden relative w-full h-[420px] md:h-[520px] wp-lightbox-card">
         <img src="food-reels-menu/assets/images/Burrata.png" alt="Digital menu reels preview"
              class="absolute inset-0 w-full h-full object-cover opacity-40" />
         <div class="relative z-10 h-full flex flex-col items-center justify-center text-center p-8">
@@ -2832,14 +2829,14 @@ window.initUnityHeroScene = function () {
       <h2 class="section-reveal">Automations that reduced manual work</h2>
       <p class="wp-es-sub section-reveal">Automatizaciones que redujeron el trabajo manual</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 text-left section-reveal">
-        <div class="wp-kpi-card overflow-hidden wp-ba-card">
+        <div class="wp-kpi-card overflow-hidden wp-ba-card wp-lightbox-card">
           <img src="assets/Automatización inteligente con WhatsApp y n8n.png" alt="WhatsApp and n8n automation flow" class="w-full h-48 object-cover rounded-xl mb-4">
           <h3 class="text-lg font-bold text-white mb-2">WhatsApp + n8n automation</h3>
           <p class="text-sm text-gray-400 mb-4">Automated support via WhatsApp, 24/7 responses, smart escalation to human agents.</p>
           <div class="wp-metric-num wp-em" style="font-size:28px;">14,400+</div>
           <div class="wp-kpi-label">automated conversations / year</div>
         </div>
-        <div class="wp-kpi-card overflow-hidden wp-ba-card">
+        <div class="wp-kpi-card overflow-hidden wp-ba-card wp-lightbox-card">
           <img src="assets/Flodesk Workflow negozee.png" alt="Flodesk VIP segmentation workflow" class="w-full h-48 object-cover rounded-xl mb-4">
           <h3 class="text-lg font-bold text-white mb-2">Flodesk workflow / VIP segmentation</h3>
           <p class="text-sm text-gray-400 mb-4">VIP segmentation, subscriber sync and lifecycle email workflows for a membership business.</p>
@@ -2856,7 +2853,7 @@ window.initUnityHeroScene = function () {
       <span class="wp-tag section-reveal">02 · Operations Dashboard</span>
       <h2 class="section-reveal">End-to-end membership health</h2>
       <p class="wp-es-sub section-reveal">Salud integral de la membresía</p>
-      <div class="wp-chart-card section-reveal">
+      <div class="wp-chart-card section-reveal wp-lightbox-card">
         <img src="assets/charts/operations_dashboard.png" alt="Operations dashboard showing active subscriptions, revenue, churn and renewal metrics" class="wp-chart-img">
       </div>
       <p class="wp-source section-reveal">Source: platform report Jan–Oct 2026 · 6,395 renewals processed YTD with 0.33% average monthly churn.</p>
@@ -2870,7 +2867,7 @@ window.initUnityHeroScene = function () {
       <h2 class="section-reveal">+109 net subscriptions since January</h2>
       <p class="wp-es-sub section-reveal">+109 suscripciones netas desde enero</p>
       <div class="wp-dash-grid">
-        <div class="wp-chart-card section-reveal">
+        <div class="wp-chart-card section-reveal wp-lightbox-card">
           <img src="assets/charts/subscriptions_growth.png" alt="Subscriptions growth chart January through October 2026" class="wp-chart-img">
         </div>
         <div class="wp-kpi-card section-reveal">
@@ -2890,7 +2887,7 @@ window.initUnityHeroScene = function () {
       <h2 class="section-reveal">$225,185 YTD · ~$22,519/month</h2>
       <p class="wp-es-sub section-reveal">Ingresos recurrentes hasta octubre</p>
       <div class="wp-dash-grid">
-        <div class="wp-chart-card section-reveal">
+        <div class="wp-chart-card section-reveal wp-lightbox-card">
           <img src="assets/charts/monthly_revenue.png" alt="Monthly revenue trend January through October 2026" class="wp-chart-img">
         </div>
         <div class="wp-kpi-card section-reveal">
@@ -2910,7 +2907,7 @@ window.initUnityHeroScene = function () {
       <span class="wp-tag section-reveal">05 · Revenue Mix</span>
       <h2 class="section-reveal">Where the revenue comes from</h2>
       <p class="wp-es-sub section-reveal">Composición de los ingresos</p>
-      <div class="wp-chart-card section-reveal">
+      <div class="wp-chart-card section-reveal wp-lightbox-card">
         <img src="assets/charts/revenue_mix.png" alt="Revenue mix breakdown" class="wp-chart-img">
       </div>
       <p class="wp-source section-reveal">Mix reflects membership tiers, renewal cycles and add-on services.</p>
@@ -2924,7 +2921,7 @@ window.initUnityHeroScene = function () {
       <h2 class="section-reveal">174 new · 54 cancelled YTD</h2>
       <p class="wp-es-sub section-reveal">Nuevas suscripciones vs cancelaciones</p>
       <div class="wp-dash-grid">
-        <div class="wp-chart-card section-reveal">
+        <div class="wp-chart-card section-reveal wp-lightbox-card">
           <img src="assets/charts/new_vs_cancel.png" alt="New subscriptions versus cancellations" class="wp-chart-img">
         </div>
         <div class="wp-kpi-card section-reveal">
@@ -2944,7 +2941,7 @@ window.initUnityHeroScene = function () {
       <span class="wp-tag section-reveal">07 · Churn</span>
       <h2 class="section-reveal">0.33% average monthly churn</h2>
       <p class="wp-es-sub section-reveal">Tasa de cancelación mensual promedio</p>
-      <div class="wp-chart-card section-reveal">
+      <div class="wp-chart-card section-reveal wp-lightbox-card">
         <img src="assets/charts/churn_rate.png" alt="Monthly churn rate trend" class="wp-chart-img">
       </div>
       <p class="wp-source section-reveal">Low churn supports predictable MRR and reduces acquisition pressure.</p>
@@ -4698,7 +4695,7 @@ window.initUnityHeroScene = function () {
     function initBeforeAfterHover() {
         var overlay = document.getElementById('ba-focus-overlay');
         if (!overlay) return;
-        document.querySelectorAll('.wp-ba-card').forEach(function (card) {
+        document.querySelectorAll('.wp-lightbox-card').forEach(function (card) {
             card.addEventListener('mouseenter', function () {
                 overlay.classList.add('active');
                 card.classList.add('ba-active');
@@ -4720,8 +4717,8 @@ window.initUnityHeroScene = function () {
         if (!lightbox || !lbImg) return;
 
         var images = [];
-        document.querySelectorAll('.wp-ba-card img').forEach(function (img, idx) {
-            var card = img.closest('.wp-ba-card');
+        document.querySelectorAll('.wp-lightbox-card img').forEach(function (img, idx) {
+            var card = img.closest('.wp-lightbox-card');
             var title = card ? (card.querySelector('h3') || {}).textContent || '' : '';
             images.push({ src: img.src, alt: img.alt || '', caption: title });
             img.style.cursor = 'zoom-in';
